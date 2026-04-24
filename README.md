@@ -63,7 +63,10 @@ python main.py \
   --run-id 1 \
   --pretrain-epochs 80 \
   --mlp-epochs 100 \
+  --extract-batch-size 2048 \
+  --mlp-batch-size 512 \
   --mlp-wd 0.0022 \
+  --pretrain-checkpoint best \
   --num-workers 0 \
   --lds-given-all 0
 ```
@@ -89,7 +92,10 @@ python main.py \
   --run-id 1 \
   --pretrain-epochs 80 \
   --mlp-epochs 100 \
+  --extract-batch-size 2048 \
+  --mlp-batch-size 512 \
   --mlp-wd 0.0022 \
+  --pretrain-checkpoint best \
   --num-workers 0 \
   --lds-given-all 0 \
   --stages pretrain
@@ -101,6 +107,7 @@ python main.py \
 python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --lds-given-all 0 \
+  --pretrain-checkpoint best \
   --stages extract,mlp,visualize
 ```
 
@@ -110,6 +117,7 @@ python main.py \
 python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --lds-given-all 0 \
+  --pretrain-checkpoint best \
   --stages extract,mlp,visualize \
   --wait-pretrain-last-epochs 50
 ```
@@ -167,7 +175,7 @@ bash scripts/run_local_faced_background.sh
 
 - `onesub_label2.npy` 保留在仓库中。
 - 10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
-- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`。
+- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`、`extract-batch-size=2048`、`mlp-batch-size=512`、`pretrain-checkpoint=best`。
 
 关键指标：
 

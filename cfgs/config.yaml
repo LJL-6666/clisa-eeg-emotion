@@ -52,11 +52,11 @@ mlp:
   gpus: ${train.gpus}
   num_workers: ${train.num_workers}
   last_checkpoint_every_n_epochs: ${train.last_checkpoint_every_n_epochs}
-  batch_size: 256
+  batch_size: 512
 
 ext_fea:
   normTrain: True
-  batch_size: 256
+  batch_size: 2048
   mode: 'de'
   rn_decay: 0.990
   use_pretrain: True
@@ -67,7 +67,7 @@ ext_fea:
   # 0 = forward Kalman filtering only; 1 = forward + backward smoothing.
   lds_given_all: 0
   # latest = max epoch checkpoint; best = monitored f{fold}_epoch=*.ckpt.
-  pretrain_checkpoint: latest
+  pretrain_checkpoint: best
 
 
 hydra:

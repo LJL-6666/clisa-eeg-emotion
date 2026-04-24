@@ -693,11 +693,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--feature-mode", default="de", choices=("me", "de"), help="Feature pooling mode passed to extract_fea.py.")
     parser.add_argument("--pretrain-epochs", type=int, default=80, help="train_ext.py epoch count.")
     parser.add_argument("--mlp-epochs", type=int, default=100, help="train_mlp.py epoch count.")
-    parser.add_argument("--extract-batch-size", type=int, default=256, help="Feature extraction batch size.")
-    parser.add_argument("--mlp-batch-size", type=int, default=256, help="MLP training batch size.")
+    parser.add_argument("--extract-batch-size", type=int, default=2048, help="Feature extraction batch size.")
+    parser.add_argument("--mlp-batch-size", type=int, default=512, help="MLP training batch size.")
     parser.add_argument("--mlp-wd", type=float, default=0.0022, help="MLP weight decay.")
     parser.add_argument("--lds-given-all", type=int, choices=(0, 1), default=0, help="LDS mode for extract_fea.py: 0=forward filtering only, 1=forward+backward smoothing.")
-    parser.add_argument("--pretrain-checkpoint", choices=("latest", "best"), default="latest", help="Which pretrain checkpoint extract_fea.py should load for each fold.")
+    parser.add_argument("--pretrain-checkpoint", choices=("latest", "best"), default="best", help="Which pretrain checkpoint extract_fea.py should load for each fold.")
     parser.add_argument("--num-workers", type=int, default=0, help="DataLoader workers. Defaults to 0 to avoid multiprocessing semaphore limits on constrained hosts.")
     parser.add_argument("--full-run", action="store_true", help="Force a 10-fold run when valid_method is set to 1.")
     parser.add_argument(
@@ -745,11 +745,11 @@ def run_pipeline(
     feature_mode: str = "de",
     pretrain_epochs: int = 80,
     mlp_epochs: int = 100,
-    extract_batch_size: int = 256,
-    mlp_batch_size: int = 256,
+    extract_batch_size: int = 2048,
+    mlp_batch_size: int = 512,
     mlp_wd: float = 0.0022,
     lds_given_all: int = 0,
-    pretrain_checkpoint: str = "latest",
+    pretrain_checkpoint: str = "best",
     num_workers: int = 0,
     full_run: bool = False,
     stages: tuple[str, ...] = _STAGE_ORDER,

@@ -65,7 +65,10 @@ echo "mplconfigdir=$MPLCONFIGDIR"
   --run-id 1 \
   --pretrain-epochs 80 \
   --mlp-epochs 100 \
+  --extract-batch-size 2048 \
+  --mlp-batch-size 512 \
   --mlp-wd 0.0022 \
+  --pretrain-checkpoint best \
   --num-workers 0 \
   --lds-given-all 0 \
   "$@"
