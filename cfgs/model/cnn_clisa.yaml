@@ -1,0 +1,11 @@
+_target_: model.models.ConvNet_baseNonlinearHead
+n_timeFilters: 16 
+timeFilterLen: 60
+n_spatialFilters: 16
+avgPoolLen: 30 
+timeSmootherLen: 6 
+n_channs: ${data.n_channs}
+stratified: ['initial', 'middle1', 'middle2']
+multiFact: 2
+saveFea: False
+extract_mode: ${ext_fea.mode}

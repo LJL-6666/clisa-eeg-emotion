@@ -1,0 +1,5 @@
+__pycache__/
+daest_run
+*.pyc
+.vscode
+results/processed_data_full_fixed_v4_lds_forward/features/processed_data_full_fixed_v4_lds_forward_r1_f*_fea_de.npy

@@ -1,0 +1,77 @@
+# please config the path of the checkpoints(log/cp_dir) 
+# and the running logs(hydra/run/dir) before running the code
+
+
+defaults:
+  - _self_
+  - data: FACED_def
+  - model: cnn_clisa
+
+seed: 7
+
+log:
+  run: 1
+  proj_name: 'CLISA_CODE'
+  exp_name: ''
+  cp_dir: '${hydra:runtime.cwd}/runs/checkpoints'
+
+
+
+train:
+  gpus: [0]
+  valid_method: 10
+  iftest: False
+  auto_resume: False
+  resume_ckpt: ''
+  n_subs: ${data.n_subs}
+  lr: 0.0007
+  wd: 0.00015
+  loss_temp: 0.07
+  max_epochs: 50
+  min_epochs: 50
+  patience: 30
+  num_workers: 2
+  save_every_n_epochs: 10
+  last_checkpoint_every_n_epochs: 10
+  restart_times: ${train.max_epochs}  # scheduler
+
+
+mlp:
+  # fea_dim: 256 #${model.n_timeFilters*model.n_msFilters*4}
+  hidden_dim: [128,64]
+  out_dim: ${data.n_class}
+  dropout: 0.1
+  bn: 'no'
+  auto_resume: ${train.auto_resume}
+  resume_ckpt: ''
+  lr: 0.0005  #0.0005
+  wd: 0.0022   #0.001-0.005
+  max_epochs: 80
+  min_epochs: 80
+  patience: 30
+  gpus: ${train.gpus}
+  num_workers: ${train.num_workers}
+  last_checkpoint_every_n_epochs: ${train.last_checkpoint_every_n_epochs}
+  batch_size: 256
+
+ext_fea:
+  normTrain: True
+  batch_size: 256
+  mode: 'de'
+  rn_decay: 0.990
+  use_pretrain: True
+  use_lds: True
+  lds_v0: 0.01
+  lds_t: 0.0001
+  lds_sigma: 1.0
+  # 0 = forward Kalman filtering only; 1 = forward + backward smoothing.
+  lds_given_all: 0
+  # latest = max epoch checkpoint; best = monitored f{fold}_epoch=*.ckpt.
+  pretrain_checkpoint: latest
+
+
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: ${hydra:runtime.cwd}/runs/hydra/${data.dataset_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}_run${log.run}

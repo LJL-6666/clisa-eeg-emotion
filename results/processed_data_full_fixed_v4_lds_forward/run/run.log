@@ -1,0 +1,16 @@
+[paths] source_kind=flat_processed_dir
+[paths] source_data_root=<external FACED processed data root>
+[paths] work_data_root=results/processed_data_full_fixed_v4_lds_forward/features
+[paths] output_root=results/processed_data_full_fixed_v4_lds_forward/run
+[paths] checkpoints_root=results/processed_data_full_fixed_v4_lds_forward/run/checkpoints
+[runtime] valid_method=10 devices=[0]
+[runtime] pretrain_debug=1
+[runtime] lds_given_all=0
+[runtime] pretrain_checkpoint=best
+[runtime] stages=('extract', 'mlp', 'visualize')
+[runtime] resume_run_root=results/processed_data_full_fixed_v4_lds_forward/run
+[stage:pretrain] skip not selected
+[stage:extract] completed
+[stage:mlp] completed
+[stage:visualize] completed
+[done] run_root=results/processed_data_full_fixed_v4_lds_forward/run

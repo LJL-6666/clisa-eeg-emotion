@@ -1,0 +1,25 @@
+{
+  "run_root": "results/processed_data_full_fixed_v4_lds_forward/run",
+  "feature_dir": "results/processed_data_full_fixed_v4_lds_forward/features",
+  "checkpoint_dir": "results/processed_data_full_fixed_v4_lds_forward/run/checkpoints",
+  "mlp_log": "results/processed_data_full_fixed_v4_lds_forward/run/stage_logs/mlp.log",
+  "mode": "de",
+  "fold_scores": {
+    "0": 41.994049072265625,
+    "1": 48.412696838378906,
+    "2": 41.65674591064453,
+    "3": 54.880950927734375,
+    "4": 47.66865158081055,
+    "5": 44.20634841918945,
+    "6": 37.390872955322266,
+    "7": 34.7023811340332,
+    "8": 37.69841384887695,
+    "9": 36.619049072265625
+  },
+  "fold_mean_accuracy_percent": 42.52301597595215,
+  "fold_std_accuracy_percent": 6.028126847011792,
+  "overall_accuracy_percent": 42.37901664730933,
+  "mean_subject_accuracy_percent": 42.37901664730933,
+  "std_subject_accuracy_percent": 13.688914753319445,
+  "n_predictions": 103320
+}
