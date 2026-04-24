@@ -52,7 +52,7 @@ echo "cuda_device_memory_shared_cache=$CUDA_DEVICE_MEMORY_SHARED_CACHE"
 echo "mplconfigdir=$MPLCONFIGDIR"
 "$PYTHON_BIN" --version
 
-"$PYTHON_BIN" run_kaggle_onecell.py \
+"$PYTHON_BIN" main.py \
   --data-root "${DATA_ROOT}" \
   --after-remarks-dir "${AFTER_REMARKS_DIR}" \
   --output-root "${OUTPUT_ROOT}" \

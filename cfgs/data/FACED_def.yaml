@@ -1,5 +1,5 @@
 dataset_name: 'FACED'
-data_dir: '${hydra:runtime.cwd}/runtime_data'  # run_kaggle_onecell.py will mirror/convert the local source data here
+data_dir: '${hydra:runtime.cwd}/runtime_data'  # main.py will mirror/convert the local source data here
 fs: 250
 n_channs: 30
 n_session: 1  

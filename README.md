@@ -45,15 +45,15 @@ pip install -r requirements.txt
 
 说明：
 
-- 直接运行 `python run_kaggle_onecell.py ...` 的前提是你已经手动执行过 `conda activate clisa-code`。
+- 直接运行 `python main.py ...` 的前提是你已经手动执行过 `conda activate clisa-code`。
 - `bash scripts/run_local_faced_reference.sh` 和 `bash scripts/run_local_faced_background.sh` 会默认尝试激活 `clisa-code`。
 - 如果你实际使用的是别的环境名，可以在运行前显式指定，例如 `CONDA_ENV=my-env bash scripts/run_local_faced_reference.sh`。
-- `run_kaggle_onecell.py` 这个文件名目前只是历史保留，实际已经是本地仓库统一入口，不再带 Kaggle fallback。
+- `main.py` 是当前统一入口。
 
 ## 一键整跑
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --data-root /path/to/Processed_data \
   --after-remarks-dir /path/to/after_remarks \
   --output-root ./runs \
@@ -79,7 +79,7 @@ bash scripts/run_local_faced_reference.sh
 只跑预训练：
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --data-root /path/to/Processed_data \
   --after-remarks-dir /path/to/after_remarks \
   --output-root ./runs \
@@ -98,7 +98,7 @@ python run_kaggle_onecell.py \
 在已有 `run_root` 上继续跑 `extract + mlp + visualize`：
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --lds-given-all 0 \
   --stages extract,mlp,visualize
@@ -107,7 +107,7 @@ python run_kaggle_onecell.py \
 如果预训练 checkpoint 是外部继续补齐的，也可以先等到指定 epoch 再继续：
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --lds-given-all 0 \
   --stages extract,mlp,visualize \
@@ -117,7 +117,7 @@ python run_kaggle_onecell.py \
 只重跑 `mlp + visualize`：
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --lds-given-all 0 \
   --stages mlp,visualize \
@@ -127,7 +127,7 @@ python run_kaggle_onecell.py \
 只重跑可视化：
 
 ```bash
-python run_kaggle_onecell.py \
+python main.py \
   --resume-run-root /abs/path/to/runs/run_YYYYMMDDTHHMMSSZ \
   --stages visualize \
   --force-stages visualize
@@ -176,7 +176,7 @@ bash scripts/run_local_faced_background.sh
 
 ## 当前保留内容
 
-- `run_kaggle_onecell.py`: 当前推荐的统一入口
+- `main.py`: 当前推荐的统一入口
 - `train_ext.py`: 预训练
 - `extract_fea.py`: 特征提取
 - `train_mlp.py`: MLP 分类

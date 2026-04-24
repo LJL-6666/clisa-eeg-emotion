@@ -102,7 +102,7 @@ chmod 0666 "${CUDA_DEVICE_MEMORY_SHARED_CACHE_PATH}" 2>/dev/null || true
 
 CMD=(
   "${PYTHON_BIN}"
-  "run_kaggle_onecell.py"
+  "main.py"
   "--data-root" "${DATA_ROOT}"
   "--after-remarks-dir" "${AFTER_REMARKS_DIR}"
   "--output-root" "${OUTPUT_ROOT}"
