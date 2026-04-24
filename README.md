@@ -26,6 +26,7 @@ lds_given_all = 0
 
 - `runtime_inputs/after_remarks` 已随仓库提供
 - `runtime_inputs/Processed_data` 没有随仓库提供，需要自行准备
+- 仓库现在只保留“纯本地开源仓库路径”版本，不再包含 Kaggle/远端机器路径 fallback
 
 如果你的数据不在默认目录，运行时显式传参即可。
 
@@ -47,6 +48,7 @@ pip install -r requirements.txt
 - 直接运行 `python run_kaggle_onecell.py ...` 的前提是你已经手动执行过 `conda activate clisa-code`。
 - `bash scripts/run_local_faced_reference.sh` 和 `bash scripts/run_local_faced_background.sh` 会默认尝试激活 `clisa-code`。
 - 如果你实际使用的是别的环境名，可以在运行前显式指定，例如 `CONDA_ENV=my-env bash scripts/run_local_faced_reference.sh`。
+- `run_kaggle_onecell.py` 这个文件名目前只是历史保留，实际已经是本地仓库统一入口，不再带 Kaggle fallback。
 
 ## 一键整跑
 

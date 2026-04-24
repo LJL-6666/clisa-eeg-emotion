@@ -37,7 +37,6 @@ def resolve_after_remarks_dir(data_root=None, after_remarks_dir=None):
     script_dir = Path(__file__).resolve().parent
     candidates = (
         after_remarks_dir,
-        os.environ.get("FACED_AFTER_REMARKS_DIR", ""),
         os.environ.get("CLISA_AFTER_REMARKS_DIR", ""),
         data_root,
         Path.cwd(),
@@ -45,19 +44,14 @@ def resolve_after_remarks_dir(data_root=None, after_remarks_dir=None):
         script_dir,
         script_dir.parent,
         script_dir.parent.parent,
-        Path("/data/FACED_Data/Clisa_analysis/After_remarks"),
-        Path("/data/FACED_Data"),
-        Path("/kaggle/input/faced-data/Clisa_analysis/After_remarks"),
-        Path("/kaggle/input/faced-data/FACED_Data/Clisa_analysis/After_remarks"),
-        Path("/kaggle/input/faced-data"),
     )
     for cand in candidates:
         resolved = _normalize_after_remarks_dir(cand)
         if resolved is not None:
             return resolved
     raise FileNotFoundError(
-        "Could not locate After_remarks. Set FACED_AFTER_REMARKS_DIR or "
-        "CLISA_AFTER_REMARKS_DIR, or pass a FACED data root / After_remarks directory."
+        "Could not locate After_remarks. Set CLISA_AFTER_REMARKS_DIR, or pass "
+        "a repository-local data root / After_remarks directory."
     )
 
 

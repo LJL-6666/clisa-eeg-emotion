@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Run the CLISA pipeline end-to-end from Kaggle or a local/remote host.
+"""Run the CLISA pipeline end-to-end from a local open-source repository layout.
 
-This entrypoint auto-detects common Kaggle and SSH-host layouts, keeps input
-data read-only where possible, writes outputs under the detected writable
-experiment root, creates a writable data mirror that symlinks the processed_data
-directory from the detected input root, then executes:
+This entrypoint resolves inputs from explicit CLI arguments, `CLISA_*`
+environment variables, or the repository-local defaults under `runtime_inputs/`
+and `runs/`. It keeps source data read-only where possible, creates a writable
+run-local data mirror, then executes:
 
 1. train_ext.py
 2. extract_fea.py
@@ -34,10 +34,6 @@ from runtime_utils import stage_fold_completed_epochs
 
 
 REPO_ROOT = Path(__file__).resolve().parent
-KAGGLE_INPUT = Path("/kaggle/input")
-KAGGLE_WORKING = Path("/kaggle/working")
-REMOTE_FACED_ROOT = Path("/data/FACED_Data")
-REMOTE_EXPERIMENTS_ROOT = Path("/data/experiments")
 DEFAULT_LOCAL_DATA_ROOT = Path(__file__).resolve().parent / "runtime_inputs" / "Processed_data"
 DEFAULT_LOCAL_AFTER_REMARKS_ROOT = Path(__file__).resolve().parent / "runtime_inputs" / "after_remarks"
 DEFAULT_LOCAL_OUTPUT_ROOT = Path(__file__).resolve().parent / "runs"
@@ -137,24 +133,19 @@ def _resolve_source_data_root(explicit: Optional[str]) -> tuple[str, Path]:
     candidates = []
     if explicit:
         candidates.append(Path(explicit))
-    for env_name in ("CLISA_DATA_DIR", "FACED_ROOT"):
+    for env_name in ("CLISA_DATA_DIR",):
         env_value = os.environ.get(env_name)
         if env_value:
             candidates.append(Path(env_value))
     candidates.extend(
         [
             DEFAULT_LOCAL_DATA_ROOT,
-            REMOTE_FACED_ROOT,
-            REMOTE_FACED_ROOT / "Clisa_data",
-            REMOTE_FACED_ROOT / "Clisa_data" / "Clisa_data",
             REPO_ROOT / "FACED_lessICA",
             REPO_ROOT / "FACED_def",
             REPO_ROOT,
             REPO_ROOT.parent,
             Path.cwd(),
             Path.cwd().parent,
-            KAGGLE_WORKING,
-            KAGGLE_INPUT,
         ]
     )
 
@@ -198,17 +189,12 @@ def _resolve_source_after_remarks_root(explicit: Optional[str], data_root: Path)
     candidates.extend(
         [
             DEFAULT_LOCAL_AFTER_REMARKS_ROOT,
-            REMOTE_FACED_ROOT / "Clisa_analysis" / "After_remarks",
-            REMOTE_FACED_ROOT,
             data_root / "After_remarks",
             data_root / "Clisa_analysis" / "After_remarks",
             data_root.parent / "After_remarks",
             data_root.parent / "Clisa_analysis" / "After_remarks",
             data_root.parent.parent / "After_remarks",
             data_root.parent.parent / "Clisa_analysis" / "After_remarks",
-            data_root.parent.parent / "FACED_Data" / "Clisa_analysis" / "After_remarks",
-            data_root / "FACED_Data" / "Clisa_analysis" / "After_remarks",
-            KAGGLE_INPUT,
         ]
     )
     for cand in candidates:
@@ -223,22 +209,14 @@ def _resolve_source_after_remarks_root(explicit: Optional[str], data_root: Path)
 
 
 def _resolve_output_root(explicit: Optional[str]) -> Path:
-    candidates = [explicit, os.environ.get("CLISA_OUTPUT_ROOT"), os.environ.get("CLISA_EXPERIMENT_ROOT")]
+    candidates = [explicit, os.environ.get("CLISA_OUTPUT_ROOT")]
     for raw in candidates:
         if not raw:
             continue
         path = Path(raw).expanduser()
         path.mkdir(parents=True, exist_ok=True)
         return path.resolve()
-    if KAGGLE_WORKING.exists():
-        path = KAGGLE_WORKING / "clisa-code"
-        path.mkdir(parents=True, exist_ok=True)
-        return path.resolve()
-    if REMOTE_EXPERIMENTS_ROOT.exists():
-        path = REMOTE_EXPERIMENTS_ROOT / "clisa-code"
-        path.mkdir(parents=True, exist_ok=True)
-        return path.resolve()
-    path = DEFAULT_LOCAL_OUTPUT_ROOT if DEFAULT_LOCAL_OUTPUT_ROOT.parent.exists() else REPO_ROOT / "runs_kaggle"
+    path = DEFAULT_LOCAL_OUTPUT_ROOT
     path.mkdir(parents=True, exist_ok=True)
     return path.resolve()
 
@@ -410,10 +388,7 @@ def _log_run_message(run_root: Path, message: str, *, echo: bool) -> None:
 
 
 def _should_echo_stdout(run_root: Path) -> bool:
-    try:
-        return not run_root.resolve().is_relative_to(REMOTE_EXPERIMENTS_ROOT)
-    except ValueError:
-        return True
+    return True
 
 
 def _run_command_with_log(
@@ -816,7 +791,6 @@ def run_pipeline(
         {
             "CLISA_DATA_DIR": str(work_data_root),
             "CLISA_OUTPUT_ROOT": str(run_root),
-            "CLISA_EXPERIMENT_ROOT": str(run_root),
             "CLISA_PRETRAIN_DEBUG": env.get("CLISA_PRETRAIN_DEBUG", "1"),
             "HYDRA_FULL_ERROR": env.get("HYDRA_FULL_ERROR", "1"),
             "WANDB_MODE": env.get("WANDB_MODE", "disabled"),
