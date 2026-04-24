@@ -63,8 +63,8 @@ echo "mplconfigdir=$MPLCONFIGDIR"
   --devices auto \
   --valid-method 10 \
   --run-id 1 \
-  --pretrain-epochs 50 \
-  --mlp-epochs 80 \
+  --pretrain-epochs 80 \
+  --mlp-epochs 100 \
   --mlp-wd 0.0022 \
   --num-workers 0 \
   --lds-given-all 0 \

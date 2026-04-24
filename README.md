@@ -61,8 +61,8 @@ python main.py \
   --model-config cnn_clisa \
   --valid-method 10 \
   --run-id 1 \
-  --pretrain-epochs 50 \
-  --mlp-epochs 80 \
+  --pretrain-epochs 80 \
+  --mlp-epochs 100 \
   --mlp-wd 0.0022 \
   --num-workers 0 \
   --lds-given-all 0
@@ -87,8 +87,8 @@ python main.py \
   --model-config cnn_clisa \
   --valid-method 10 \
   --run-id 1 \
-  --pretrain-epochs 50 \
-  --mlp-epochs 80 \
+  --pretrain-epochs 80 \
+  --mlp-epochs 100 \
   --mlp-wd 0.0022 \
   --num-workers 0 \
   --lds-given-all 0 \
@@ -167,6 +167,7 @@ bash scripts/run_local_faced_background.sh
 
 - `onesub_label2.npy` 保留在仓库中。
 - 10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
+- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`。
 
 关键指标：
 

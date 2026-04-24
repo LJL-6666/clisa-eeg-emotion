@@ -691,8 +691,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--project-name", default="CLISA_CODE", help="Experiment project name.")
     parser.add_argument("--exp-name", default="local_faced_reference", help="Experiment name used in checkpoints/features.")
     parser.add_argument("--feature-mode", default="de", choices=("me", "de"), help="Feature pooling mode passed to extract_fea.py.")
-    parser.add_argument("--pretrain-epochs", type=int, default=50, help="train_ext.py epoch count.")
-    parser.add_argument("--mlp-epochs", type=int, default=80, help="train_mlp.py epoch count.")
+    parser.add_argument("--pretrain-epochs", type=int, default=80, help="train_ext.py epoch count.")
+    parser.add_argument("--mlp-epochs", type=int, default=100, help="train_mlp.py epoch count.")
     parser.add_argument("--extract-batch-size", type=int, default=256, help="Feature extraction batch size.")
     parser.add_argument("--mlp-batch-size", type=int, default=256, help="MLP training batch size.")
     parser.add_argument("--mlp-wd", type=float, default=0.0022, help="MLP weight decay.")
@@ -743,8 +743,8 @@ def run_pipeline(
     project_name: str = "CLISA_CODE",
     exp_name: str = "local_faced_reference",
     feature_mode: str = "de",
-    pretrain_epochs: int = 50,
-    mlp_epochs: int = 80,
+    pretrain_epochs: int = 80,
+    mlp_epochs: int = 100,
     extract_batch_size: int = 256,
     mlp_batch_size: int = 256,
     mlp_wd: float = 0.0022,
