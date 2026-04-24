@@ -22,7 +22,12 @@ lds_given_all = 0
 - `after-remarks-dir`: `./runtime_inputs/after_remarks`
 - `output-root`: `./runs`
 
-如果你的数据不在这两个默认目录，运行时显式传参即可。
+当前仓库状态：
+
+- `runtime_inputs/after_remarks` 已随仓库提供
+- `runtime_inputs/Processed_data` 没有随仓库提供，需要自行准备
+
+如果你的数据不在默认目录，运行时显式传参即可。
 
 ## 安装
 
