@@ -1,8 +1,6 @@
 # FACED 预处理
 
-本目录仅保留 **FACED 数据集** 对应的 MNE 预处理：从 TY 工程  
-`/预处理/python/Preprocessing/全部的TY/`  
-中的 `main.py`、`Preprocessing.py` 抽出；在开源仓库中即为 **`preprocessing/`**。
+本目录为 **FACED 数据集** 的 MNE 预处理：`main.py` 与 `Preprocessing.py`，位于仓库 **`preprocessing/`**。
 
 与 [clisa-eeg-emotion](https://github.com/LJL-6666/clisa-eeg-emotion) 并存：仓库根目录负责训练与特征；此处负责预处理 **原始 FACED EEG → 逐被试 pkl**。
 
