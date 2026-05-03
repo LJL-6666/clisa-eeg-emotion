@@ -21,6 +21,23 @@
 
 如果你的数据不在默认目录，运行时显式传参即可。
 
+### 从原始 FACED EEG 生成 `Processed_data`（可选）
+
+若你手里是 **原始脑电** 而非网盘中的「处理后」目录，可使用仓库内 **`preprocessing/`** 中的 MNE 流水线（说明见 [`preprocessing/README.md`](preprocessing/README.md)）。主分支为 **0.05–47 Hz**，与本 README 一致的 **4–47 Hz（CLISA）** 需在 ICA 等步骤之后额外写出第二条分支。
+
+**CLISA 模式（同时写出主分支 pkl + CLISA 用 4–47 Hz 分支）**：
+
+```bash
+cd preprocessing
+python main.py --clisa-or-not yes
+```
+
+默认 `--clisa-or-not` 为 `no`，仅写主带通结果。
+
+**路径**：`preprocessing/main.py` 内的 `foldPaths`、`data_dir`、`save_dir` 仍为示例相对路径，运行前请改为你的 **`Recording_info.csv`**、**原始数据根目录**、**输出 `Processed_data` 目录**。若使用 `--clisa-or-not yes`，还须修改其中的 **`clisa_save_dir`**，使之指向你希望存放 CLISA 分支的位置。训练阶段请将 **`--data-root`** 指向上面的 **`save_dir`**（与本仓库默认 `./runtime_inputs/Processed_data` 对齐即可）。
+
+预处理依赖 `mne` 等，可与 [`preprocessing/README.md`](preprocessing/README.md) 所列依赖一并安装（必要时单独 conda 环境）。
+
 ## 安装
 
 ```bash
@@ -176,6 +193,7 @@ bash scripts/run_local_faced_background.sh
 
 ## 当前保留内容
 
+- `preprocessing/`: FACED 原始 EEG → pkl 的参考预处理（含 `--clisa-or-not yes` 的 CLISA 频带分支）
 - `main.py`: 当前推荐的统一入口
 - `train_ext.py`: 预训练
 - `extract_fea.py`: 特征提取
