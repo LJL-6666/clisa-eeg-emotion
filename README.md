@@ -2,7 +2,7 @@
 
 这个目录是当前用于开源的精简版，目标是复现论文的最终结果：
 
-- 数据集：`FACED 9-class`：[****](https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/) ，包含了原始脑电数据以及处理后的文件。
+- 数据集：`FACED 9-class`：[数据链接](https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/) ，包含了原始脑电数据以及处理后的文件。
 - 模型配置：`cnn_clisa`
 
 ## 默认输入/输出路径
