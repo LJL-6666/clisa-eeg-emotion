@@ -4,7 +4,7 @@
 `/预处理/python/Preprocessing/全部的TY/`  
 中的 `main.py`、`Preprocessing.py` 抽出；在开源仓库中即为 **`preprocessing/`**。
 
-与 [clisa-eeg-emotion](https://github.com/LJL-6666/clisa-eeg-emotion) 并存：仓库根目录负责训练与特征；此处负责 **原始 FACED EEG → 逐被试 pkl**。
+与 [clisa-eeg-emotion](https://github.com/LJL-6666/clisa-eeg-emotion) 并存：仓库根目录负责训练与特征；此处负责预处理 **原始 FACED EEG → 逐被试 pkl**。
 
 ## 文件说明
 
