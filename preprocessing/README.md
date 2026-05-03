@@ -1,4 +1,4 @@
-# FACED 预处理（TY 工程快照）
+# FACED 预处理
 
 本目录仅保留 **FACED 数据集** 对应的 MNE 预处理：从 TY 工程  
 `/预处理/python/Preprocessing/全部的TY/`  
