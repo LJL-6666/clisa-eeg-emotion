@@ -17,7 +17,6 @@
 
 - `runtime_inputs/after_remarks` 已随仓库提供
 - `runtime_inputs/Processed_data` 没有随仓库提供，需要自行准备
-- 仓库现在只保留“纯本地开源仓库路径”版本，不再包含 Kaggle/远端机器路径 fallback
 
 如果你的数据不在默认目录，运行时显式传参即可。
 
