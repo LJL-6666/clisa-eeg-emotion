@@ -170,9 +170,13 @@ bash scripts/run_local_faced_background.sh
 
 后台脚本当前默认也是 `LDS forward`。
 
-## 最后一版结果
+## 结果与运行记录
 
-当前保留的是最后一版 `LDS forward` 结果：
+仓库现在同时保留三类结果：原仓库历史参考结果，以及本机新跑的两个完整 6-GPU fold 级并行结果。三者不互相覆盖，完整细节见 [`docs/run_history.md`](docs/run_history.md)。
+
+### 原仓库历史参考结果
+
+这是仓库此前保留的 `LDS forward` reference result：
 
 - 结果目录：`results/processed_data_full_fixed_v4_lds_forward/`
 - 特征目录：`results/processed_data_full_fixed_v4_lds_forward/features/`
@@ -183,7 +187,8 @@ bash scripts/run_local_faced_background.sh
 
 - `onesub_label2.npy` 保留在仓库中。
 - 10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
-- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`、`extract-batch-size=2048`、`mlp-batch-size=512`、`pretrain-checkpoint=best`。
+- 该结果的 `run.log` 记录为外部 processed data 来源：`source_data_root=<external FACED processed data root>`。
+- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`、`extract-batch-size=2048`、`mlp-batch-size=512`、`pretrain-checkpoint=best`、`lds-given-all=0`。
 
 关键指标：
 
@@ -191,18 +196,31 @@ bash scripts/run_local_faced_background.sh
 - overall accuracy: `42.3790%`
 - subject accuracy: `42.3790% +/- 13.6889%`
 
+### 本机新跑结果
 
-## 本地新增运行记录
+本机新跑结果使用新增的 fold 级并行脚本运行，目的是打满多卡算力并保留完整运行痕迹。每个 fold 是独立进程，因此与单进程顺序 10-fold 的随机数推进路径不同；即使数据和主要参数一致，准确率也可能有小幅差异。
 
-旧结果不覆盖，新的 6-GPU fold 级并行运行也单独保留。完整对照见 [`docs/run_history.md`](docs/run_history.md)。
+| 结果 | 数据分支 | 运行方式 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
+| --- | --- | --- | --- | ---: | ---: | ---: |
+| 原仓库历史参考 | external processed data | repository preserved reference | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
+| 本机新跑 A | `runtime_inputs/Processed_data-clisa`，4-47 Hz | 6-GPU fold 并行 | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
+| 本机新跑 B | `runtime_inputs/Processed_data`，0.05-47 Hz | 6-GPU fold 并行 | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
 
-| Run | 数据分支 | 运行目录 | 10-fold mean | overall |
-| --- | --- | --- | ---: | ---: |
-| preserved reference | external processed data | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` |
-| local 6-GPU | `runtime_inputs/Processed_data-clisa`，4-47 Hz | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` |
-| local 6-GPU | `runtime_inputs/Processed_data`，0.05-47 Hz | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` |
+本机新跑的主要设置：
 
-说明：本地 6-GPU 版本按 fold 拆成多个进程并行运行，用于加速并避免覆盖已有结果。它与单进程顺序 10-fold 的随机数推进路径不同，因此即使数据和主要参数一致，最终准确率也可能有小幅差异。
+- Pipeline: `pretrain -> extract_fea -> train_mlp -> visualize`
+- Dataset/model: `FACED_def` + `cnn_clisa`
+- Task: FACED 9-class, 10-fold cross-subject
+- Feature mode: `de`
+- Pretrain epochs: `80`
+- MLP epochs: `100`
+- `ext_fea.normTrain=True`
+- `ext_fea.use_running_norm=True`
+- `ext_fea.use_lds=True`
+- `ext_fea.lds_given_all=0`
+- `ext_fea.pretrain_checkpoint=best`
+
+已上传到 GitHub 的本机结果包括 README/docs、运行脚本、可视化 PNG、CSV/JSON、预测小文件、日志、Hydra 配置和轻量 checkpoint。未上传原始数据与大中间文件：`runtime_inputs/` 数据、`runs/*/data/sliced_data/*.npy`、`runs/*/data/ext_fea/*.npy`。
 
 ## 当前保留内容
 
