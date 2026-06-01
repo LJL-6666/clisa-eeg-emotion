@@ -2,7 +2,7 @@
 
 这个目录是当前用于开源的精简版，目标是复现论文的最终结果：
 
-- 数据集：`FACED 9-class`：[数据链接](https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/) ，包含了原始脑电数据以及处理后的文件。且此代码用的是4-47H的预处理方案。
+- 数据集：`FACED 9-class`：[数据链接](https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/) ，包含了原始脑电数据以及处理后的文件。默认 `Processed_data`/原仓库参考结果按 `0.05-47 Hz` 主分支整理；额外的 `Processed_data-clisa` 才是 `4-47 Hz` CLISA 分支。
 - 模型配置：`cnn_clisa`
 
 ## 默认输入/输出路径
@@ -23,7 +23,7 @@
 
 ### 从原始 FACED EEG 生成 `Processed_data`（可选）
 
-若你手里是 **原始脑电** 而非网盘中的「处理后」目录，可使用仓库内 **`preprocessing/`** 中的 MNE 流水线（说明见 [`preprocessing/README.md`](preprocessing/README.md)）。主分支为 **0.05–47 Hz**，与本 README 一致的 **4–47 Hz（CLISA）** 需在 ICA 等步骤之后额外写出第二条分支。
+若你手里是 **原始脑电** 而非网盘中的「处理后」目录，可使用仓库内 **`preprocessing/`** 中的 MNE 流水线（说明见 [`preprocessing/README.md`](preprocessing/README.md)）。主分支为 **0.05–47 Hz**，与默认 `Processed_data` 和原仓库参考结果一致；**4–47 Hz（CLISA）** 需在 ICA 等步骤之后额外写出第二条分支。
 
 **CLISA 模式（同时写出主分支 pkl + CLISA 用 4–47 Hz 分支）**：
 
@@ -187,7 +187,7 @@ bash scripts/run_local_faced_background.sh
 
 - `onesub_label2.npy` 保留在仓库中。
 - 10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
-- 该结果的 `run.log` 记录为外部 processed data 来源：`source_data_root=<external FACED processed data root>`。
+- 该结果按 `0.05-47 Hz` `Processed_data` 主分支整理；`run.log` 记录为外部 processed data 来源：`source_data_root=<external FACED processed data root>`。
 - 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`、`extract-batch-size=2048`、`mlp-batch-size=512`、`pretrain-checkpoint=best`、`lds-given-all=0`。
 
 关键指标：
@@ -202,7 +202,7 @@ bash scripts/run_local_faced_background.sh
 
 | 结果 | 数据分支 | 运行方式 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
 | --- | --- | --- | --- | ---: | ---: | ---: |
-| 原仓库历史参考 | external processed data | repository preserved reference | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
+| 原仓库历史参考 | external `Processed_data`，0.05-47 Hz | repository preserved reference | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
 | 本机新跑 A | `runtime_inputs/Processed_data-clisa`，4-47 Hz | 6-GPU fold 并行 | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
 | 本机新跑 B | `runtime_inputs/Processed_data`，0.05-47 Hz | 6-GPU fold 并行 | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
 

@@ -5,7 +5,7 @@ The original code/results are preserved. New launchers and run directories are k
 
 ## Preserved Repository Result
 
-The repository keeps its reference LDS-forward result under:
+The repository keeps its reference LDS-forward result under. This reference is documented as the 0.05-47 Hz `Processed_data` branch, not the 4-47 Hz `Processed_data-clisa` branch:
 
 - Result root: `results/processed_data_full_fixed_v4_lds_forward/`
 - Run root: `results/processed_data_full_fixed_v4_lds_forward/run`
@@ -21,6 +21,7 @@ Metrics:
 Notes:
 
 - This result is retained as the repository reference result.
+- Frequency branch: `0.05-47 Hz` `Processed_data`.
 - The full external input data used for this result is not stored in the repository.
 - The run log records `source_data_root=<external FACED processed data root>`.
 
@@ -85,7 +86,7 @@ The new code keeps the old path/results intact and adds operational support:
 - `extract_fea.py` adds `ext_fea.use_running_norm`; default is `True`, matching the current pipeline.
 - `visualize_daest_results.py` reads explicit `[fold-result][mlp] fold=N best_score=...` lines first, fixing merged-log fold parsing.
 - `scripts/run_faced_6gpu_full_after_upload.sh` runs the full pipeline in 6-GPU fold batches.
-- `scripts/run_processed_005_47_after_upload.sh` runs the 0.05-47 Hz branch into a separate run root and refuses to overwrite the 4-47 Hz baseline run.
+- `scripts/run_processed_005_47_after_upload.sh` runs the 0.05-47 Hz branch into a separate run root and refuses to overwrite the 4-47 Hz local CLISA run.
 
 ## Interpretation
 

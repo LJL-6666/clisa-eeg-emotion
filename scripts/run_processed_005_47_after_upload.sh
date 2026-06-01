@@ -12,9 +12,9 @@ export CONDA_ENV="${CONDA_ENV:-ty_eeg_speech_stage1}"
 export POLL_SECONDS="${POLL_SECONDS:-60}"
 export STABLE_POLLS="${STABLE_POLLS:-2}"
 
-BASELINE_ROOT="${BASELINE_ROOT:-${REPO_ROOT}/runs/run_6gpu_full_current}"
-if [ "$OUTPUT_RUN_ROOT" = "$BASELINE_ROOT" ]; then
-  echo "refusing to write 0.05-47Hz run into baseline root: $OUTPUT_RUN_ROOT" >&2
+CLISA_RUN_ROOT="${CLISA_RUN_ROOT:-${REPO_ROOT}/runs/run_6gpu_full_current}"
+if [ "$OUTPUT_RUN_ROOT" = "$CLISA_RUN_ROOT" ]; then
+  echo "refusing to write 0.05-47Hz run into 4-47Hz CLISA run root: $OUTPUT_RUN_ROOT" >&2
   exit 2
 fi
 
