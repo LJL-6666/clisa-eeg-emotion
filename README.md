@@ -172,41 +172,31 @@ bash scripts/run_local_faced_background.sh
 
 ## 结果与运行记录
 
-仓库现在同时保留三类结果：原仓库历史参考结果，以及本机新跑的两个完整 6-GPU fold 级并行结果。三者不互相覆盖，完整细节见 [`docs/run_history.md`](docs/run_history.md)。
+仓库现在同时保留三套结果，命名按“运行方式 + 频段”来区分，避免把数据分支和运行方式混在一起。完整细节见 [`docs/run_history.md`](docs/run_history.md)。
 
-### 原仓库历史参考结果
+| 结果口径 | 数据分支 | 来源/运行方式 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
+| --- | --- | --- | --- | ---: | ---: | ---: |
+| 单卡顺序 0.05-47 Hz | external `Processed_data`，0.05-47 Hz | 原仓库保留 reference，单进程/单卡顺序 10-fold | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
+| 6-GPU fold 并行 4-47 Hz | `runtime_inputs/Processed_data-clisa`，4-47 Hz | 本机新跑，按 fold 拆成多进程并行 | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
+| 6-GPU fold 并行 0.05-47 Hz | `runtime_inputs/Processed_data`，0.05-47 Hz | 本机新跑，按 fold 拆成多进程并行 | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
 
-这是仓库此前保留的 `LDS forward` reference result：
+### 单卡顺序 0.05-47 Hz
+
+这是原仓库此前保留的 `LDS forward` reference result，对应默认 `Processed_data` 主分支：
 
 - 结果目录：`results/processed_data_full_fixed_v4_lds_forward/`
 - 特征目录：`results/processed_data_full_fixed_v4_lds_forward/features/`
 - checkpoint：`results/processed_data_full_fixed_v4_lds_forward/run/checkpoints/`
 - 可视化结果：`results/processed_data_full_fixed_v4_lds_forward/run/visualization/`
+- `run.log` 记录为外部 processed data 来源：`source_data_root=<external FACED processed data root>`
 
-说明：
+说明：该结果是原仓库保留的单进程/单卡顺序 10-fold 结果。10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
 
-- `onesub_label2.npy` 保留在仓库中。
-- 10 个折的 `*_fea_de.npy` 特征文件单个体积超过 GitHub 普通仓库限制，因此没有随开源仓库上传。
-- 该结果按 `0.05-47 Hz` `Processed_data` 主分支整理；`run.log` 记录为外部 processed data 来源：`source_data_root=<external FACED processed data root>`。
-- 当前仓库默认运行参数已对齐到这版结果：`pretrain-epochs=80`、`mlp-epochs=100`、`extract-batch-size=2048`、`mlp-batch-size=512`、`pretrain-checkpoint=best`、`lds-given-all=0`。
+### 6-GPU fold 并行 4-47 Hz / 0.05-47 Hz
 
-关键指标：
+这两套是本机新跑结果，使用新增的 fold 级并行脚本运行，目的是打满多卡算力并保留完整运行痕迹。每个 fold 是独立进程，因此与单进程顺序 10-fold 的随机数推进路径不同；即使数据和主要参数一致，准确率也可能有小幅差异。
 
-- 10-fold mean accuracy: `42.5230%`
-- overall accuracy: `42.3790%`
-- subject accuracy: `42.3790% +/- 13.6889%`
-
-### 本机新跑结果
-
-本机新跑结果使用新增的 fold 级并行脚本运行，目的是打满多卡算力并保留完整运行痕迹。每个 fold 是独立进程，因此与单进程顺序 10-fold 的随机数推进路径不同；即使数据和主要参数一致，准确率也可能有小幅差异。
-
-| 结果 | 数据分支 | 运行方式 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
-| --- | --- | --- | --- | ---: | ---: | ---: |
-| 原仓库历史参考 | external `Processed_data`，0.05-47 Hz | repository preserved reference | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
-| 本机新跑 A | `runtime_inputs/Processed_data-clisa`，4-47 Hz | 6-GPU fold 并行 | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
-| 本机新跑 B | `runtime_inputs/Processed_data`，0.05-47 Hz | 6-GPU fold 并行 | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
-
-本机新跑的主要设置：
+共同设置：
 
 - Pipeline: `pretrain -> extract_fea -> train_mlp -> visualize`
 - Dataset/model: `FACED_def` + `cnn_clisa`
