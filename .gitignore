@@ -3,3 +3,11 @@ daest_run
 *.pyc
 .vscode
 results/processed_data_full_fixed_v4_lds_forward/features/processed_data_full_fixed_v4_lds_forward_r1_f*_fea_de.npy
+# Local FACED runtime inputs are large and should not be committed.
+runtime_inputs/Processed_data/*
+!runtime_inputs/Processed_data/.gitkeep
+runtime_inputs/Processed_data-clisa/
+# Large generated arrays from local full runs.
+runs/*/data/
+runs/*/matplotlib_cache/
+runs/debug_trace/

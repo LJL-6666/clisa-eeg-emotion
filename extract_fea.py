@@ -23,6 +23,7 @@ from runtime_utils import (
     configure_torch_runtime,
     iter_stage_fold_checkpoints,
     resolve_stage_fold_checkpoint,
+    selected_folds,
     trainer_runtime_kwargs,
 )
 
@@ -252,7 +253,7 @@ def ext_fea(cfg: DictConfig) -> None:
 
     np.save(save_dir+'/onesub_label2.npy',onesub_label2)
     
-    for fold in range(0,n_folds):
+    for fold in selected_folds(n_folds):
         log.info(f"fold:{fold}")
         if n_folds == 1:
             val_subs = []
@@ -416,14 +417,18 @@ def ext_fea(cfg: DictConfig) -> None:
         n_sample_sum_sessions_cum = np.concatenate((np.array([0]), np.cumsum(n_sample_sum_sessions)))
 
         # fea_processed = np.zeros_like(fea)
-        log.info('running norm: start')
-        for sub in range(cfg.data.n_subs):
-            log.debug(f'sub:{sub}')
-            for s in range(len(n_sample_sum_sessions)):
-                fea[sub,n_sample_sum_sessions_cum[s]:n_sample_sum_sessions_cum[s+1]] = running_norm_onesubsession(
-                                            fea[sub,n_sample_sum_sessions_cum[s]:n_sample_sum_sessions_cum[s+1]],
-                                            data_mean,data_var,cfg.ext_fea.rn_decay)
-        log.info('running norm: done')
+        use_running_norm = bool(getattr(cfg.ext_fea, "use_running_norm", True))
+        if use_running_norm:
+            log.info('running norm: start')
+            for sub in range(cfg.data.n_subs):
+                log.debug(f'sub:{sub}')
+                for s in range(len(n_sample_sum_sessions)):
+                    fea[sub,n_sample_sum_sessions_cum[s]:n_sample_sum_sessions_cum[s+1]] = running_norm_onesubsession(
+                                                fea[sub,n_sample_sum_sessions_cum[s]:n_sample_sum_sessions_cum[s+1]],
+                                                data_mean,data_var,cfg.ext_fea.rn_decay)
+            log.info('running norm: done')
+        else:
+            log.info('running norm: skipped')
                 
         # print('rn:',fea[0,0])
         if np.isinf(fea).any():

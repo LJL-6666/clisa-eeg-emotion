@@ -162,10 +162,18 @@ def parse_fold_scores(mlp_log: Path) -> dict[int, float]:
     if not mlp_log.is_file():
         return {}
     scores: dict[int, float] = {}
-    pattern = re.compile(r"Fold\s+(\d+):\s+([0-9.]+)")
+    result_pattern = re.compile(r"\[fold-result\]\[mlp\]\s+fold=(\d+).*?best_score=([0-9.]+)")
+    fallback_pattern = re.compile(r"Fold\s+(\d+):\s+([0-9.]+)")
     with mlp_log.open("r", encoding="utf-8", errors="replace") as f:
         for line in f:
-            match = pattern.search(line)
+            match = result_pattern.search(line)
+            if match:
+                scores[int(match.group(1))] = float(match.group(2))
+    if scores:
+        return scores
+    with mlp_log.open("r", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            match = fallback_pattern.search(line)
             if match:
                 scores[int(match.group(1))] = float(match.group(2))
     return scores

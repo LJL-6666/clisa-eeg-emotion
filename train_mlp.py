@@ -20,6 +20,7 @@ from runtime_utils import (
     finish_logger_session,
     resolve_resume_checkpoint,
     resolve_stage_fold_checkpoint,
+    selected_folds,
     trainer_runtime_kwargs,
 )
 
@@ -98,7 +99,7 @@ def train_mlp(cfg: DictConfig) -> None:
     n_per = round(cfg.data.n_subs / n_folds)
     best_val_acc_list = []
     
-    for fold in range(0,n_folds):
+    for fold in selected_folds(n_folds):
         cp_dir = os.path.join(cfg.log.cp_dir, cfg.data.dataset_name, f'r{cfg.log.run}')
         os.makedirs(cp_dir, exist_ok=True)
         run_name = cfg.log.exp_name+'mlp'+'v'+str(cfg.train.valid_method) \

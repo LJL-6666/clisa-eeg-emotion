@@ -59,6 +59,7 @@ ext_fea:
   batch_size: 2048
   mode: 'de'
   rn_decay: 0.990
+  use_running_norm: True
   use_pretrain: True
   use_lds: True
   lds_v0: 0.01

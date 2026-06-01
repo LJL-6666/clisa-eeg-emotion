@@ -1,0 +1,82 @@
+[launcher] repo=/root/autodl-tmp/clisa-eeg-emotion
+[launcher] python=/root/miniconda3/envs/ty_eeg_speech_stage1/bin/python
+Python 3.11.15
+[launcher] data_root=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/Processed_data
+[launcher] after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
+[launcher] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current
+[launcher] n_subs=123 n_folds=10 pretrain_epochs=80 mlp_epochs=100
+[launcher] repo=/root/autodl-tmp/clisa-eeg-emotion
+[launcher] python=/root/miniconda3/envs/ty_eeg_speech_stage1/bin/python
+Python 3.11.15
+[launcher] data_root=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/Processed_data
+[launcher] after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
+[launcher] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current
+[launcher] n_subs=123 n_folds=10 pretrain_epochs=80 mlp_epochs=100
+[wait-data] count=123/123 bytes=6.6125e+09 last=[sub122.pkl 53760164] stable=0/1
+[wait-data] count=123/123 bytes=6.6125e+09 last=[sub122.pkl 53760164] stable=0/1
+[wait-data] data upload looks complete and stable
+[deps] ok torch_cuda_devices= 6
+[prepare] shared sliced_data already exists
+[stage:pretrain] start fold=0 gpu=0
+[stage:pretrain] start fold=1 gpu=1
+[stage:pretrain] start fold=2 gpu=2
+[stage:pretrain] start fold=3 gpu=3
+[stage:pretrain] start fold=4 gpu=4
+[stage:pretrain] start fold=5 gpu=5
+[stage:pretrain] done fold=5 gpu=5
+[stage:pretrain] done fold=0 gpu=0
+[stage:pretrain] done fold=1 gpu=1
+[stage:pretrain] done fold=2 gpu=2
+[stage:pretrain] done fold=3 gpu=3
+[stage:pretrain] done fold=4 gpu=4
+[stage:pretrain] start fold=6 gpu=0
+[stage:pretrain] start fold=7 gpu=1
+[stage:pretrain] start fold=8 gpu=2
+[stage:pretrain] start fold=9 gpu=3
+[stage:pretrain] done fold=9 gpu=3
+[stage:pretrain] done fold=6 gpu=0
+[stage:pretrain] done fold=8 gpu=2
+[stage:pretrain] done fold=7 gpu=1
+[stage:extract] start fold=0 gpu=0
+[stage:extract] start fold=1 gpu=1
+[stage:extract] start fold=2 gpu=2
+[stage:extract] start fold=3 gpu=3
+[stage:extract] start fold=4 gpu=4
+[stage:extract] start fold=5 gpu=5
+[stage:extract] done fold=0 gpu=0
+[stage:extract] done fold=4 gpu=4
+[stage:extract] done fold=5 gpu=5
+[stage:extract] done fold=1 gpu=1
+[stage:extract] done fold=2 gpu=2
+[stage:extract] done fold=3 gpu=3
+[stage:extract] start fold=6 gpu=0
+[stage:extract] start fold=7 gpu=1
+[stage:extract] start fold=8 gpu=2
+[stage:extract] start fold=9 gpu=3
+[stage:extract] done fold=6 gpu=0
+[stage:extract] done fold=9 gpu=3
+[stage:extract] done fold=8 gpu=2
+[stage:extract] done fold=7 gpu=1
+[stage:mlp] start fold=0 gpu=0
+[stage:mlp] start fold=1 gpu=1
+[stage:mlp] start fold=2 gpu=2
+[stage:mlp] start fold=3 gpu=3
+[stage:mlp] start fold=4 gpu=4
+[stage:mlp] start fold=5 gpu=5
+[stage:mlp] done fold=0 gpu=0
+[stage:mlp] done fold=1 gpu=1
+[stage:mlp] done fold=3 gpu=3
+[stage:mlp] done fold=2 gpu=2
+[stage:mlp] done fold=5 gpu=5
+[stage:mlp] done fold=4 gpu=4
+[stage:mlp] start fold=6 gpu=0
+[stage:mlp] start fold=7 gpu=1
+[stage:mlp] start fold=8 gpu=2
+[stage:mlp] start fold=9 gpu=3
+[stage:mlp] done fold=8 gpu=2
+[stage:mlp] done fold=9 gpu=3
+[stage:mlp] done fold=6 gpu=0
+[stage:mlp] done fold=7 gpu=1
+[stage:visualize] start
+[stage:visualize] done
+[done] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current

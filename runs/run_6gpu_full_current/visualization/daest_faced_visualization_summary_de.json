@@ -1,0 +1,25 @@
+{
+  "run_root": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current",
+  "feature_dir": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/data/ext_fea/fea_r1",
+  "checkpoint_dir": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints",
+  "mlp_log": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/stage_logs/mlp.log",
+  "mode": "de",
+  "fold_scores": {
+    "0": 40.267857,
+    "1": 44.067459,
+    "2": 37.67857,
+    "3": 49.811508,
+    "4": 45.555557,
+    "5": 42.698414,
+    "6": 32.569443,
+    "7": 33.581348,
+    "8": 39.335316,
+    "9": 36.420635
+  },
+  "fold_mean_accuracy_percent": 40.1986107,
+  "fold_std_accuracy_percent": 5.154491396953032,
+  "overall_accuracy_percent": 40.105497483546266,
+  "mean_subject_accuracy_percent": 40.105497483546266,
+  "std_subject_accuracy_percent": 12.319360138906335,
+  "n_predictions": 103320
+}

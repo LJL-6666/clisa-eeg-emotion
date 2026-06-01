@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+cd "$REPO_ROOT"
+
+export DATA_ROOT="${DATA_ROOT:-${REPO_ROOT}/runtime_inputs/Processed_data}"
+export OUTPUT_RUN_ROOT="${OUTPUT_RUN_ROOT:-${REPO_ROOT}/runs/run_processed_005_47_full_current}"
+export EXP_NAME="${EXP_NAME:-local_faced_processed_005_47_full}"
+export CONDA_ENV="${CONDA_ENV:-ty_eeg_speech_stage1}"
+export POLL_SECONDS="${POLL_SECONDS:-60}"
+export STABLE_POLLS="${STABLE_POLLS:-2}"
+
+BASELINE_ROOT="${BASELINE_ROOT:-${REPO_ROOT}/runs/run_6gpu_full_current}"
+if [ "$OUTPUT_RUN_ROOT" = "$BASELINE_ROOT" ]; then
+  echo "refusing to write 0.05-47Hz run into baseline root: $OUTPUT_RUN_ROOT" >&2
+  exit 2
+fi
+
+if [ -e "$OUTPUT_RUN_ROOT/stage_status/visualize.done" ]; then
+  echo "refusing to overwrite completed run: $OUTPUT_RUN_ROOT" >&2
+  echo "set OUTPUT_RUN_ROOT to a new directory if you want another run" >&2
+  exit 2
+fi
+
+exec bash "$SCRIPT_DIR/run_faced_6gpu_full_after_upload.sh"

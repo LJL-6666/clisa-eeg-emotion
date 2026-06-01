@@ -1,0 +1,3 @@
+[2026-06-01 01:26:54,125][__main__][INFO] - Total number of parameters: 2464
+[2026-06-01 01:26:54,125][__main__][INFO] - Model size: 9856 bytes (0.01 MB)
+[2026-06-01 03:56:35,534][__main__][INFO] - [fold-result][pretrain] fold=9 best_score=21.700680 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints/FACED/r1/f9_epoch=72.ckpt last_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints/FACED/r1/f9_last.ckpt

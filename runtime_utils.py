@@ -32,6 +32,27 @@ def _env_truthy(name: str, default: bool = False) -> bool:
     return str(raw).strip().lower() not in {"", "0", "false", "no", "off"}
 
 
+def selected_folds(n_folds: int, env_name: str = "CLISA_FOLDS") -> list[int]:
+    raw = os.environ.get(env_name)
+    if raw is None or not str(raw).strip():
+        return list(range(int(n_folds)))
+
+    folds: list[int] = []
+    for item in str(raw).split(","):
+        item = item.strip()
+        if not item:
+            continue
+        fold = int(item)
+        if fold < 0 or fold >= int(n_folds):
+            raise ValueError(f"{env_name} contains out-of-range fold {fold}; expected 0..{int(n_folds) - 1}")
+        if fold not in folds:
+            folds.append(fold)
+
+    if not folds:
+        raise ValueError(f"{env_name} did not contain any fold ids")
+    return folds
+
+
 def configure_torch_runtime() -> None:
     try:
         torch_num_threads = int(str(os.environ.get("CLISA_TORCH_NUM_THREADS", "1")).strip() or "1")

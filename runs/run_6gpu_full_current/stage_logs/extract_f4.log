@@ -1,0 +1,33 @@
+[2026-05-31 17:44:49,995][__main__][INFO] - Smoothing switches: lds=True
+[2026-05-31 17:44:49,995][__main__][INFO] - LDS params: V0=0.01, T=0.0001, sigma=1.0, given_all=0
+[2026-05-31 17:44:49,996][__main__][INFO] - fold:4
+[2026-05-31 17:44:49,997][__main__][INFO] - train_subs:[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39), np.int64(40), np.int64(41), np.int64(42), np.int64(43), np.int64(44), np.int64(45), np.int64(46), np.int64(47), np.int64(60), np.int64(61), np.int64(62), np.int64(63), np.int64(64), np.int64(65), np.int64(66), np.int64(67), np.int64(68), np.int64(69), np.int64(70), np.int64(71), np.int64(72), np.int64(73), np.int64(74), np.int64(75), np.int64(76), np.int64(77), np.int64(78), np.int64(79), np.int64(80), np.int64(81), np.int64(82), np.int64(83), np.int64(84), np.int64(85), np.int64(86), np.int64(87), np.int64(88), np.int64(89), np.int64(90), np.int64(91), np.int64(92), np.int64(93), np.int64(94), np.int64(95), np.int64(96), np.int64(97), np.int64(98), np.int64(99), np.int64(100), np.int64(101), np.int64(102), np.int64(103), np.int64(104), np.int64(105), np.int64(106), np.int64(107), np.int64(108), np.int64(109), np.int64(110), np.int64(111), np.int64(112), np.int64(113), np.int64(114), np.int64(115), np.int64(116), np.int64(117), np.int64(118), np.int64(119), np.int64(120), np.int64(121), np.int64(122)]
+[2026-05-31 17:44:49,997][__main__][INFO] - val_subs:[48 49 50 51 52 53 54 55 56 57 58 59]
+[2026-05-31 17:44:49,997][__main__][INFO] - normTrain
+[2026-05-31 17:45:11,252][__main__][INFO] - checkpoint load from: /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f4_epoch=45.ckpt
+[2026-05-31 17:45:11,933][__main__][INFO] - load model:/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f4_epoch=45.ckpt
+[2026-05-31 17:45:17,057][__main__][INFO] - predict fold 4: subjects_done=10/123
+[2026-05-31 17:45:21,880][__main__][INFO] - predict fold 4: subjects_done=20/123
+[2026-05-31 17:45:26,763][__main__][INFO] - predict fold 4: subjects_done=30/123
+[2026-05-31 17:45:31,648][__main__][INFO] - predict fold 4: subjects_done=40/123
+[2026-05-31 17:45:36,541][__main__][INFO] - predict fold 4: subjects_done=50/123
+[2026-05-31 17:45:41,422][__main__][INFO] - predict fold 4: subjects_done=60/123
+[2026-05-31 17:45:46,237][__main__][INFO] - predict fold 4: subjects_done=70/123
+[2026-05-31 17:45:51,097][__main__][INFO] - predict fold 4: subjects_done=80/123
+[2026-05-31 17:45:55,922][__main__][INFO] - predict fold 4: subjects_done=90/123
+[2026-05-31 17:46:00,805][__main__][INFO] - predict fold 4: subjects_done=100/123
+[2026-05-31 17:46:05,626][__main__][INFO] - predict fold 4: subjects_done=110/123
+[2026-05-31 17:46:10,498][__main__][INFO] - predict fold 4: subjects_done=120/123
+[2026-05-31 17:46:11,968][__main__][INFO] - predict fold 4: subjects_done=123/123
+[2026-05-31 17:46:12,164][__main__][INFO] - no inf
+[2026-05-31 17:46:12,183][__main__][INFO] - no nan
+[2026-05-31 17:46:12,327][__main__][INFO] - running norm: start
+[2026-05-31 17:46:13,963][__main__][INFO] - running norm: done
+[2026-05-31 17:46:13,974][__main__][INFO] - no inf
+[2026-05-31 17:46:13,984][__main__][INFO] - no nan
+[2026-05-31 17:46:14,065][__main__][INFO] - LDS: start
+[2026-05-31 17:46:15,705][__main__][INFO] - LDS: done
+[2026-05-31 17:46:15,732][__main__][INFO] - no inf
+[2026-05-31 17:46:15,750][__main__][INFO] - no nan
+[2026-05-31 17:46:15,831][__main__][INFO] - fea saved to /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/data/ext_fea/fea_r1/local_faced_6gpu_full_r1_f4_fea_de.npy
+[2026-05-31 17:46:15,831][__main__][INFO] - [fold-result][extract] fold=4 feature_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/data/ext_fea/fea_r1/local_faced_6gpu_full_r1_f4_fea_de.npy

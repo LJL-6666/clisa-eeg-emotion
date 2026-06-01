@@ -18,6 +18,7 @@ from runtime_utils import (
     finish_logger_session,
     resolve_resume_checkpoint,
     resolve_stage_fold_checkpoint,
+    selected_folds,
     trainer_runtime_kwargs,
 )
 
@@ -116,7 +117,7 @@ def train_ext(cfg: DictConfig) -> None:
 
     n_per = round(cfg.data.n_subs / n_folds)
     
-    for fold in range(0,n_folds):
+    for fold in selected_folds(n_folds):
         print("fold:", fold)
         cp_dir = os.path.join(cfg.log.cp_dir, cfg.data.dataset_name, f'r{cfg.log.run}')
         os.makedirs(cp_dir, exist_ok=True)

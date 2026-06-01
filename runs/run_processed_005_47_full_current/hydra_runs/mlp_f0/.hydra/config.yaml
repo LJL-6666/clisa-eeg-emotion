@@ -1,0 +1,95 @@
+seed: 7
+log:
+  run: 1
+  proj_name: CLISA_CODE
+  exp_name: local_faced_processed_005_47_full
+  cp_dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints
+  use_wandb: false
+train:
+  gpus:
+  - 0
+  valid_method: 10
+  iftest: false
+  auto_resume: false
+  resume_ckpt: ''
+  n_subs: ${data.n_subs}
+  lr: 0.0007
+  wd: 0.00015
+  loss_temp: 0.07
+  max_epochs: 80
+  min_epochs: 80
+  patience: 30
+  num_workers: 0
+  save_every_n_epochs: 10
+  last_checkpoint_every_n_epochs: 10
+  restart_times: ${train.max_epochs}
+mlp:
+  hidden_dim:
+  - 128
+  - 64
+  out_dim: ${data.n_class}
+  dropout: 0.1
+  bn: 'no'
+  auto_resume: ${train.auto_resume}
+  resume_ckpt: ''
+  lr: 0.0005
+  wd: 0.0022
+  max_epochs: 100
+  min_epochs: 100
+  patience: 30
+  gpus: ${train.gpus}
+  num_workers: 0
+  last_checkpoint_every_n_epochs: ${train.last_checkpoint_every_n_epochs}
+  batch_size: 512
+ext_fea:
+  normTrain: true
+  batch_size: 2048
+  mode: de
+  rn_decay: 0.99
+  use_running_norm: true
+  use_pretrain: true
+  use_lds: true
+  lds_v0: 0.01
+  lds_t: 0.0001
+  lds_sigma: 1.0
+  lds_given_all: 0
+  pretrain_checkpoint: best
+data:
+  dataset_name: FACED
+  data_dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/data
+  fs: 250
+  n_channs: 30
+  n_session: 1
+  n_subs: 123
+  n_vids: 28
+  n_class: 9
+  timeLen: 5
+  timeStep: 2
+  timeLen2: 1
+  timeStep2: 1
+  class_names:
+  - Anger
+  - Disgust
+  - Fear
+  - Sadness
+  - neutral
+  - Amusement
+  - Inspiration
+  - Joy
+  - Tenderness
+  after_remarks_dir: /root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
+model:
+  _target_: model.models.ConvNet_baseNonlinearHead
+  n_timeFilters: 16
+  timeFilterLen: 60
+  n_spatialFilters: 16
+  avgPoolLen: 30
+  timeSmootherLen: 6
+  n_channs: ${data.n_channs}
+  stratified:
+  - initial
+  - middle1
+  - middle2
+  multiFact: 2
+  saveFea: false
+  extract_mode: ${ext_fea.mode}

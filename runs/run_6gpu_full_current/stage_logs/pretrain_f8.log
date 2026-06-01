@@ -1,0 +1,1075 @@
+Seed set to 7
+fold: 8
+train_subs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39), np.int64(40), np.int64(41), np.int64(42), np.int64(43), np.int64(44), np.int64(45), np.int64(46), np.int64(47), np.int64(48), np.int64(49), np.int64(50), np.int64(51), np.int64(52), np.int64(53), np.int64(54), np.int64(55), np.int64(56), np.int64(57), np.int64(58), np.int64(59), np.int64(60), np.int64(61), np.int64(62), np.int64(63), np.int64(64), np.int64(65), np.int64(66), np.int64(67), np.int64(68), np.int64(69), np.int64(70), np.int64(71), np.int64(72), np.int64(73), np.int64(74), np.int64(75), np.int64(76), np.int64(77), np.int64(78), np.int64(79), np.int64(80), np.int64(81), np.int64(82), np.int64(83), np.int64(84), np.int64(85), np.int64(86), np.int64(87), np.int64(88), np.int64(89), np.int64(90), np.int64(91), np.int64(92), np.int64(93), np.int64(94), np.int64(95), np.int64(108), np.int64(109), np.int64(110), np.int64(111), np.int64(112), np.int64(113), np.int64(114), np.int64(115), np.int64(116), np.int64(117), np.int64(118), np.int64(119), np.int64(120), np.int64(121), np.int64(122)]
+val_subs: [ 96  97  98  99 100 101 102 103 104 105 106 107]
+[2026-05-31 14:56:39,714][__main__][INFO] - Total number of parameters: 2464
+[2026-05-31 14:56:39,714][__main__][INFO] - Model size: 9856 bytes (0.01 MB)
+[pretrain][debug][fold-config] fold=8/9 dataset=FACED model=ConvNet_baseNonlinearHead timeLen=5 timeStep=2 train_subs=111 val_subs=12 train_vids=28 val_vids=28 lr=0.000700 wd=0.000150 epochs=80 min_epochs=80 patience=30 num_workers=0 params=2464 model_mb=0.01 checkpoint_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+`Trainer(limit_val_batches=1.0)` was configured so 100% of the batches will be used..
+sliced data exist!
+prepare data finished!
+/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:881: Checkpoint directory /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1 exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [2]
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ ConvNet_baseNonlinearHead │  2.5 K │ train │     0 │
+│ 1 │ criterion │ SimCLRLoss                │      0 │ train │     0 │
+└───┴───────────┴───────────────────────────┴────────┴───────┴───────┘
+Trainable params: 2.5 K                                                         
+Non-trainable params: 0                                                         
+Total params: 2.5 K                                                             
+Total estimated model params size (MB): 0.010                                   
+Modules in train mode: 8                                                        
+Modules in eval mode: 0                                                         
+Total FLOPs: 0                                                                  
+/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=223` in the `DataLoader` to improve performance.
+/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=223` in the `DataLoader` to improve performance.
+[pretrain][debug][start] model=ConvNet_baseNonlinearHead device=cuda:0 max_epochs=80 restart_times=80 train_batches=6105 val_batches=[66]
+[train] epoch=0 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=1/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=1/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=4.5436 top1=5.3571 top5=10.7143 data_mean=0.0000 data_std=0.9977 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1743 proj_finite=1
+[train] epoch=0 batch=1000/6105
+[train] epoch=0 batch=2000/6105
+[train] epoch=0 batch=3000/6105
+[train] epoch=0 batch=4000/6105
+[train] epoch=0 batch=5000/6105
+[train] epoch=0 batch=6000/6105
+[train] epoch=0 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=1/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7926 top1=5.3571 top5=28.5714 data_mean=-0.0000 data_std=0.9959 data_absmax=21.2766 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2193 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=1/80 train_loss=na train_acc=na train_acc5=na val_loss=3.8357 val_acc=8.1710 val_acc5=25.5952
+Epoch 0, global step 6105: 'ext/val/acc' reached 8.17100 (best 8.17100), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=0.ckpt' as top 1
+[train] epoch=1 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=2/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=2/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4871 top1=19.6429 top5=37.5000 data_mean=0.0001 data_std=0.9911 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1542 proj_finite=1
+[train] epoch=1 batch=1000/6105
+[train] epoch=1 batch=2000/6105
+[train] epoch=1 batch=3000/6105
+[train] epoch=1 batch=4000/6105
+[train] epoch=1 batch=5000/6105
+[train] epoch=1 batch=6000/6105
+[train] epoch=1 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=2/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5650 top1=7.1429 top5=37.5000 data_mean=-0.0000 data_std=1.0766 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1737 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=2/80 train_loss=3.8595 train_acc=7.5175 train_acc5=24.5329 val_loss=3.8139 val_acc=8.7121 val_acc5=28.3009
+Epoch 1, global step 12210: 'ext/val/acc' reached 8.71212 (best 8.71212), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=1.ckpt' as top 1
+[train] epoch=2 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=3/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=3/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2822 top1=14.2857 top5=37.5000 data_mean=0.0000 data_std=0.9977 data_absmax=26.0488 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1751 proj_finite=1
+[train] epoch=2 batch=1000/6105
+[train] epoch=2 batch=2000/6105
+[train] epoch=2 batch=3000/6105
+[train] epoch=2 batch=4000/6105
+[train] epoch=2 batch=5000/6105
+[train] epoch=2 batch=6000/6105
+[train] epoch=2 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=3/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5240 top1=23.2143 top5=39.2857 data_mean=-0.0001 data_std=0.9868 data_absmax=18.0510 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1956 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=3/80 train_loss=3.6191 train_acc=12.4924 train_acc5=34.0959 val_loss=3.7780 val_acc=9.2532 val_acc5=28.8690
+Epoch 2, global step 18315: 'ext/val/acc' reached 9.25325 (best 9.25325), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=2.ckpt' as top 1
+[train] epoch=3 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=4/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=4/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.7654 top1=35.7143 top5=62.5000 data_mean=0.0000 data_std=0.9811 data_absmax=23.0535 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2130 proj_finite=1
+[train] epoch=3 batch=1000/6105
+[train] epoch=3 batch=2000/6105
+[train] epoch=3 batch=3000/6105
+[train] epoch=3 batch=4000/6105
+[train] epoch=3 batch=5000/6105
+[train] epoch=3 batch=6000/6105
+[train] epoch=3 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=4/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5110 top1=19.6429 top5=44.6429 data_mean=0.0000 data_std=0.9816 data_absmax=18.7151 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2392 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=4/80 train_loss=3.5435 train_acc=14.2348 train_acc5=36.9975 val_loss=3.7392 val_acc=9.9838 val_acc5=30.7630
+Epoch 3, global step 24420: 'ext/val/acc' reached 9.98377 (best 9.98377), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=3.ckpt' as top 1
+[train] epoch=4 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=5/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=5/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4465 top1=23.2143 top5=41.0714 data_mean=-0.0001 data_std=1.0174 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2086 proj_finite=1
+[train] epoch=4 batch=1000/6105
+[train] epoch=4 batch=2000/6105
+[train] epoch=4 batch=3000/6105
+[train] epoch=4 batch=4000/6105
+[train] epoch=4 batch=5000/6105
+[train] epoch=4 batch=6000/6105
+[train] epoch=4 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=5/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4988 top1=17.8571 top5=44.6429 data_mean=0.0000 data_std=0.9894 data_absmax=21.2766 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2045 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=5/80 train_loss=3.5216 train_acc=14.7698 train_acc5=37.7910 val_loss=3.7864 val_acc=9.1721 val_acc5=28.1115
+Epoch 4, global step 30525: 'ext/val/acc' was not in top 1
+[train] epoch=5 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=6/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=6/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4494 top1=14.2857 top5=35.7143 data_mean=0.0000 data_std=0.9787 data_absmax=18.5775 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2024 proj_finite=1
+[train] epoch=5 batch=1000/6105
+[train] epoch=5 batch=2000/6105
+[train] epoch=5 batch=3000/6105
+[train] epoch=5 batch=4000/6105
+[train] epoch=5 batch=5000/6105
+[train] epoch=5 batch=6000/6105
+[train] epoch=5 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=6/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1828 top1=25.0000 top5=50.0000 data_mean=-0.0001 data_std=0.9902 data_absmax=13.9836 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2198 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=6/80 train_loss=3.4981 train_acc=15.2477 train_acc5=38.5314 val_loss=3.7089 val_acc=11.3907 val_acc5=30.7630
+Epoch 5, global step 36630: 'ext/val/acc' reached 11.39069 (best 11.39069), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=5.ckpt' as top 1
+[train] epoch=6 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=7/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=7/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1060 top1=21.4286 top5=51.7857 data_mean=-0.0000 data_std=1.0183 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2132 proj_finite=1
+[train] epoch=6 batch=1000/6105
+[train] epoch=6 batch=2000/6105
+[train] epoch=6 batch=3000/6105
+[train] epoch=6 batch=4000/6105
+[train] epoch=6 batch=5000/6105
+[train] epoch=6 batch=6000/6105
+[train] epoch=6 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=7/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.6132 top1=10.7143 top5=32.1429 data_mean=-0.0000 data_std=1.0983 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2020 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=7/80 train_loss=3.4833 train_acc=15.5897 train_acc5=38.9619 val_loss=3.7314 val_acc=11.1201 val_acc5=31.1688
+Epoch 6, global step 42735: 'ext/val/acc' was not in top 1
+[train] epoch=7 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=8/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=8/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5825 top1=10.7143 top5=32.1429 data_mean=-0.0001 data_std=1.0300 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1890 proj_finite=1
+[train] epoch=7 batch=1000/6105
+[train] epoch=7 batch=2000/6105
+[train] epoch=7 batch=3000/6105
+[train] epoch=7 batch=4000/6105
+[train] epoch=7 batch=5000/6105
+[train] epoch=7 batch=6000/6105
+[train] epoch=7 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=8/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0913 top1=35.7143 top5=48.2143 data_mean=-0.0001 data_std=0.9822 data_absmax=28.1665 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2313 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=8/80 train_loss=3.4706 train_acc=15.9506 train_acc5=39.3237 val_loss=3.7222 val_acc=10.9578 val_acc5=30.8171
+Epoch 7, global step 48840: 'ext/val/acc' was not in top 1
+[train] epoch=8 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=9/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=9/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3653 top1=17.8571 top5=33.9286 data_mean=0.0000 data_std=1.0185 data_absmax=26.0488 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1930 proj_finite=1
+[train] epoch=8 batch=1000/6105
+[train] epoch=8 batch=2000/6105
+[train] epoch=8 batch=3000/6105
+[train] epoch=8 batch=4000/6105
+[train] epoch=8 batch=5000/6105
+[train] epoch=8 batch=6000/6105
+[train] epoch=8 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=9/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7148 top1=16.0714 top5=39.2857 data_mean=-0.0001 data_std=1.0759 data_absmax=87.2001 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2213 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=9/80 train_loss=3.4560 train_acc=16.4031 train_acc5=39.9067 val_loss=3.6972 val_acc=10.8766 val_acc5=31.2229
+Epoch 8, global step 54945: 'ext/val/acc' was not in top 1
+[train] epoch=9 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=10/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=10/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5652 top1=10.7143 top5=41.0714 data_mean=0.0002 data_std=0.9968 data_absmax=26.0488 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2832 proj_finite=1
+[train] epoch=9 batch=1000/6105
+[train] epoch=9 batch=2000/6105
+[train] epoch=9 batch=3000/6105
+[train] epoch=9 batch=4000/6105
+[train] epoch=9 batch=5000/6105
+[train] epoch=9 batch=6000/6105
+[train] epoch=9 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=10/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0721 top1=32.1429 top5=48.2143 data_mean=-0.0000 data_std=0.9867 data_absmax=21.2766 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1902 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=10/80 train_loss=3.4512 train_acc=16.4485 train_acc5=40.0626 val_loss=3.6776 val_acc=11.6071 val_acc5=32.4675
+Epoch 9, global step 61050: 'ext/val/acc' reached 11.60714 (best 11.60714), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=9.ckpt' as top 1
+[train] epoch=10 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=11/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=11/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2293 top1=21.4286 top5=41.0714 data_mean=0.0000 data_std=1.0149 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2208 proj_finite=1
+[train] epoch=10 batch=1000/6105
+[train] epoch=10 batch=2000/6105
+[train] epoch=10 batch=3000/6105
+[train] epoch=10 batch=4000/6105
+[train] epoch=10 batch=5000/6105
+[train] epoch=10 batch=6000/6105
+[train] epoch=10 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=11/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2046 top1=32.1429 top5=48.2143 data_mean=-0.0001 data_std=1.0161 data_absmax=28.1665 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2071 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=11/80 train_loss=3.4431 train_acc=16.6406 train_acc5=40.4534 val_loss=3.7291 val_acc=10.8766 val_acc5=30.6818
+Epoch 10, global step 67155: 'ext/val/acc' was not in top 1
+[train] epoch=11 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=12/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=12/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2085 top1=21.4286 top5=50.0000 data_mean=0.0001 data_std=1.0161 data_absmax=26.0488 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2824 proj_finite=1
+[train] epoch=11 batch=1000/6105
+[train] epoch=11 batch=2000/6105
+[train] epoch=11 batch=3000/6105
+[train] epoch=11 batch=4000/6105
+[train] epoch=11 batch=5000/6105
+[train] epoch=11 batch=6000/6105
+[train] epoch=11 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=12/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3369 top1=12.5000 top5=41.0714 data_mean=-0.0000 data_std=1.0904 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1868 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=12/80 train_loss=3.4374 train_acc=16.8618 train_acc5=40.5408 val_loss=3.7167 val_acc=11.4448 val_acc5=30.8983
+Epoch 11, global step 73260: 'ext/val/acc' was not in top 1
+[train] epoch=12 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=13/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=13/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4900 top1=7.1429 top5=42.8571 data_mean=0.0001 data_std=1.0113 data_absmax=23.8661 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2357 proj_finite=1
+[train] epoch=12 batch=1000/6105
+[train] epoch=12 batch=2000/6105
+[train] epoch=12 batch=3000/6105
+[train] epoch=12 batch=4000/6105
+[train] epoch=12 batch=5000/6105
+[train] epoch=12 batch=6000/6105
+[train] epoch=12 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=13/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4395 top1=21.4286 top5=42.8571 data_mean=-0.0000 data_std=1.1764 data_absmax=87.2001 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2038 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=13/80 train_loss=3.4342 train_acc=16.9127 train_acc5=40.6511 val_loss=3.7164 val_acc=11.0390 val_acc5=31.2500
+Epoch 12, global step 79365: 'ext/val/acc' was not in top 1
+[train] epoch=13 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=14/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=14/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3315 top1=17.8571 top5=37.5000 data_mean=-0.0001 data_std=0.9753 data_absmax=23.0535 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1904 proj_finite=1
+[train] epoch=13 batch=1000/6105
+[train] epoch=13 batch=2000/6105
+[train] epoch=13 batch=3000/6105
+[train] epoch=13 batch=4000/6105
+[train] epoch=13 batch=5000/6105
+[train] epoch=13 batch=6000/6105
+[train] epoch=13 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=14/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0819 top1=30.3571 top5=53.5714 data_mean=-0.0000 data_std=1.0870 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1981 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=14/80 train_loss=3.4277 train_acc=17.0507 train_acc5=40.8676 val_loss=3.6959 val_acc=11.6883 val_acc5=31.5476
+Epoch 13, global step 85470: 'ext/val/acc' reached 11.68831 (best 11.68831), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=13.ckpt' as top 1
+[train] epoch=14 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=15/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=15/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0958 top1=21.4286 top5=53.5714 data_mean=-0.0000 data_std=0.9852 data_absmax=17.4821 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2424 proj_finite=1
+[train] epoch=14 batch=1000/6105
+[train] epoch=14 batch=2000/6105
+[train] epoch=14 batch=3000/6105
+[train] epoch=14 batch=4000/6105
+[train] epoch=14 batch=5000/6105
+[train] epoch=14 batch=6000/6105
+[train] epoch=14 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=15/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3105 top1=14.2857 top5=48.2143 data_mean=-0.0000 data_std=0.9878 data_absmax=18.7151 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2094 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=15/80 train_loss=3.4218 train_acc=17.1133 train_acc5=41.1697 val_loss=3.6820 val_acc=11.9048 val_acc5=32.7110
+Epoch 14, global step 91575: 'ext/val/acc' reached 11.90476 (best 11.90476), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=14.ckpt' as top 1
+[train] epoch=15 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=16/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=16/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3014 top1=12.5000 top5=33.9286 data_mean=-0.0001 data_std=0.9970 data_absmax=25.7467 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1830 proj_finite=1
+[train] epoch=15 batch=1000/6105
+[train] epoch=15 batch=2000/6105
+[train] epoch=15 batch=3000/6105
+[train] epoch=15 batch=4000/6105
+[train] epoch=15 batch=5000/6105
+[train] epoch=15 batch=6000/6105
+[train] epoch=15 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=16/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1664 top1=25.0000 top5=51.7857 data_mean=-0.0001 data_std=0.9780 data_absmax=18.6018 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1862 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=16/80 train_loss=3.4184 train_acc=17.3026 train_acc5=41.1627 val_loss=3.7186 val_acc=11.0931 val_acc5=30.1677
+Epoch 15, global step 97680: 'ext/val/acc' was not in top 1
+[train] epoch=16 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=17/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=17/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2575 top1=23.2143 top5=44.6429 data_mean=0.0001 data_std=1.0264 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1892 proj_finite=1
+[train] epoch=16 batch=1000/6105
+[train] epoch=16 batch=2000/6105
+[train] epoch=16 batch=3000/6105
+[train] epoch=16 batch=4000/6105
+[train] epoch=16 batch=5000/6105
+[train] epoch=16 batch=6000/6105
+[train] epoch=16 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=17/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0567 top1=19.6429 top5=51.7857 data_mean=-0.0000 data_std=0.9888 data_absmax=18.7151 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2239 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=17/80 train_loss=3.4216 train_acc=17.1578 train_acc5=41.0770 val_loss=3.6926 val_acc=11.0660 val_acc5=31.4123
+Epoch 16, global step 103785: 'ext/val/acc' was not in top 1
+[train] epoch=17 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=18/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=18/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4606 top1=12.5000 top5=35.7143 data_mean=0.0002 data_std=0.9989 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2092 proj_finite=1
+[train] epoch=17 batch=1000/6105
+[train] epoch=17 batch=2000/6105
+[train] epoch=17 batch=3000/6105
+[train] epoch=17 batch=4000/6105
+[train] epoch=17 batch=5000/6105
+[train] epoch=17 batch=6000/6105
+[train] epoch=17 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=18/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5876 top1=19.6429 top5=37.5000 data_mean=-0.0001 data_std=0.9931 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2292 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=18/80 train_loss=3.4194 train_acc=17.2414 train_acc5=41.2063 val_loss=3.7217 val_acc=11.9048 val_acc5=30.9794
+Epoch 17, global step 109890: 'ext/val/acc' was not in top 1
+[train] epoch=18 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=19/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=19/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3803 top1=19.6429 top5=42.8571 data_mean=0.0000 data_std=0.9703 data_absmax=23.0535 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1929 proj_finite=1
+[train] epoch=18 batch=1000/6105
+[train] epoch=18 batch=2000/6105
+[train] epoch=18 batch=3000/6105
+[train] epoch=18 batch=4000/6105
+[train] epoch=18 batch=5000/6105
+[train] epoch=18 batch=6000/6105
+[train] epoch=18 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=19/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5309 top1=14.2857 top5=32.1429 data_mean=-0.0001 data_std=0.9925 data_absmax=24.0949 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2062 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=19/80 train_loss=3.4131 train_acc=17.2923 train_acc5=41.3347 val_loss=3.7160 val_acc=12.2024 val_acc5=31.3853
+Epoch 18, global step 115995: 'ext/val/acc' reached 12.20238 (best 12.20238), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=18.ckpt' as top 1
+[train] epoch=19 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=20/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=20/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1418 top1=19.6429 top5=48.2143 data_mean=-0.0000 data_std=0.9991 data_absmax=20.1114 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1792 proj_finite=1
+[train] epoch=19 batch=1000/6105
+[train] epoch=19 batch=2000/6105
+[train] epoch=19 batch=3000/6105
+[train] epoch=19 batch=4000/6105
+[train] epoch=19 batch=5000/6105
+[train] epoch=19 batch=6000/6105
+[train] epoch=19 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=20/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4469 top1=17.8571 top5=48.2143 data_mean=-0.0001 data_std=1.0640 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2151 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=20/80 train_loss=3.4165 train_acc=17.3064 train_acc5=41.3575 val_loss=3.7334 val_acc=11.2825 val_acc5=30.9794
+Epoch 19, global step 122100: 'ext/val/acc' was not in top 1
+[train] epoch=20 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=21/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=21/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.8653 top1=25.0000 top5=60.7143 data_mean=-0.0000 data_std=1.0164 data_absmax=23.8661 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2064 proj_finite=1
+[train] epoch=20 batch=1000/6105
+[train] epoch=20 batch=2000/6105
+[train] epoch=20 batch=3000/6105
+[train] epoch=20 batch=4000/6105
+[train] epoch=20 batch=5000/6105
+[train] epoch=20 batch=6000/6105
+[train] epoch=20 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=21/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1516 top1=28.5714 top5=55.3571 data_mean=-0.0000 data_std=0.9699 data_absmax=14.9132 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2132 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=21/80 train_loss=3.4083 train_acc=17.4181 train_acc5=41.5111 val_loss=3.7080 val_acc=11.4448 val_acc5=32.6299
+Epoch 20, global step 128205: 'ext/val/acc' was not in top 1
+[train] epoch=21 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=22/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=22/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9899 top1=21.4286 top5=48.2143 data_mean=-0.0001 data_std=0.9976 data_absmax=26.0488 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2472 proj_finite=1
+[train] epoch=21 batch=1000/6105
+[train] epoch=21 batch=2000/6105
+[train] epoch=21 batch=3000/6105
+[train] epoch=21 batch=4000/6105
+[train] epoch=21 batch=5000/6105
+[train] epoch=21 batch=6000/6105
+[train] epoch=21 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=22/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2785 top1=19.6429 top5=50.0000 data_mean=-0.0001 data_std=1.0738 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1950 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=22/80 train_loss=3.4153 train_acc=17.1759 train_acc5=41.3645 val_loss=3.7364 val_acc=10.5249 val_acc5=30.3571
+Epoch 21, global step 134310: 'ext/val/acc' was not in top 1
+[train] epoch=22 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=23/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=23/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3553 top1=19.6429 top5=33.9286 data_mean=0.0001 data_std=0.9922 data_absmax=25.0848 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2330 proj_finite=1
+[train] epoch=22 batch=1000/6105
+[train] epoch=22 batch=2000/6105
+[train] epoch=22 batch=3000/6105
+[train] epoch=22 batch=4000/6105
+[train] epoch=22 batch=5000/6105
+[train] epoch=22 batch=6000/6105
+[train] epoch=22 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=23/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.8256 top1=12.5000 top5=21.4286 data_mean=-0.0000 data_std=1.0855 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2562 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=23/80 train_loss=3.4122 train_acc=17.3754 train_acc5=41.3394 val_loss=3.7157 val_acc=11.3636 val_acc5=31.1688
+Epoch 22, global step 140415: 'ext/val/acc' was not in top 1
+[train] epoch=23 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=24/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=24/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9756 top1=26.7857 top5=48.2143 data_mean=0.0001 data_std=1.0022 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1851 proj_finite=1
+[train] epoch=23 batch=1000/6105
+[train] epoch=23 batch=2000/6105
+[train] epoch=23 batch=3000/6105
+[train] epoch=23 batch=4000/6105
+[train] epoch=23 batch=5000/6105
+[train] epoch=23 batch=6000/6105
+[train] epoch=23 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=24/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1806 top1=16.0714 top5=53.5714 data_mean=-0.0001 data_std=1.0708 data_absmax=87.2001 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2275 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=24/80 train_loss=3.4099 train_acc=17.3997 train_acc5=41.5397 val_loss=3.6968 val_acc=10.9848 val_acc5=32.0887
+Epoch 23, global step 146520: 'ext/val/acc' was not in top 1
+[train] epoch=24 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=25/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=25/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5065 top1=16.0714 top5=39.2857 data_mean=0.0000 data_std=1.0127 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2719 proj_finite=1
+[train] epoch=24 batch=1000/6105
+[train] epoch=24 batch=2000/6105
+[train] epoch=24 batch=3000/6105
+[train] epoch=24 batch=4000/6105
+[train] epoch=24 batch=5000/6105
+[train] epoch=24 batch=6000/6105
+[train] epoch=24 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=25/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5612 top1=12.5000 top5=39.2857 data_mean=-0.0001 data_std=0.9864 data_absmax=18.7151 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2164 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=25/80 train_loss=3.4097 train_acc=17.3880 train_acc5=41.4958 val_loss=3.7254 val_acc=11.7695 val_acc5=30.8171
+Epoch 24, global step 152625: 'ext/val/acc' was not in top 1
+[train] epoch=25 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=26/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=26/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0069 top1=14.2857 top5=58.9286 data_mean=0.0000 data_std=0.9997 data_absmax=27.9627 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3526 proj_finite=1
+[train] epoch=25 batch=1000/6105
+[train] epoch=25 batch=2000/6105
+[train] epoch=25 batch=3000/6105
+[train] epoch=25 batch=4000/6105
+[train] epoch=25 batch=5000/6105
+[train] epoch=25 batch=6000/6105
+[train] epoch=25 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=26/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2612 top1=16.0714 top5=48.2143 data_mean=0.0000 data_std=0.9915 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2863 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=26/80 train_loss=3.4104 train_acc=17.4026 train_acc5=41.3926 val_loss=3.7156 val_acc=11.7695 val_acc5=31.7641
+Epoch 25, global step 158730: 'ext/val/acc' was not in top 1
+[train] epoch=26 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=27/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=27/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2384 top1=16.0714 top5=46.4286 data_mean=-0.0000 data_std=1.0291 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2215 proj_finite=1
+[train] epoch=26 batch=1000/6105
+[train] epoch=26 batch=2000/6105
+[train] epoch=26 batch=3000/6105
+[train] epoch=26 batch=4000/6105
+[train] epoch=26 batch=5000/6105
+[train] epoch=26 batch=6000/6105
+[train] epoch=26 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=27/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1747 top1=25.0000 top5=50.0000 data_mean=0.0000 data_std=1.0899 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2580 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=27/80 train_loss=3.4074 train_acc=17.3877 train_acc5=41.5789 val_loss=3.7399 val_acc=10.8225 val_acc5=30.2489
+Epoch 26, global step 164835: 'ext/val/acc' was not in top 1
+[train] epoch=27 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=28/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=28/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5226 top1=10.7143 top5=30.3571 data_mean=-0.0001 data_std=1.0594 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2262 proj_finite=1
+[train] epoch=27 batch=1000/6105
+[train] epoch=27 batch=2000/6105
+[train] epoch=27 batch=3000/6105
+[train] epoch=27 batch=4000/6105
+[train] epoch=27 batch=5000/6105
+[train] epoch=27 batch=6000/6105
+[train] epoch=27 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=28/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3040 top1=14.2857 top5=51.7857 data_mean=0.0000 data_std=1.0782 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2427 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=28/80 train_loss=3.4103 train_acc=17.2441 train_acc5=41.3888 val_loss=3.7465 val_acc=10.4437 val_acc5=29.5455
+Epoch 27, global step 170940: 'ext/val/acc' was not in top 1
+[train] epoch=28 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=29/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=29/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2409 top1=23.2143 top5=46.4286 data_mean=-0.0001 data_std=0.9829 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2256 proj_finite=1
+[train] epoch=28 batch=1000/6105
+[train] epoch=28 batch=2000/6105
+[train] epoch=28 batch=3000/6105
+[train] epoch=28 batch=4000/6105
+[train] epoch=28 batch=5000/6105
+[train] epoch=28 batch=6000/6105
+[train] epoch=28 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=29/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5070 top1=16.0714 top5=41.0714 data_mean=0.0000 data_std=1.0906 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2592 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=29/80 train_loss=3.4080 train_acc=17.4049 train_acc5=41.5093 val_loss=3.7068 val_acc=12.2024 val_acc5=31.9264
+Epoch 28, global step 177045: 'ext/val/acc' was not in top 1
+[train] epoch=29 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=30/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=30/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.8477 top1=26.7857 top5=58.9286 data_mean=0.0000 data_std=1.0353 data_absmax=48.5473 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2416 proj_finite=1
+[train] epoch=29 batch=1000/6105
+[train] epoch=29 batch=2000/6105
+[train] epoch=29 batch=3000/6105
+[train] epoch=29 batch=4000/6105
+[train] epoch=29 batch=5000/6105
+[train] epoch=29 batch=6000/6105
+[train] epoch=29 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=30/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4981 top1=23.2143 top5=37.5000 data_mean=0.0000 data_std=1.0729 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2249 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=30/80 train_loss=3.4070 train_acc=17.5009 train_acc5=41.5640 val_loss=3.6829 val_acc=12.5000 val_acc5=32.5216
+Epoch 29, global step 183150: 'ext/val/acc' reached 12.50000 (best 12.50000), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=29.ckpt' as top 1
+[train] epoch=30 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=31/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=31/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1559 top1=28.5714 top5=41.0714 data_mean=-0.0000 data_std=1.0188 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2258 proj_finite=1
+[train] epoch=30 batch=1000/6105
+[train] epoch=30 batch=2000/6105
+[train] epoch=30 batch=3000/6105
+[train] epoch=30 batch=4000/6105
+[train] epoch=30 batch=5000/6105
+[train] epoch=30 batch=6000/6105
+[train] epoch=30 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=31/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5195 top1=16.0714 top5=32.1429 data_mean=-0.0000 data_std=1.1169 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2489 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=31/80 train_loss=3.4077 train_acc=17.4251 train_acc5=41.5543 val_loss=3.6926 val_acc=11.9859 val_acc5=31.8723
+Epoch 30, global step 189255: 'ext/val/acc' was not in top 1
+[train] epoch=31 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=32/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=32/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2947 top1=14.2857 top5=41.0714 data_mean=0.0000 data_std=0.9898 data_absmax=25.7467 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2266 proj_finite=1
+[train] epoch=31 batch=1000/6105
+[train] epoch=31 batch=2000/6105
+[train] epoch=31 batch=3000/6105
+[train] epoch=31 batch=4000/6105
+[train] epoch=31 batch=5000/6105
+[train] epoch=31 batch=6000/6105
+[train] epoch=31 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=32/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5838 top1=23.2143 top5=39.2857 data_mean=-0.0000 data_std=0.9823 data_absmax=18.0510 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2168 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=32/80 train_loss=3.4048 train_acc=17.3660 train_acc5=41.5576 val_loss=3.7264 val_acc=11.3636 val_acc5=32.0617
+Epoch 31, global step 195360: 'ext/val/acc' was not in top 1
+[train] epoch=32 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=33/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=33/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1650 top1=10.7143 top5=53.5714 data_mean=-0.0001 data_std=1.0094 data_absmax=22.1945 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2723 proj_finite=1
+[train] epoch=32 batch=1000/6105
+[train] epoch=32 batch=2000/6105
+[train] epoch=32 batch=3000/6105
+[train] epoch=32 batch=4000/6105
+[train] epoch=32 batch=5000/6105
+[train] epoch=32 batch=6000/6105
+[train] epoch=32 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=33/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1652 top1=19.6429 top5=48.2143 data_mean=-0.0001 data_std=0.9955 data_absmax=28.1665 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2799 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=33/80 train_loss=3.4066 train_acc=17.4044 train_acc5=41.5298 val_loss=3.6872 val_acc=12.6894 val_acc5=33.0898
+Epoch 32, global step 201465: 'ext/val/acc' reached 12.68939 (best 12.68939), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=32.ckpt' as top 1
+[train] epoch=33 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=34/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=34/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3316 top1=21.4286 top5=39.2857 data_mean=-0.0000 data_std=1.0163 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2455 proj_finite=1
+[train] epoch=33 batch=1000/6105
+[train] epoch=33 batch=2000/6105
+[train] epoch=33 batch=3000/6105
+[train] epoch=33 batch=4000/6105
+[train] epoch=33 batch=5000/6105
+[train] epoch=33 batch=6000/6105
+[train] epoch=33 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=34/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3545 top1=19.6429 top5=39.2857 data_mean=-0.0000 data_std=0.9756 data_absmax=13.9836 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2487 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=34/80 train_loss=3.3972 train_acc=17.6506 train_acc5=41.9027 val_loss=3.7032 val_acc=11.9589 val_acc5=31.1688
+Epoch 33, global step 207570: 'ext/val/acc' was not in top 1
+[train] epoch=34 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=35/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=35/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7030 top1=10.7143 top5=30.3571 data_mean=-0.0001 data_std=1.0197 data_absmax=23.8661 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2975 proj_finite=1
+[train] epoch=34 batch=1000/6105
+[train] epoch=34 batch=2000/6105
+[train] epoch=34 batch=3000/6105
+[train] epoch=34 batch=4000/6105
+[train] epoch=34 batch=5000/6105
+[train] epoch=34 batch=6000/6105
+[train] epoch=34 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=35/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9641 top1=26.7857 top5=60.7143 data_mean=-0.0000 data_std=0.9794 data_absmax=16.1568 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2580 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=35/80 train_loss=3.3996 train_acc=17.5360 train_acc5=41.8272 val_loss=3.6977 val_acc=11.6342 val_acc5=33.9286
+Epoch 34, global step 213675: 'ext/val/acc' was not in top 1
+[train] epoch=35 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=36/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=36/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2853 top1=14.2857 top5=50.0000 data_mean=-0.0001 data_std=0.9737 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2477 proj_finite=1
+[train] epoch=35 batch=1000/6105
+[train] epoch=35 batch=2000/6105
+[train] epoch=35 batch=3000/6105
+[train] epoch=35 batch=4000/6105
+[train] epoch=35 batch=5000/6105
+[train] epoch=35 batch=6000/6105
+[train] epoch=35 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=36/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3751 top1=19.6429 top5=39.2857 data_mean=-0.0001 data_std=0.9849 data_absmax=21.2766 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2570 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=36/80 train_loss=3.4000 train_acc=17.5290 train_acc5=41.8615 val_loss=3.7421 val_acc=11.0660 val_acc5=30.8171
+Epoch 35, global step 219780: 'ext/val/acc' was not in top 1
+[train] epoch=36 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=37/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=37/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3132 top1=8.9286 top5=46.4286 data_mean=-0.0000 data_std=1.0299 data_absmax=27.9627 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2880 proj_finite=1
+[train] epoch=36 batch=1000/6105
+[train] epoch=36 batch=2000/6105
+[train] epoch=36 batch=3000/6105
+[train] epoch=36 batch=4000/6105
+[train] epoch=36 batch=5000/6105
+[train] epoch=36 batch=6000/6105
+[train] epoch=36 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=37/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3592 top1=19.6429 top5=46.4286 data_mean=-0.0000 data_std=1.0956 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.4058 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=37/80 train_loss=3.3982 train_acc=17.5646 train_acc5=41.7936 val_loss=3.6794 val_acc=12.3106 val_acc5=32.8734
+Epoch 36, global step 225885: 'ext/val/acc' was not in top 1
+[train] epoch=37 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=38/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=38/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2517 top1=16.0714 top5=44.6429 data_mean=0.0000 data_std=0.9989 data_absmax=22.7319 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2126 proj_finite=1
+[train] epoch=37 batch=1000/6105
+[train] epoch=37 batch=2000/6105
+[train] epoch=37 batch=3000/6105
+[train] epoch=37 batch=4000/6105
+[train] epoch=37 batch=5000/6105
+[train] epoch=37 batch=6000/6105
+[train] epoch=37 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=38/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4151 top1=16.0714 top5=48.2143 data_mean=-0.0001 data_std=0.9706 data_absmax=13.7541 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2423 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=38/80 train_loss=3.3933 train_acc=17.6322 train_acc5=41.8097 val_loss=3.6895 val_acc=11.4177 val_acc5=33.3063
+Epoch 37, global step 231990: 'ext/val/acc' was not in top 1
+[train] epoch=38 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=39/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=39/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1181 top1=25.0000 top5=51.7857 data_mean=0.0001 data_std=1.0021 data_absmax=26.0488 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2630 proj_finite=1
+[train] epoch=38 batch=1000/6105
+[train] epoch=38 batch=2000/6105
+[train] epoch=38 batch=3000/6105
+[train] epoch=38 batch=4000/6105
+[train] epoch=38 batch=5000/6105
+[train] epoch=38 batch=6000/6105
+[train] epoch=38 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=39/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3836 top1=21.4286 top5=37.5000 data_mean=-0.0001 data_std=0.9668 data_absmax=12.5206 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2310 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=39/80 train_loss=3.3926 train_acc=17.7223 train_acc5=41.9170 val_loss=3.7090 val_acc=11.5801 val_acc5=32.0617
+Epoch 38, global step 238095: 'ext/val/acc' was not in top 1
+[train] epoch=39 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=40/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=40/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3585 top1=10.7143 top5=33.9286 data_mean=-0.0000 data_std=1.0193 data_absmax=25.7467 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2537 proj_finite=1
+[train] epoch=39 batch=1000/6105
+[train] epoch=39 batch=2000/6105
+[train] epoch=39 batch=3000/6105
+[train] epoch=39 batch=4000/6105
+[train] epoch=39 batch=5000/6105
+[train] epoch=39 batch=6000/6105
+[train] epoch=39 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=40/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4284 top1=23.2143 top5=41.0714 data_mean=-0.0001 data_std=0.9823 data_absmax=16.1568 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2504 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=40/80 train_loss=3.3936 train_acc=17.7103 train_acc5=41.9902 val_loss=3.7220 val_acc=11.7695 val_acc5=31.1688
+Epoch 39, global step 244200: 'ext/val/acc' was not in top 1
+[train] epoch=40 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=41/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=41/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5371 top1=16.0714 top5=30.3571 data_mean=0.0000 data_std=1.0325 data_absmax=22.7319 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2694 proj_finite=1
+[train] epoch=40 batch=1000/6105
+[train] epoch=40 batch=2000/6105
+[train] epoch=40 batch=3000/6105
+[train] epoch=40 batch=4000/6105
+[train] epoch=40 batch=5000/6105
+[train] epoch=40 batch=6000/6105
+[train] epoch=40 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=41/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2212 top1=28.5714 top5=48.2143 data_mean=-0.0001 data_std=0.9697 data_absmax=12.3680 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2840 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=41/80 train_loss=3.3957 train_acc=17.8016 train_acc5=41.9618 val_loss=3.7151 val_acc=11.3907 val_acc5=31.5476
+Epoch 40, global step 250305: 'ext/val/acc' was not in top 1
+[train] epoch=41 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=42/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=42/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0904 top1=26.7857 top5=48.2143 data_mean=0.0000 data_std=0.9941 data_absmax=21.1847 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2744 proj_finite=1
+[train] epoch=41 batch=1000/6105
+[train] epoch=41 batch=2000/6105
+[train] epoch=41 batch=3000/6105
+[train] epoch=41 batch=4000/6105
+[train] epoch=41 batch=5000/6105
+[train] epoch=41 batch=6000/6105
+[train] epoch=41 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=42/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.6621 top1=17.8571 top5=37.5000 data_mean=0.0000 data_std=0.9933 data_absmax=18.0510 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2944 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=42/80 train_loss=3.3936 train_acc=17.9428 train_acc5=41.9492 val_loss=3.7301 val_acc=10.2814 val_acc5=31.4664
+Epoch 41, global step 256410: 'ext/val/acc' was not in top 1
+[train] epoch=42 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=43/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=43/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1003 top1=30.3571 top5=51.7857 data_mean=0.0000 data_std=0.9858 data_absmax=23.8661 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3079 proj_finite=1
+[train] epoch=42 batch=1000/6105
+[train] epoch=42 batch=2000/6105
+[train] epoch=42 batch=3000/6105
+[train] epoch=42 batch=4000/6105
+[train] epoch=42 batch=5000/6105
+[train] epoch=42 batch=6000/6105
+[train] epoch=42 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=43/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2739 top1=17.8571 top5=44.6429 data_mean=-0.0000 data_std=0.9844 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2802 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=43/80 train_loss=3.3903 train_acc=17.8098 train_acc5=42.0381 val_loss=3.7479 val_acc=10.9848 val_acc5=31.3312
+Epoch 42, global step 262515: 'ext/val/acc' was not in top 1
+[train] epoch=43 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=44/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=44/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1162 top1=19.6429 top5=55.3571 data_mean=-0.0001 data_std=1.0041 data_absmax=25.7467 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2281 proj_finite=1
+[train] epoch=43 batch=1000/6105
+[train] epoch=43 batch=2000/6105
+[train] epoch=43 batch=3000/6105
+[train] epoch=43 batch=4000/6105
+[train] epoch=43 batch=5000/6105
+[train] epoch=43 batch=6000/6105
+[train] epoch=43 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=44/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7267 top1=8.9286 top5=25.0000 data_mean=-0.0001 data_std=1.0644 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2548 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=44/80 train_loss=3.3946 train_acc=17.8296 train_acc5=42.0332 val_loss=3.7045 val_acc=11.6613 val_acc5=31.2229
+Epoch 43, global step 268620: 'ext/val/acc' was not in top 1
+[train] epoch=44 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=45/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=45/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1172 top1=16.0714 top5=58.9286 data_mean=-0.0000 data_std=0.9964 data_absmax=48.5473 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2139 proj_finite=1
+[train] epoch=44 batch=1000/6105
+[train] epoch=44 batch=2000/6105
+[train] epoch=44 batch=3000/6105
+[train] epoch=44 batch=4000/6105
+[train] epoch=44 batch=5000/6105
+[train] epoch=44 batch=6000/6105
+[train] epoch=44 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=45/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5172 top1=19.6429 top5=33.9286 data_mean=0.0001 data_std=0.9813 data_absmax=21.2766 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2434 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=45/80 train_loss=3.3919 train_acc=17.7887 train_acc5=42.0759 val_loss=3.7055 val_acc=11.4448 val_acc5=31.0336
+Epoch 44, global step 274725: 'ext/val/acc' was not in top 1
+[train] epoch=45 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=46/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=46/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0014 top1=17.8571 top5=69.6429 data_mean=0.0000 data_std=1.0069 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3014 proj_finite=1
+[train] epoch=45 batch=1000/6105
+[train] epoch=45 batch=2000/6105
+[train] epoch=45 batch=3000/6105
+[train] epoch=45 batch=4000/6105
+[train] epoch=45 batch=5000/6105
+[train] epoch=45 batch=6000/6105
+[train] epoch=45 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=46/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4305 top1=19.6429 top5=35.7143 data_mean=-0.0001 data_std=1.0117 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2238 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=46/80 train_loss=3.3895 train_acc=17.9461 train_acc5=42.1294 val_loss=3.7092 val_acc=11.4448 val_acc5=32.5216
+Epoch 45, global step 280830: 'ext/val/acc' was not in top 1
+[train] epoch=46 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=47/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=47/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9517 top1=30.3571 top5=53.5714 data_mean=0.0000 data_std=1.0224 data_absmax=22.1945 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3272 proj_finite=1
+[train] epoch=46 batch=1000/6105
+[train] epoch=46 batch=2000/6105
+[train] epoch=46 batch=3000/6105
+[train] epoch=46 batch=4000/6105
+[train] epoch=46 batch=5000/6105
+[train] epoch=46 batch=6000/6105
+[train] epoch=46 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=47/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3375 top1=17.8571 top5=42.8571 data_mean=-0.0000 data_std=0.9851 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2854 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=47/80 train_loss=3.3847 train_acc=17.9724 train_acc5=42.1853 val_loss=3.7239 val_acc=11.2554 val_acc5=30.1407
+Epoch 46, global step 286935: 'ext/val/acc' was not in top 1
+[train] epoch=47 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=48/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=48/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3620 top1=14.2857 top5=37.5000 data_mean=-0.0001 data_std=1.0287 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2841 proj_finite=1
+[train] epoch=47 batch=1000/6105
+[train] epoch=47 batch=2000/6105
+[train] epoch=47 batch=3000/6105
+[train] epoch=47 batch=4000/6105
+[train] epoch=47 batch=5000/6105
+[train] epoch=47 batch=6000/6105
+[train] epoch=47 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=48/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5482 top1=12.5000 top5=39.2857 data_mean=-0.0000 data_std=1.1055 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3150 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=48/80 train_loss=3.3843 train_acc=18.1157 train_acc5=42.3110 val_loss=3.7202 val_acc=12.2835 val_acc5=31.5206
+Epoch 47, global step 293040: 'ext/val/acc' was not in top 1
+[train] epoch=48 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=49/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=49/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0037 top1=28.5714 top5=44.6429 data_mean=-0.0000 data_std=0.9929 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2537 proj_finite=1
+[train] epoch=48 batch=1000/6105
+[train] epoch=48 batch=2000/6105
+[train] epoch=48 batch=3000/6105
+[train] epoch=48 batch=4000/6105
+[train] epoch=48 batch=5000/6105
+[train] epoch=48 batch=6000/6105
+[train] epoch=48 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=49/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5853 top1=19.6429 top5=32.1429 data_mean=-0.0001 data_std=0.9962 data_absmax=18.7151 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2812 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=49/80 train_loss=3.3798 train_acc=18.0821 train_acc5=42.4003 val_loss=3.7006 val_acc=11.6613 val_acc5=32.2511
+Epoch 48, global step 299145: 'ext/val/acc' was not in top 1
+[train] epoch=49 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=50/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=50/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3661 top1=14.2857 top5=41.0714 data_mean=-0.0002 data_std=1.0007 data_absmax=27.9627 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3093 proj_finite=1
+[train] epoch=49 batch=1000/6105
+[train] epoch=49 batch=2000/6105
+[train] epoch=49 batch=3000/6105
+[train] epoch=49 batch=4000/6105
+[train] epoch=49 batch=5000/6105
+[train] epoch=49 batch=6000/6105
+[train] epoch=49 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=50/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1853 top1=30.3571 top5=55.3571 data_mean=-0.0001 data_std=0.9972 data_absmax=21.2766 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2767 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=50/80 train_loss=3.3901 train_acc=17.9975 train_acc5=42.1964 val_loss=3.7135 val_acc=11.6071 val_acc5=31.9535
+Epoch 49, global step 305250: 'ext/val/acc' was not in top 1
+[train] epoch=50 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=51/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=51/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3814 top1=16.0714 top5=37.5000 data_mean=0.0001 data_std=0.9951 data_absmax=26.0488 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3744 proj_finite=1
+[train] epoch=50 batch=1000/6105
+[train] epoch=50 batch=2000/6105
+[train] epoch=50 batch=3000/6105
+[train] epoch=50 batch=4000/6105
+[train] epoch=50 batch=5000/6105
+[train] epoch=50 batch=6000/6105
+[train] epoch=50 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=51/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0171 top1=33.9286 top5=50.0000 data_mean=-0.0001 data_std=1.0798 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3428 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=51/80 train_loss=3.3836 train_acc=17.9768 train_acc5=42.2944 val_loss=3.6731 val_acc=12.0130 val_acc5=32.9275
+Epoch 50, global step 311355: 'ext/val/acc' was not in top 1
+[train] epoch=51 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=52/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=52/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3449 top1=14.2857 top5=37.5000 data_mean=0.0001 data_std=1.0534 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2978 proj_finite=1
+[train] epoch=51 batch=1000/6105
+[train] epoch=51 batch=2000/6105
+[train] epoch=51 batch=3000/6105
+[train] epoch=51 batch=4000/6105
+[train] epoch=51 batch=5000/6105
+[train] epoch=51 batch=6000/6105
+[train] epoch=51 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=52/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1173 top1=23.2143 top5=46.4286 data_mean=-0.0001 data_std=0.9943 data_absmax=18.7151 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3025 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=52/80 train_loss=3.3835 train_acc=18.1002 train_acc5=42.3643 val_loss=3.6737 val_acc=11.3636 val_acc5=32.9545
+Epoch 51, global step 317460: 'ext/val/acc' was not in top 1
+[train] epoch=52 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=53/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=53/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0363 top1=30.3571 top5=60.7143 data_mean=0.0000 data_std=1.0116 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2609 proj_finite=1
+[train] epoch=52 batch=1000/6105
+[train] epoch=52 batch=2000/6105
+[train] epoch=52 batch=3000/6105
+[train] epoch=52 batch=4000/6105
+[train] epoch=52 batch=5000/6105
+[train] epoch=52 batch=6000/6105
+[train] epoch=52 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=53/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.8279 top1=14.2857 top5=28.5714 data_mean=-0.0000 data_std=0.9959 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2927 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=53/80 train_loss=3.3818 train_acc=18.1649 train_acc5=42.4310 val_loss=3.7008 val_acc=11.3366 val_acc5=32.1970
+Epoch 52, global step 323565: 'ext/val/acc' was not in top 1
+[train] epoch=53 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=54/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=54/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1377 top1=25.0000 top5=48.2143 data_mean=0.0000 data_std=1.0078 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2411 proj_finite=1
+[train] epoch=53 batch=1000/6105
+[train] epoch=53 batch=2000/6105
+[train] epoch=53 batch=3000/6105
+[train] epoch=53 batch=4000/6105
+[train] epoch=53 batch=5000/6105
+[train] epoch=53 batch=6000/6105
+[train] epoch=53 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=54/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3294 top1=19.6429 top5=53.5714 data_mean=-0.0000 data_std=1.1683 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2692 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=54/80 train_loss=3.3812 train_acc=18.2029 train_acc5=42.4848 val_loss=3.6848 val_acc=12.1212 val_acc5=32.4405
+Epoch 53, global step 329670: 'ext/val/acc' was not in top 1
+[train] epoch=54 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=55/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=55/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2161 top1=21.4286 top5=44.6429 data_mean=-0.0001 data_std=1.0360 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3339 proj_finite=1
+[train] epoch=54 batch=1000/6105
+[train] epoch=54 batch=2000/6105
+[train] epoch=54 batch=3000/6105
+[train] epoch=54 batch=4000/6105
+[train] epoch=54 batch=5000/6105
+[train] epoch=54 batch=6000/6105
+[train] epoch=54 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=55/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1977 top1=25.0000 top5=55.3571 data_mean=-0.0000 data_std=1.0011 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3338 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=55/80 train_loss=3.3799 train_acc=18.1906 train_acc5=42.3523 val_loss=3.7187 val_acc=12.3918 val_acc5=31.6288
+Epoch 54, global step 335775: 'ext/val/acc' was not in top 1
+[train] epoch=55 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=56/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=56/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1202 top1=25.0000 top5=48.2143 data_mean=0.0001 data_std=1.0206 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3824 proj_finite=1
+[train] epoch=55 batch=1000/6105
+[train] epoch=55 batch=2000/6105
+[train] epoch=55 batch=3000/6105
+[train] epoch=55 batch=4000/6105
+[train] epoch=55 batch=5000/6105
+[train] epoch=55 batch=6000/6105
+[train] epoch=55 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=56/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1835 top1=17.8571 top5=42.8571 data_mean=-0.0001 data_std=1.0977 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3990 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=56/80 train_loss=3.3819 train_acc=18.1233 train_acc5=42.3473 val_loss=3.6468 val_acc=12.7435 val_acc5=33.5498
+Epoch 55, global step 341880: 'ext/val/acc' reached 12.74351 (best 12.74351), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=55.ckpt' as top 1
+[train] epoch=56 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=57/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=57/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2152 top1=17.8571 top5=42.8571 data_mean=-0.0000 data_std=0.9944 data_absmax=27.9627 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3559 proj_finite=1
+[train] epoch=56 batch=1000/6105
+[train] epoch=56 batch=2000/6105
+[train] epoch=56 batch=3000/6105
+[train] epoch=56 batch=4000/6105
+[train] epoch=56 batch=5000/6105
+[train] epoch=56 batch=6000/6105
+[train] epoch=56 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=57/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4552 top1=26.7857 top5=51.7857 data_mean=-0.0000 data_std=0.9964 data_absmax=18.0510 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2893 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=57/80 train_loss=3.3721 train_acc=18.3149 train_acc5=42.5281 val_loss=3.7484 val_acc=11.1742 val_acc5=30.3030
+Epoch 56, global step 347985: 'ext/val/acc' was not in top 1
+[train] epoch=57 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=58/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=58/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0915 top1=26.7857 top5=53.5714 data_mean=-0.0001 data_std=1.0037 data_absmax=25.0848 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3210 proj_finite=1
+[train] epoch=57 batch=1000/6105
+[train] epoch=57 batch=2000/6105
+[train] epoch=57 batch=3000/6105
+[train] epoch=57 batch=4000/6105
+[train] epoch=57 batch=5000/6105
+[train] epoch=57 batch=6000/6105
+[train] epoch=57 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=58/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2949 top1=23.2143 top5=41.0714 data_mean=-0.0001 data_std=1.1025 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2843 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=58/80 train_loss=3.3770 train_acc=18.3172 train_acc5=42.5927 val_loss=3.7421 val_acc=11.9048 val_acc5=30.1948
+Epoch 57, global step 354090: 'ext/val/acc' was not in top 1
+[train] epoch=58 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=59/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=59/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.6403 top1=41.0714 top5=60.7143 data_mean=-0.0000 data_std=1.0369 data_absmax=22.7319 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3181 proj_finite=1
+[train] epoch=58 batch=1000/6105
+[train] epoch=58 batch=2000/6105
+[train] epoch=58 batch=3000/6105
+[train] epoch=58 batch=4000/6105
+[train] epoch=58 batch=5000/6105
+[train] epoch=58 batch=6000/6105
+[train] epoch=58 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=59/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7330 top1=12.5000 top5=25.0000 data_mean=-0.0000 data_std=1.1891 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3473 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=59/80 train_loss=3.3759 train_acc=18.1856 train_acc5=42.6223 val_loss=3.7331 val_acc=11.1201 val_acc5=31.4394
+Epoch 58, global step 360195: 'ext/val/acc' was not in top 1
+[train] epoch=59 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=60/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=60/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1445 top1=14.2857 top5=53.5714 data_mean=-0.0001 data_std=1.0060 data_absmax=23.8661 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3162 proj_finite=1
+[train] epoch=59 batch=1000/6105
+[train] epoch=59 batch=2000/6105
+[train] epoch=59 batch=3000/6105
+[train] epoch=59 batch=4000/6105
+[train] epoch=59 batch=5000/6105
+[train] epoch=59 batch=6000/6105
+[train] epoch=59 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=60/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3595 top1=30.3571 top5=51.7857 data_mean=-0.0001 data_std=0.9923 data_absmax=18.0510 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3053 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=60/80 train_loss=3.3734 train_acc=18.2947 train_acc5=42.7153 val_loss=3.6477 val_acc=13.0682 val_acc5=34.1450
+Epoch 59, global step 366300: 'ext/val/acc' reached 13.06818 (best 13.06818), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=59.ckpt' as top 1
+[train] epoch=60 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=61/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=61/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2417 top1=19.6429 top5=51.7857 data_mean=-0.0000 data_std=1.0227 data_absmax=48.5473 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.4107 proj_finite=1
+[train] epoch=60 batch=1000/6105
+[train] epoch=60 batch=2000/6105
+[train] epoch=60 batch=3000/6105
+[train] epoch=60 batch=4000/6105
+[train] epoch=60 batch=5000/6105
+[train] epoch=60 batch=6000/6105
+[train] epoch=60 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=61/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1374 top1=23.2143 top5=55.3571 data_mean=-0.0001 data_std=0.9766 data_absmax=14.9132 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3391 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=61/80 train_loss=3.3768 train_acc=18.2453 train_acc5=42.4906 val_loss=3.6592 val_acc=12.3918 val_acc5=33.7121
+Epoch 60, global step 372405: 'ext/val/acc' was not in top 1
+[train] epoch=61 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=62/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=62/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0223 top1=19.6429 top5=55.3571 data_mean=-0.0000 data_std=1.0118 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3274 proj_finite=1
+[train] epoch=61 batch=1000/6105
+[train] epoch=61 batch=2000/6105
+[train] epoch=61 batch=3000/6105
+[train] epoch=61 batch=4000/6105
+[train] epoch=61 batch=5000/6105
+[train] epoch=61 batch=6000/6105
+[train] epoch=61 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=62/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2993 top1=26.7857 top5=46.4286 data_mean=-0.0000 data_std=1.0819 data_absmax=87.2001 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3521 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=62/80 train_loss=3.3792 train_acc=18.2462 train_acc5=42.3728 val_loss=3.6957 val_acc=11.6883 val_acc5=31.4123
+Epoch 61, global step 378510: 'ext/val/acc' was not in top 1
+[train] epoch=62 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=63/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=63/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3675 top1=19.6429 top5=33.9286 data_mean=0.0000 data_std=1.0076 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3431 proj_finite=1
+[train] epoch=62 batch=1000/6105
+[train] epoch=62 batch=2000/6105
+[train] epoch=62 batch=3000/6105
+[train] epoch=62 batch=4000/6105
+[train] epoch=62 batch=5000/6105
+[train] epoch=62 batch=6000/6105
+[train] epoch=62 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=63/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0991 top1=30.3571 top5=51.7857 data_mean=-0.0001 data_std=1.0836 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3555 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=63/80 train_loss=3.3792 train_acc=18.2119 train_acc5=42.3821 val_loss=3.6906 val_acc=11.8506 val_acc5=33.0357
+Epoch 62, global step 384615: 'ext/val/acc' was not in top 1
+[train] epoch=63 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=64/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=64/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0950 top1=32.1429 top5=50.0000 data_mean=0.0001 data_std=0.9664 data_absmax=25.7467 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3055 proj_finite=1
+[train] epoch=63 batch=1000/6105
+[train] epoch=63 batch=2000/6105
+[train] epoch=63 batch=3000/6105
+[train] epoch=63 batch=4000/6105
+[train] epoch=63 batch=5000/6105
+[train] epoch=63 batch=6000/6105
+[train] epoch=63 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=64/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1846 top1=16.0714 top5=51.7857 data_mean=-0.0001 data_std=1.0932 data_absmax=64.5621 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2912 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=64/80 train_loss=3.3731 train_acc=18.3053 train_acc5=42.5018 val_loss=3.6785 val_acc=11.9859 val_acc5=32.3323
+Epoch 63, global step 390720: 'ext/val/acc' was not in top 1
+[train] epoch=64 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=65/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=65/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9663 top1=26.7857 top5=58.9286 data_mean=-0.0001 data_std=1.0209 data_absmax=21.3371 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3208 proj_finite=1
+[train] epoch=64 batch=1000/6105
+[train] epoch=64 batch=2000/6105
+[train] epoch=64 batch=3000/6105
+[train] epoch=64 batch=4000/6105
+[train] epoch=64 batch=5000/6105
+[train] epoch=64 batch=6000/6105
+[train] epoch=64 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=65/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4132 top1=16.0714 top5=35.7143 data_mean=-0.0000 data_std=0.9984 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3867 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=65/80 train_loss=3.3723 train_acc=18.4190 train_acc5=42.6243 val_loss=3.6840 val_acc=12.0400 val_acc5=32.0346
+Epoch 64, global step 396825: 'ext/val/acc' was not in top 1
+[train] epoch=65 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=66/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=66/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2754 top1=19.6429 top5=39.2857 data_mean=0.0001 data_std=1.0205 data_absmax=23.8661 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3108 proj_finite=1
+[train] epoch=65 batch=1000/6105
+[train] epoch=65 batch=2000/6105
+[train] epoch=65 batch=3000/6105
+[train] epoch=65 batch=4000/6105
+[train] epoch=65 batch=5000/6105
+[train] epoch=65 batch=6000/6105
+[train] epoch=65 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=66/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9318 top1=25.0000 top5=60.7143 data_mean=-0.0000 data_std=0.9912 data_absmax=21.2766 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3953 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=66/80 train_loss=3.3712 train_acc=18.4012 train_acc5=42.7238 val_loss=3.6625 val_acc=13.2576 val_acc5=33.5227
+Epoch 65, global step 402930: 'ext/val/acc' reached 13.25758 (best 13.25758), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=65.ckpt' as top 1
+[train] epoch=66 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=67/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=67/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0639 top1=23.2143 top5=50.0000 data_mean=0.0000 data_std=0.9927 data_absmax=23.0535 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3185 proj_finite=1
+[train] epoch=66 batch=1000/6105
+[train] epoch=66 batch=2000/6105
+[train] epoch=66 batch=3000/6105
+[train] epoch=66 batch=4000/6105
+[train] epoch=66 batch=5000/6105
+[train] epoch=66 batch=6000/6105
+[train] epoch=66 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=67/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.8582 top1=28.5714 top5=58.9286 data_mean=-0.0001 data_std=0.9794 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3220 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=67/80 train_loss=3.3686 train_acc=18.5217 train_acc5=42.7872 val_loss=3.6701 val_acc=12.4729 val_acc5=33.5227
+Epoch 66, global step 409035: 'ext/val/acc' was not in top 1
+[train] epoch=67 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=68/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=68/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2661 top1=12.5000 top5=46.4286 data_mean=0.0000 data_std=1.0095 data_absmax=23.0535 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3127 proj_finite=1
+[train] epoch=67 batch=1000/6105
+[train] epoch=67 batch=2000/6105
+[train] epoch=67 batch=3000/6105
+[train] epoch=67 batch=4000/6105
+[train] epoch=67 batch=5000/6105
+[train] epoch=67 batch=6000/6105
+[train] epoch=67 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=68/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4275 top1=19.6429 top5=44.6429 data_mean=-0.0000 data_std=0.9876 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2813 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=68/80 train_loss=3.3760 train_acc=18.3629 train_acc5=42.5483 val_loss=3.6884 val_acc=11.9589 val_acc5=32.1699
+Epoch 67, global step 415140: 'ext/val/acc' was not in top 1
+[train] epoch=68 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=69/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=69/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1034 top1=21.4286 top5=44.6429 data_mean=0.0000 data_std=1.0397 data_absmax=27.9627 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3104 proj_finite=1
+[train] epoch=68 batch=1000/6105
+[train] epoch=68 batch=2000/6105
+[train] epoch=68 batch=3000/6105
+[train] epoch=68 batch=4000/6105
+[train] epoch=68 batch=5000/6105
+[train] epoch=68 batch=6000/6105
+[train] epoch=68 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=69/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1778 top1=17.8571 top5=51.7857 data_mean=-0.0000 data_std=0.9916 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3943 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=69/80 train_loss=3.3676 train_acc=18.3655 train_acc5=42.7229 val_loss=3.6785 val_acc=11.7965 val_acc5=33.0628
+Epoch 68, global step 421245: 'ext/val/acc' was not in top 1
+[train] epoch=69 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=70/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=70/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1182 top1=17.8571 top5=51.7857 data_mean=-0.0001 data_std=0.9995 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2564 proj_finite=1
+[train] epoch=69 batch=1000/6105
+[train] epoch=69 batch=2000/6105
+[train] epoch=69 batch=3000/6105
+[train] epoch=69 batch=4000/6105
+[train] epoch=69 batch=5000/6105
+[train] epoch=69 batch=6000/6105
+[train] epoch=69 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=70/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.6522 top1=12.5000 top5=28.5714 data_mean=-0.0001 data_std=1.0896 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3274 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=70/80 train_loss=3.3699 train_acc=18.4939 train_acc5=42.6386 val_loss=3.6903 val_acc=12.0671 val_acc5=32.3864
+Epoch 69, global step 427350: 'ext/val/acc' was not in top 1
+[train] epoch=70 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=71/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=71/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2753 top1=21.4286 top5=44.6429 data_mean=0.0000 data_std=1.0404 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3140 proj_finite=1
+[train] epoch=70 batch=1000/6105
+[train] epoch=70 batch=2000/6105
+[train] epoch=70 batch=3000/6105
+[train] epoch=70 batch=4000/6105
+[train] epoch=70 batch=5000/6105
+[train] epoch=70 batch=6000/6105
+[train] epoch=70 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=71/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.6208 top1=16.0714 top5=32.1429 data_mean=-0.0001 data_std=1.1701 data_absmax=87.2001 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3177 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=71/80 train_loss=3.3654 train_acc=18.5074 train_acc5=42.8273 val_loss=3.6609 val_acc=11.9859 val_acc5=33.3333
+Epoch 70, global step 433455: 'ext/val/acc' was not in top 1
+[train] epoch=71 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=72/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=72/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.7164 top1=32.1429 top5=62.5000 data_mean=0.0000 data_std=0.9908 data_absmax=22.7319 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3034 proj_finite=1
+[train] epoch=71 batch=1000/6105
+[train] epoch=71 batch=2000/6105
+[train] epoch=71 batch=3000/6105
+[train] epoch=71 batch=4000/6105
+[train] epoch=71 batch=5000/6105
+[train] epoch=71 batch=6000/6105
+[train] epoch=71 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=72/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9830 top1=32.1429 top5=58.9286 data_mean=-0.0001 data_std=1.0893 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3814 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=72/80 train_loss=3.3730 train_acc=18.4299 train_acc5=42.4719 val_loss=3.7077 val_acc=11.3636 val_acc5=32.5487
+Epoch 71, global step 439560: 'ext/val/acc' was not in top 1
+[train] epoch=72 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=73/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=73/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0236 top1=26.7857 top5=53.5714 data_mean=-0.0000 data_std=1.0045 data_absmax=37.2366 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3335 proj_finite=1
+[train] epoch=72 batch=1000/6105
+[train] epoch=72 batch=2000/6105
+[train] epoch=72 batch=3000/6105
+[train] epoch=72 batch=4000/6105
+[train] epoch=72 batch=5000/6105
+[train] epoch=72 batch=6000/6105
+[train] epoch=72 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=73/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4114 top1=17.8571 top5=39.2857 data_mean=-0.0002 data_std=1.1028 data_absmax=64.5621 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2841 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=73/80 train_loss=3.3679 train_acc=18.5694 train_acc5=42.7135 val_loss=3.6329 val_acc=12.8247 val_acc5=33.8203
+Epoch 72, global step 445665: 'ext/val/acc' was not in top 1
+[train] epoch=73 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=74/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=74/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4353 top1=16.0714 top5=37.5000 data_mean=-0.0000 data_std=1.0116 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3996 proj_finite=1
+[train] epoch=73 batch=1000/6105
+[train] epoch=73 batch=2000/6105
+[train] epoch=73 batch=3000/6105
+[train] epoch=73 batch=4000/6105
+[train] epoch=73 batch=5000/6105
+[train] epoch=73 batch=6000/6105
+[train] epoch=73 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=74/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2979 top1=26.7857 top5=44.6429 data_mean=0.0000 data_std=0.9801 data_absmax=12.5337 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3356 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=74/80 train_loss=3.3679 train_acc=18.4854 train_acc5=42.8121 val_loss=3.6946 val_acc=12.0400 val_acc5=32.6299
+Epoch 73, global step 451770: 'ext/val/acc' was not in top 1
+[train] epoch=74 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=75/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=75/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0391 top1=23.2143 top5=53.5714 data_mean=0.0001 data_std=1.0148 data_absmax=48.5473 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3119 proj_finite=1
+[train] epoch=74 batch=1000/6105
+[train] epoch=74 batch=2000/6105
+[train] epoch=74 batch=3000/6105
+[train] epoch=74 batch=4000/6105
+[train] epoch=74 batch=5000/6105
+[train] epoch=74 batch=6000/6105
+[train] epoch=74 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=75/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5732 top1=17.8571 top5=35.7143 data_mean=0.0000 data_std=0.9734 data_absmax=11.4881 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3102 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=75/80 train_loss=3.3667 train_acc=18.5436 train_acc5=42.8788 val_loss=3.6542 val_acc=13.3387 val_acc5=32.8734
+Epoch 74, global step 457875: 'ext/val/acc' reached 13.33874 (best 13.33874), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=74.ckpt' as top 1
+[train] epoch=75 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=76/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=76/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1334 top1=25.0000 top5=48.2143 data_mean=0.0000 data_std=1.0050 data_absmax=26.0488 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3091 proj_finite=1
+[train] epoch=75 batch=1000/6105
+[train] epoch=75 batch=2000/6105
+[train] epoch=75 batch=3000/6105
+[train] epoch=75 batch=4000/6105
+[train] epoch=75 batch=5000/6105
+[train] epoch=75 batch=6000/6105
+[train] epoch=75 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=76/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4009 top1=10.7143 top5=46.4286 data_mean=-0.0000 data_std=0.9945 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3791 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=76/80 train_loss=3.3680 train_acc=18.4123 train_acc5=42.8068 val_loss=3.6681 val_acc=12.6623 val_acc5=34.0909
+Epoch 75, global step 463980: 'ext/val/acc' was not in top 1
+[train] epoch=76 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=77/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=77/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2250 top1=17.8571 top5=41.0714 data_mean=-0.0000 data_std=0.9875 data_absmax=25.7467 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3877 proj_finite=1
+[train] epoch=76 batch=1000/6105
+[train] epoch=76 batch=2000/6105
+[train] epoch=76 batch=3000/6105
+[train] epoch=76 batch=4000/6105
+[train] epoch=76 batch=5000/6105
+[train] epoch=76 batch=6000/6105
+[train] epoch=76 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=77/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.1494 top1=21.4286 top5=51.7857 data_mean=-0.0001 data_std=0.9859 data_absmax=28.1665 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3660 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=77/80 train_loss=3.3635 train_acc=18.6624 train_acc5=42.8902 val_loss=3.6806 val_acc=12.2835 val_acc5=33.5768
+Epoch 76, global step 470085: 'ext/val/acc' was not in top 1
+[train] epoch=77 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=78/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=78/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4066 top1=14.2857 top5=37.5000 data_mean=0.0001 data_std=1.0478 data_absmax=48.5473 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3248 proj_finite=1
+[train] epoch=77 batch=1000/6105
+[train] epoch=77 batch=2000/6105
+[train] epoch=77 batch=3000/6105
+[train] epoch=77 batch=4000/6105
+[train] epoch=77 batch=5000/6105
+[train] epoch=77 batch=6000/6105
+[train] epoch=77 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=78/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9998 top1=25.0000 top5=57.1429 data_mean=-0.0000 data_std=1.0785 data_absmax=87.2001 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3664 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=78/80 train_loss=3.3662 train_acc=18.6010 train_acc5=42.8168 val_loss=3.6934 val_acc=12.0130 val_acc5=31.3312
+Epoch 77, global step 476190: 'ext/val/acc' was not in top 1
+[train] epoch=78 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=79/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=79/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2530 top1=25.0000 top5=53.5714 data_mean=-0.0000 data_std=0.9879 data_absmax=37.2366 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3980 proj_finite=1
+[train] epoch=78 batch=1000/6105
+[train] epoch=78 batch=2000/6105
+[train] epoch=78 batch=3000/6105
+[train] epoch=78 batch=4000/6105
+[train] epoch=78 batch=5000/6105
+[train] epoch=78 batch=6000/6105
+[train] epoch=78 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=79/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0457 top1=33.9286 top5=51.7857 data_mean=-0.0000 data_std=0.9946 data_absmax=21.2766 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3609 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=79/80 train_loss=3.3667 train_acc=18.5156 train_acc5=42.7448 val_loss=3.6195 val_acc=13.3387 val_acc5=34.1721
+Epoch 78, global step 482295: 'ext/val/acc' was not in top 1
+[train] epoch=79 total_batches=6105 print_every=1000
+[pretrain][debug][epoch-start] epoch=80/80 lr=0.0007 train_batches=6105 val_batches=[66]
+[pretrain][debug][train-batch0] epoch=80/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2698 top1=21.4286 top5=55.3571 data_mean=-0.0001 data_std=1.0112 data_absmax=23.8661 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3780 proj_finite=1
+[train] epoch=79 batch=1000/6105
+[train] epoch=79 batch=2000/6105
+[train] epoch=79 batch=3000/6105
+[train] epoch=79 batch=4000/6105
+[train] epoch=79 batch=5000/6105
+[train] epoch=79 batch=6000/6105
+[train] epoch=79 batch=6105/6105
+[pretrain][debug][val-batch0] epoch=80/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5520 top1=12.5000 top5=35.7143 data_mean=-0.0000 data_std=0.9896 data_absmax=18.0510 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.3705 proj_finite=1
+[pretrain][debug][epoch-summary] epoch=80/80 train_loss=3.3655 train_acc=18.4866 train_acc5=42.8089 val_loss=3.6975 val_acc=11.6883 val_acc5=32.0887
+Epoch 79, global step 488400: 'ext/val/acc' was not in top 1
+`Trainer.fit` stopped: `max_epochs=80` reached.
+[2026-05-31 17:43:03,733][__main__][INFO] - [fold-result][pretrain] fold=8 best_score=13.338744 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=74.ckpt last_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_last.ckpt
+[pretrain][debug][fit-end] fold=8 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f8_epoch=74.ckpt best_model_score=13.338744163513184 checkpoint_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1

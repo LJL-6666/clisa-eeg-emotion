@@ -191,6 +191,19 @@ bash scripts/run_local_faced_background.sh
 - overall accuracy: `42.3790%`
 - subject accuracy: `42.3790% +/- 13.6889%`
 
+
+## 本地新增运行记录
+
+旧结果不覆盖，新的 6-GPU fold 级并行运行也单独保留。完整对照见 [`docs/run_history.md`](docs/run_history.md)。
+
+| Run | 数据分支 | 运行目录 | 10-fold mean | overall |
+| --- | --- | --- | ---: | ---: |
+| preserved reference | external processed data | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` |
+| local 6-GPU | `runtime_inputs/Processed_data-clisa`，4-47 Hz | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` |
+| local 6-GPU | `runtime_inputs/Processed_data`，0.05-47 Hz | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` |
+
+说明：本地 6-GPU 版本按 fold 拆成多个进程并行运行，用于加速并避免覆盖已有结果。它与单进程顺序 10-fold 的随机数推进路径不同，因此即使数据和主要参数一致，最终准确率也可能有小幅差异。
+
 ## 当前保留内容
 
 - `preprocessing/`: FACED 原始 EEG → pkl 的参考预处理（含 `--clisa-or-not yes` 的 CLISA 频带分支）
