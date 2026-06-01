@@ -1,12 +1,12 @@
 # CLISA EEG Emotion Reproduction
 
-本仓库整理了 CLISA/FACED 9-class EEG 情感识别的本地复现流程。目标是让其他人拉取仓库后，只需要准备 FACED processed data，按照 README 放置数据并执行命令，就可以完整跑通：
+本仓库提供 CLISA 在 FACED 9-class EEG 情感识别任务上的复现代码、配置、运行脚本和轻量级结果文件。准备 FACED processed data 后，可按 README 放置数据并完整执行：
 
 ```text
 pretrain -> extract_fea -> train_mlp -> visualize
 ```
 
-仓库同时保留了一个原仓库历史参考结果，以及两套本机 6-GPU fold 并行完整运行结果。大体积输入数据和中间特征不随 GitHub 上传，轻量级结果、日志、配置和可视化图片已经保留。
+仓库包含一组历史参考结果和两组 fold-parallel 复现结果。原始输入数据和大体积中间特征不纳入版本管理；配置、日志、汇总指标和可视化结果保留在仓库中，便于核对实验设置与结果。
 
 ## 快速复现
 
@@ -44,23 +44,25 @@ runtime_inputs/Processed_data/
 
 代码同时支持 `sub*.pkl` 和 `sub*.mat`。仓库已经包含 `runtime_inputs/after_remarks/sub*/After_remarks.mat`，一般不需要额外准备。
 
-4. 跑默认复现协议。
+4. 运行默认复现协议。
 
 ```bash
 CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 ```
 
-输出会写到 `runs/run_<UTC time>/`，其中 `visualization/` 下会生成 fold accuracy、subject accuracy 和 confusion matrix。
+输出会写入 `runs/run_<UTC time>/`，其中 `visualization/` 下会生成 fold accuracy、subject accuracy 和 confusion matrix。
 
 ## 结果总览
 
-| 结果口径 | 数据分支 | 运行方式 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
-| --- | --- | --- | --- | ---: | ---: | ---: |
-| 单卡顺序 0.05-47 Hz | external `Processed_data`, 0.05-47 Hz | 原仓库保留 reference，单进程顺序 10-fold | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
-| 6-GPU fold 并行 4-47 Hz | `runtime_inputs/Processed_data-clisa`, 4-47 Hz | 本机新跑 A，按 fold 拆成多进程并行 | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
-| 6-GPU fold 并行 0.05-47 Hz | `runtime_inputs/Processed_data`, 0.05-47 Hz | 本机新跑 B，按 fold 拆成多进程并行 | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
+下表汇总三组结果，指标均来自对应目录下的可视化汇总文件。
 
-更细的 fold-level score、路径和运行来源见 [docs/run_history.md](docs/run_history.md)。
+| 结果口径 | 结果目录 | 10-fold mean | overall | subject mean +/- std |
+| --- | --- | ---: | ---: | ---: |
+| Reference, 0.05-47 Hz | `results/processed_data_full_fixed_v4_lds_forward/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
+| Fold-parallel, 4-47 Hz | `runs/run_6gpu_full_current/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
+| Fold-parallel, 0.05-47 Hz | `runs/run_processed_005_47_full_current/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
+
+详细的 fold-level score、路径和运行来源见 [docs/run_history.md](docs/run_history.md)。
 
 ## 仓库结构
 
@@ -75,16 +77,16 @@ CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 | `data/`, `model/`, `utils/` | 数据读取、模型和工具函数。 |
 | `preprocessing/` | 可选的 FACED raw EEG 到 processed data 预处理流程。 |
 | `runtime_inputs/after_remarks` | 已随仓库提供的 FACED 视频顺序和备注文件。 |
-| `runtime_inputs/Processed_data` | 默认 0.05-47 Hz processed data 放置目录，不随 GitHub 上传。 |
-| `runtime_inputs/Processed_data-clisa` | 可选 4-47 Hz CLISA 分支数据目录，不随 GitHub 上传。 |
-| `results/` | 原仓库历史参考结果。 |
-| `runs/` | 本机新跑结果和轻量级输出。 |
+| `runtime_inputs/Processed_data` | 默认 0.05-47 Hz processed data 放置目录；数据文件不纳入版本管理。 |
+| `runtime_inputs/Processed_data-clisa` | 可选 4-47 Hz CLISA 分支数据目录；数据文件不纳入版本管理。 |
+| `results/` | 历史参考结果和可视化输出。 |
+| `runs/` | 复现实验输出目录，保留轻量级指标、日志和可视化文件。 |
 
 ## 数据准备
 
-FACED 数据集需要用户自行下载和放置，仓库不上传原始或 processed EEG 数据。可参考 FACED 数据链接：<https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/>。
+FACED 数据集需要用户自行下载和放置，仓库不分发原始或 processed EEG 数据。可参考 FACED 数据链接：<https://cloud.tsinghua.edu.cn/d/4b573279ab1d4e9fb04a/>。
 
-默认复现使用 `runtime_inputs/Processed_data`，对应 0.05-47 Hz processed data。这也是原仓库历史参考结果和本机新跑 B 使用的数据分支。
+默认复现使用 `runtime_inputs/Processed_data`，对应 0.05-47 Hz processed data。历史参考结果和 0.05-47 Hz fold-parallel 复现均使用该数据分支。
 
 如果要复现 4-47 Hz CLISA 分支，需要额外准备：
 
@@ -97,20 +99,20 @@ runtime_inputs/Processed_data-clisa/
 
 数据目录必须包含 123 个 subject 文件，编号从 `sub000` 到 `sub122`。如果数据放在其他位置，运行时显式传入 `DATA_ROOT=/abs/path/to/Processed_data` 或 `--data-root /abs/path/to/Processed_data` 即可。
 
-如果手里只有 FACED raw EEG，可以使用预处理流程：
+如需从 FACED raw EEG 生成 processed data，可以使用预处理流程：
 
 ```bash
 cd preprocessing
 python main.py --clisa-or-not yes
 ```
 
-`--clisa-or-not yes` 会在 ICA 等步骤之后同时写出主分支和 4-47 Hz CLISA 分支。运行前需要根据本机路径修改 `preprocessing/main.py` 里的 `foldPaths`、`data_dir`、`save_dir` 和 `clisa_save_dir`。更多说明见 [preprocessing/README.md](preprocessing/README.md)。
+`--clisa-or-not yes` 会在 ICA 等步骤之后同时写出主分支和 4-47 Hz CLISA 分支。运行前需要根据本地实际路径修改 `preprocessing/main.py` 里的 `foldPaths`、`data_dir`、`save_dir` 和 `clisa_save_dir`。更多说明见 [preprocessing/README.md](preprocessing/README.md)。
 
 ## 复现命令
 
-### 单卡顺序 0.05-47 Hz
+### 顺序 10-fold 复现（0.05-47 Hz）
 
-这是推荐的 reference comparison 协议，和仓库保留的原历史结果口径一致。
+该协议与历史参考结果使用相同的数据频段和顺序执行方式，适合用于 reference comparison。
 
 ```bash
 python main.py \
@@ -137,33 +139,33 @@ python main.py \
 CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 ```
 
-### 6-GPU fold 并行 4-47 Hz
+### Fold-parallel 复现（4-47 Hz）
 
-该脚本将 10 个 fold 拆成独立进程，并通过 `CLISA_FOLDS` 分配到多张 GPU。它用于本机新跑 A。
+该脚本将 10 个 fold 拆分为独立进程，并通过 `CLISA_FOLDS` 分配到可用 GPU，适用于 4-47 Hz CLISA 数据分支。
 
 ```bash
 CONDA_ENV=clisa-code \
 DATA_ROOT=./runtime_inputs/Processed_data-clisa \
 OUTPUT_RUN_ROOT=./runs/run_6gpu_full_current \
-bash scripts/run_faced_6gpu_full_after_upload.sh
+bash scripts/run_faced_fold_parallel_4_47.sh
 ```
 
-### 6-GPU fold 并行 0.05-47 Hz
+### Fold-parallel 复现（0.05-47 Hz）
 
-该脚本用于本机新跑 B，并且默认拒绝把结果写入 4-47 Hz 的输出目录。
+该脚本适用于 0.05-47 Hz processed data，并包含输出目录保护，避免将结果写入 4-47 Hz 分支的输出目录。
 
 ```bash
 CONDA_ENV=clisa-code \
 DATA_ROOT=./runtime_inputs/Processed_data \
 OUTPUT_RUN_ROOT=./runs/run_processed_005_47_full_current \
-bash scripts/run_processed_005_47_after_upload.sh
+bash scripts/run_faced_fold_parallel_005_47.sh
 ```
 
-如果要重新跑一套新结果，请把 `OUTPUT_RUN_ROOT` 改成新的目录，避免覆盖已有输出。
+如需重新运行一组实验，请将 `OUTPUT_RUN_ROOT` 改为新的目录，避免覆盖已有输出。
 
 ## 分阶段运行
 
-只跑预训练：
+仅运行预训练：
 
 ```bash
 python main.py \
@@ -206,7 +208,7 @@ python main.py \
   --wait-pretrain-last-epochs 80
 ```
 
-只重画图：
+仅重新生成可视化：
 
 ```bash
 python main.py \
@@ -252,20 +254,20 @@ runs/<run_id_or_timestamp>/
 
 ## 可视化结果
 
-同一指标的三套结果放在同一行，便于横向比较。图片使用 HTML 控制宽度，GitHub README 中会按列缩放显示。
+下列图片按实验协议并列展示，便于比较 fold accuracy、subject accuracy 和 confusion matrix。图片使用 HTML 控制宽度，GitHub README 中会按列缩放显示。
 
 ### Fold accuracy
 
 <table>
   <tr>
-    <th>单卡顺序 0.05-47 Hz</th>
-    <th>6-GPU fold 并行 4-47 Hz</th>
-    <th>6-GPU fold 并行 0.05-47 Hz</th>
+    <th>Reference<br>0.05-47 Hz</th>
+    <th>Fold-parallel<br>4-47 Hz</th>
+    <th>Fold-parallel<br>0.05-47 Hz</th>
   </tr>
   <tr>
-    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="single-gpu sequential 0.05-47 Hz fold accuracy" width="280"></td>
-    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="6-GPU fold-parallel 4-47 Hz fold accuracy" width="280"></td>
-    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="6-GPU fold-parallel 0.05-47 Hz fold accuracy" width="280"></td>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="reference 0.05-47 Hz fold accuracy" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="fold-parallel 4-47 Hz fold accuracy" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="fold-parallel 0.05-47 Hz fold accuracy" width="280"></td>
   </tr>
 </table>
 
@@ -273,14 +275,14 @@ runs/<run_id_or_timestamp>/
 
 <table>
   <tr>
-    <th>单卡顺序 0.05-47 Hz</th>
-    <th>6-GPU fold 并行 4-47 Hz</th>
-    <th>6-GPU fold 并行 0.05-47 Hz</th>
+    <th>Reference<br>0.05-47 Hz</th>
+    <th>Fold-parallel<br>4-47 Hz</th>
+    <th>Fold-parallel<br>0.05-47 Hz</th>
   </tr>
   <tr>
-    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="single-gpu sequential 0.05-47 Hz subject accuracy" width="280"></td>
-    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="6-GPU fold-parallel 4-47 Hz subject accuracy" width="280"></td>
-    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="6-GPU fold-parallel 0.05-47 Hz subject accuracy" width="280"></td>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="reference 0.05-47 Hz subject accuracy" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="fold-parallel 4-47 Hz subject accuracy" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="fold-parallel 0.05-47 Hz subject accuracy" width="280"></td>
   </tr>
 </table>
 
@@ -288,20 +290,20 @@ runs/<run_id_or_timestamp>/
 
 <table>
   <tr>
-    <th>单卡顺序 0.05-47 Hz</th>
-    <th>6-GPU fold 并行 4-47 Hz</th>
-    <th>6-GPU fold 并行 0.05-47 Hz</th>
+    <th>Reference<br>0.05-47 Hz</th>
+    <th>Fold-parallel<br>4-47 Hz</th>
+    <th>Fold-parallel<br>0.05-47 Hz</th>
   </tr>
   <tr>
-    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="single-gpu sequential 0.05-47 Hz confusion matrix" width="280"></td>
-    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="6-GPU fold-parallel 4-47 Hz confusion matrix" width="280"></td>
-    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="6-GPU fold-parallel 0.05-47 Hz confusion matrix" width="280"></td>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="reference 0.05-47 Hz confusion matrix" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="fold-parallel 4-47 Hz confusion matrix" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="fold-parallel 0.05-47 Hz confusion matrix" width="280"></td>
   </tr>
 </table>
 
-## 当前复现设置
+## 默认实验设置
 
-| 项 | 当前值 |
+| 项 | 默认值 |
 | --- | --- |
 | Dataset config | `FACED_def` |
 | Model config | `cnn_clisa` |
@@ -316,27 +318,27 @@ runs/<run_id_or_timestamp>/
 | LDS mode | `ext_fea.lds_given_all=0`, forward filtering only |
 | Pretrain checkpoint for extraction | `best` |
 
-当前训练命令设置 `min_epochs=max_epochs`，因此会按固定 epoch 跑完；`patience` 不会让训练提前停止。LDS 在每个 video sequence 内做平滑，不跨 video 平滑。
+训练命令设置 `min_epochs=max_epochs`，因此会按固定 epoch 完成训练；`patience` 不会触发提前停止。LDS 在每个 video sequence 内做平滑，不跨 video 平滑。
 
-## 上传与忽略的文件
+## 版本管理范围
 
-已上传到 GitHub：
+已纳入 GitHub 仓库：
 
 - 代码、配置、启动脚本、README 和 docs。
 - 可视化 PNG、CSV、JSON 汇总、小体积 prediction `.npz`。
 - stage logs、Hydra 配置和轻量 checkpoint。
 
-没有上传：
+未纳入版本管理：
 
 - FACED processed data：`runtime_inputs/Processed_data*`。
 - 大体积 sliced arrays：`runs/*/data/sliced_data/`。
 - 大体积 extracted feature arrays：`runs/*/data/ext_fea/`。
 
-这些路径已写入 `.gitignore`，避免误提交大文件。
+上述路径已写入 `.gitignore`，避免误提交大文件。
 
 ## 复现注意事项
 
-- 原仓库历史参考结果应按“单卡顺序 0.05-47 Hz”理解，不应和 4-47 Hz CLISA 分支混在一起。
-- 6-GPU fold 并行可以更快打满 GPU，但每个 fold 是独立进程，随机数推进轨迹不同，因此不保证和单进程顺序 10-fold 逐位一致。
-- 如果要和历史 reference 做严格对比，建议单独跑一套单进程顺序 0.05-47 Hz 结果，并写入新的 `runs/` 目录。
-- 做横向比较时应固定 `data-root`、`after-remarks-dir`、`run-id`、`pretrain-checkpoint`、`lds-given-all` 和运行方式。
+- 历史参考结果使用 0.05-47 Hz processed data 和顺序 10-fold 协议，不应与 4-47 Hz CLISA 分支混作同一数据口径。
+- Fold-parallel 协议可缩短运行时间；由于每个 fold 由独立进程执行，随机数推进顺序与单进程顺序协议不同，结果不保证逐位一致。
+- 如需与历史参考结果严格对比，建议使用顺序 10-fold 0.05-47 Hz 协议生成新的 `runs/` 输出目录。
+- 横向比较实验时应固定 `data-root`、`after-remarks-dir`、`run-id`、`pretrain-checkpoint`、`lds-given-all` 和执行方式。
