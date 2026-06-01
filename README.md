@@ -252,47 +252,52 @@ runs/<run_id_or_timestamp>/
 
 ## 可视化结果
 
-### 单卡顺序 0.05-47 Hz
+同一指标的三套结果放在同一行，便于横向比较。图片使用 HTML 控制宽度，GitHub README 中会按列缩放显示。
 
-**Fold accuracy**
+### Fold accuracy
 
-![单卡顺序 0.05-47 Hz fold accuracy](results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_fold_accuracy_de.png)
+<table>
+  <tr>
+    <th>单卡顺序 0.05-47 Hz</th>
+    <th>6-GPU fold 并行 4-47 Hz</th>
+    <th>6-GPU fold 并行 0.05-47 Hz</th>
+  </tr>
+  <tr>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="single-gpu sequential 0.05-47 Hz fold accuracy" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="6-GPU fold-parallel 4-47 Hz fold accuracy" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png" alt="6-GPU fold-parallel 0.05-47 Hz fold accuracy" width="280"></td>
+  </tr>
+</table>
 
-**Subject accuracy**
+### Subject accuracy
 
-![单卡顺序 0.05-47 Hz subject accuracy](results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_subject_accuracy_de.png)
+<table>
+  <tr>
+    <th>单卡顺序 0.05-47 Hz</th>
+    <th>6-GPU fold 并行 4-47 Hz</th>
+    <th>6-GPU fold 并行 0.05-47 Hz</th>
+  </tr>
+  <tr>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="single-gpu sequential 0.05-47 Hz subject accuracy" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="6-GPU fold-parallel 4-47 Hz subject accuracy" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png" alt="6-GPU fold-parallel 0.05-47 Hz subject accuracy" width="280"></td>
+  </tr>
+</table>
 
-**Confusion matrix**
+### Confusion matrix
 
-![单卡顺序 0.05-47 Hz confusion matrix](results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_cls9_confusion_de.png)
-
-### 6-GPU fold 并行 4-47 Hz
-
-**Fold accuracy**
-
-![6-GPU fold 并行 4-47 Hz fold accuracy](runs/run_6gpu_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png)
-
-**Subject accuracy**
-
-![6-GPU fold 并行 4-47 Hz subject accuracy](runs/run_6gpu_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png)
-
-**Confusion matrix**
-
-![6-GPU fold 并行 4-47 Hz confusion matrix](runs/run_6gpu_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png)
-
-### 6-GPU fold 并行 0.05-47 Hz
-
-**Fold accuracy**
-
-![6-GPU fold 并行 0.05-47 Hz fold accuracy](runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png)
-
-**Subject accuracy**
-
-![6-GPU fold 并行 0.05-47 Hz subject accuracy](runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png)
-
-**Confusion matrix**
-
-![6-GPU fold 并行 0.05-47 Hz confusion matrix](runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png)
+<table>
+  <tr>
+    <th>单卡顺序 0.05-47 Hz</th>
+    <th>6-GPU fold 并行 4-47 Hz</th>
+    <th>6-GPU fold 并行 0.05-47 Hz</th>
+  </tr>
+  <tr>
+    <td><img src="results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="single-gpu sequential 0.05-47 Hz confusion matrix" width="280"></td>
+    <td><img src="runs/run_6gpu_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="6-GPU fold-parallel 4-47 Hz confusion matrix" width="280"></td>
+    <td><img src="runs/run_processed_005_47_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png" alt="6-GPU fold-parallel 0.05-47 Hz confusion matrix" width="280"></td>
+  </tr>
+</table>
 
 ## 当前复现设置
 
