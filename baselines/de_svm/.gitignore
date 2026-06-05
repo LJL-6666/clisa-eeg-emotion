@@ -1,0 +1,19 @@
+# DE+SVM baseline —— 忽略可再生的大文件与运行产物
+# 这些都由脚本从 Processed_data 重新生成，不进版本库（见 README「数据流」）。
+
+# 原始输入数据（FACED 官方数据集，需自行下载）
+Processed_data/
+After_remarks/
+
+# 中间产物（每个 .mat 约 119MB，超 GitHub 100MB 单文件上限）
+de_features.mat
+running_norm_*/
+smooth_*/
+*.mat
+
+# 运行日志
+logs/
+
+# Python 缓存
+__pycache__/
+*.pyc
