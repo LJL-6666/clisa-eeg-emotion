@@ -1,4 +1,4 @@
-# DE + SVM 方案运行说明（Svm_analysis · 已修正 + 已整理版）
+# DE + SVM 方案运行说明（Svm_analysis）
 
 本目录是 FACED 官方 **DE + SVM** 基线（区别于 CLISA 方案）。
 本 README 只针对本目录，不涉及 Clisa_analysis 或 Hydra 仓库，避免混淆。
