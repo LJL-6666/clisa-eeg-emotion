@@ -11,9 +11,18 @@
 | `main.py` | FACED 入口：`0.05–47 Hz` 主分支；`--clisa-or-not yes` 时在 ICA 等之后再 `4–47 Hz` 并写出 CLISA 用分支。 |
 | `Preprocessing.py` | `Preprocessing` 类、`read_data`、`eeg_save`、`channel_modify`、`band_pass_filter` 等。 |
 
-## 依赖（示意）
+## 依赖
 
-通常包括：`python>=3.8`、`mne`、`numpy`、`pandas`、`scipy`、`matplotlib`、`hdf5storage` 等，可与主仓库 `environment.yml` / `requirements.txt` 合并。
+依赖已钉版本于本目录 [`requirements.txt`](requirements.txt)（Python 3.10，纯 CPU：
+`mne / numpy / scipy / pandas / matplotlib / hdf5storage`）。重建：
+
+```bash
+conda create -n faced_prep python=3.10 -y && conda activate faced_prep
+pip install -r requirements.txt
+```
+
+依赖是 DE+SVM `emotion_test` 环境的子集，也可直接复用那个环境。CLISA 自带的
+`Clisa_analysis/environment.yml` 同样涵盖这些包。
 
 ## 使用注意
 

@@ -1,0 +1,14 @@
+# FACED 预处理环境（原始 EEG .bdf → 逐被试 pkl）。纯 CPU，无需 GPU。
+# Python 3.10。版本与 DE+SVM（Svm_analysis）共用同一 mne 技术栈，已验证可用。
+#
+# 重建：
+#   conda create -n faced_prep python=3.10 -y && conda activate faced_prep
+#   pip install -r requirements.txt
+# 也可直接复用 Svm_analysis 的 emotion_test 环境（依赖为其子集）。
+
+mne==1.7.1
+numpy==1.22.3
+scipy==1.7.3
+pandas==1.4.3
+matplotlib==3.5.2
+hdf5storage==0.1.19
