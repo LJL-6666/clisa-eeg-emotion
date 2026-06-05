@@ -64,6 +64,8 @@ CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 
 详细的 fold-level score、路径和运行来源见 [docs/run_history.md](docs/run_history.md)。
 
+> 对照基线：FACED 官方 **DE+SVM** 见 [`Svm_analysis/`](Svm_analysis/)。9 类跨被试 39.4%（本仓库 CLISA 42.5%）；完整四配置（9/2 类 × cross/intra）结果见该目录 [README](Svm_analysis/README.md)。
+
 ## 仓库结构
 
 | 路径 | 作用 |
@@ -81,6 +83,7 @@ CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 | `runtime_inputs/Processed_data-clisa` | 可选 4-47 Hz CLISA 分支数据目录；数据文件不纳入版本管理。 |
 | `results/` | 历史参考结果和可视化输出。 |
 | `runs/` | 复现实验输出目录，保留轻量级指标、日志和可视化文件。 |
+| `Svm_analysis/` | DE+SVM 基线（FACED 官方），作为 CLISA 的对照基线，自带代码 / 结果 / README。 |
 
 ## 数据准备
 
