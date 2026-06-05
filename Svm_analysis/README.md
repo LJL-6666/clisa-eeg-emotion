@@ -70,16 +70,20 @@ Svm_analysis/
 
 ## 四、四个配置一览（对照 FACED 论文 DE+SVM）
 
-| 配置（results 文件夹） | n_vids | 协议 | 本仓库结果 | FACED 论文 |
-|---|---|---|---:|---:|
-| `cls9_cross_10folds`（9类·跨被试） | 28 | cross 10折 | **39.4%** | 35.2 ± 1.0% |
-| `cls9_intra_10folds`（9类·被试内） | 28 | intra 10折 | **58.8%** | 51.1 ± 0.9% |
-| `cls2_cross_10folds`（2类·跨被试） | 24 | cross 10折 | **71.4%** | 69.3 ± 1.5% |
-| `cls2_intra_10folds`（2类·被试内） | 24 | intra 10折 | **81.6%** | 78.8 ± 1.0% |
+本仓库同时提供两版结果：**123 人（原版，含 sub023）** 与 **122 人（剔除坏被试 sub023）**，
+对应 `results/<config>_10folds/` 与 `results/<config>_10folds_no023/`。
 
+| 配置 | 协议 | 123 人（原） | 122 人（剔 sub023） | FACED 论文 |
+|---|---|---:|---:|---:|
+| `cls9_cross`（9类·跨被试） | cross 10折 | 39.4% | 39.4% | 35.2 ± 1.0% |
+| `cls9_intra`（9类·被试内） | intra 10折 | 58.8% | 59.0% | 51.1 ± 0.9% |
+| `cls2_cross`（2类·跨被试） | cross 10折 | 71.4% | 71.5% | 69.3 ± 1.5% |
+| `cls2_intra`（2类·被试内） | intra 10折 | 81.6% | 81.7% | 78.8 ± 1.0% |
+
+- **剔除 sub023 对结果影响 ≤0.2 个点**：running norm 是逐被试归一化，sub023 的异常幅度在其自身内部已被标准化抵消，不污染他人（详见根 [README.md](../README.md)「已知数据问题」）。
 - 二分类 = 正/负情绪、去掉 neutral（`n_vids=24`）；九分类用全部 `n_vids=28`。
 - `de_features.mat` 为 28 视频共享特征，二分类由 `running_norm.py --n-vids 24` 从中抽取 24 视频，**无需重算 DE**。
-- 每个配置的总体准确率与逐折/逐被试统计见对应 `results/<config>/viz/summary.json`。
+- 每个配置的逐折/逐被试统计见对应 `results/<config>/viz/summary.json`。
 
 ---
 
@@ -119,6 +123,16 @@ $P src/visualize_svm_results.py --subjects-type cross --n-vids 28
 ```
 
 二分类把所有 `--n-vids 28` 换成 `--n-vids 24` 即可。
+
+### 5.3 一键全量复现（两版均可）
+
+```bash
+bash src/run_full.sh                  # 123 人（含 sub023，原版）→ results/<config>_10folds/
+bash src/run_full.sh --exclude-sub023 # 122 人（剔除坏被试 sub023）→ results/<config>_10folds_no023/
+```
+
+`--exclude-sub023` 是贯穿所有脚本（`save_de` / `running_norm` / `smooth_lds` / `main_de_svm` / `visualize`）的开关：
+**默认不加 = 123 人原行为**；加上则跳过 sub023（122 人），并把 DE 特征、中间产物、结果全部落到 `_no023` 命名空间，与原版互不覆盖。
 
 ---
 

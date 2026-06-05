@@ -19,6 +19,8 @@ parser.add_argument('--randSeed', default=7, type=int,
                     help='random seed')
 parser.add_argument('--dataset', default='both', type=str,
                     help='first_batch or second_batch')
+parser.add_argument('--exclude-sub023', action='store_true',
+                    help='剔除坏被试 sub023(122人)。开启后读 de_features_no023.mat、写 running_norm_*_no023/')
 
 args = parser.parse_args()
 
@@ -32,9 +34,11 @@ normTrain = args.normTrain
 n_vids = args.n_vids
 isCar = True
 randomInit = False
+exclude_sub023 = args.exclude_sub023
+suffix = '_no023' if exclude_sub023 else ''
 
 root_dir = './'
-save_dir = os.path.join(root_dir, 'running_norm_'+ str(n_vids))
+save_dir = os.path.join(root_dir, 'running_norm_'+ str(n_vids) + suffix)
 
 bn_val = 1
 # rn_momentum = 0.995
@@ -45,7 +49,7 @@ bn_val = 1
 n_total = 30*n_vids
 n_counters = int(np.ceil(n_total / bn_val))
 
-n_subs = 123
+n_subs = 122 if exclude_sub023 else 123   # 剔除坏被试 sub023 时为 122
 n_folds = 10
 n_per = round(n_subs / n_folds)
 
@@ -57,7 +61,7 @@ for decay_rate in [0.990]:
         print(fold)
         if use_features == 'de':
             # data = sio.loadmat(os.path.join(save_dir, 'deFeature_all.mat'))['deFeature_all']
-            data_name = 'de_features.mat'
+            data_name = 'de_features_no023.mat' if exclude_sub023 else 'de_features.mat'
             data = sio.loadmat(os.path.join(root_dir, data_name))['de']
             print(data.shape)
             # [FIX] save_de.py 实际输出 5 个频带 (freqs=[[1,4],[4,8],[8,14],[14,30],[30,47]]);
@@ -91,7 +95,7 @@ for decay_rate in [0.990]:
             val_sub = np.arange(n_per*fold, n_per*(fold+1)-1)
         train_sub = list(set(np.arange(n_subs)) - set(val_sub))
 
-        vid_order = video_order_load(args.dataset, 28)
+        vid_order = video_order_load(args.dataset, 28, exclude_sub023)
 
         data, vid_play_order_new = reorder_vids(data, vid_order)
         print(vid_play_order_new)

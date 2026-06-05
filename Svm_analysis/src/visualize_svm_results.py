@@ -30,11 +30,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--n-vids', default=28, type=int)
 parser.add_argument('--subjects-type', default='cross', type=str)  # cross | intra
 parser.add_argument('--valid-method', default='10-folds', type=str)
+parser.add_argument('--exclude-sub023', action='store_true',
+                    help='剔除坏被试 sub023(122人)。开启后读 smooth_*_no023、results/<config>_no023/')
 args = parser.parse_args()
 
 n_vids = args.n_vids
 subjects_type = args.subjects_type
 valid_method = args.valid_method
+exclude_sub023 = args.exclude_sub023
+suffix = '_no023' if exclude_sub023 else ''
 label_type = 'cls9' if n_vids == 28 else 'cls2'
 
 if label_type == 'cls9':
@@ -44,14 +48,14 @@ else:
     class_names = ['Negative', 'Positive']
 n_classes = len(class_names)
 
-n_subs = 123
+n_subs = 122 if exclude_sub023 else 123   # 剔除坏被试 sub023 时为 122
 n_folds = 10 if valid_method == '10-folds' else n_subs
 n_per = round(n_subs / n_folds)
 channel_norm, isFilt, filtLen = True, False, 1
-root_dir = './smooth_' + str(n_vids)
+root_dir = './smooth_' + str(n_vids) + suffix
 
 cls_tag = 'cls9' if n_vids == 28 else 'cls2'
-config_name = '%s_%s_%s' % (cls_tag, subjects_type, valid_method.replace('-', ''))
+config_name = '%s_%s_%s%s' % (cls_tag, subjects_type, valid_method.replace('-', ''), suffix)
 result_dir = os.path.join('./results', config_name)
 model_dir = os.path.join(result_dir, 'models')
 out_dir = os.path.join(result_dir, 'viz')

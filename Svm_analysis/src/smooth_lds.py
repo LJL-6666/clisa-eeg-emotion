@@ -53,19 +53,23 @@ parser.add_argument('--smooth-length', default=30, type=int,
                     help='the length for lds smooth')
 parser.add_argument('--dataset', default='both', type=str,
                     help='first_batch or second_batch')
+parser.add_argument('--exclude-sub023', action='store_true',
+                    help='剔除坏被试 sub023(122人)。开启后读 running_norm_*_no023/、写 smooth_*_no023/')
 args = parser.parse_args()
 
 
 random.seed(args.randSeed)
 np.random.seed(args.randSeed)
 n_vids = args.n_vids
+exclude_sub023 = args.exclude_sub023
+suffix = '_no023' if exclude_sub023 else ''
 
-root_dir = './running_norm_%s/normTrain_rnPreWeighted0.990_newPre_%svideo_car' % (n_vids, n_vids)
-save_dir = './smooth_' + str(n_vids)
+root_dir = './running_norm_%s%s/normTrain_rnPreWeighted0.990_newPre_%svideo_car' % (n_vids, suffix, n_vids)
+save_dir = './smooth_' + str(n_vids) + suffix
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 
-n_subs = 123
+n_subs = 122 if exclude_sub023 else 123   # 剔除坏被试 sub023 时为 122
 
 n_folds = 10
 n_per = round(n_subs/n_folds)

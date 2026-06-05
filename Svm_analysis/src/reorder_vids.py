@@ -5,10 +5,12 @@ import copy
 import hdf5storage
 
 
-def video_order_load(dataset,n_vids):
+def video_order_load(dataset, n_vids, exclude_sub023=False):
     datapath = './After_remarks'
-    filesPath = os.listdir(datapath)
-    filesPath.sort()
+    filesPath = sorted(os.listdir(datapath))
+    # [数据问题] 开启 exclude_sub023 时与 save_de.py 同步剔除 sub023(坏记录),保持被试位置对齐。
+    if exclude_sub023:
+        filesPath = [f for f in filesPath if not f.startswith('sub023')]
     vid_orders = np.zeros((len(filesPath), n_vids))
     for idx, file in enumerate(filesPath):
         # Here don't forget to arange the subjects arrangement

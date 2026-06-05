@@ -4,12 +4,21 @@ import scipy.io as sio
 import pickle
 import mne
 import os
+import argparse
 
+parser = argparse.ArgumentParser(description='Compute DE features')
+parser.add_argument('--exclude-sub023', action='store_true',
+                    help='剔除坏被试 sub023(122人)。开启后输出 de_features_no023.mat')
+args = parser.parse_args()
+exclude_sub023 = args.exclude_sub023
 
 # Load the data
 data_path = './Processed_data'   # [FIX] 改为本目录下的相对路径,数据已随目录提供;下载到任意位置都能直接跑
-data_paths = os.listdir(data_path)
-data_paths.sort()
+data_paths = sorted(os.listdir(data_path))
+# [数据问题] sub023 幅度异常(std≈26010,约为邻居 3000 倍),系坏记录。
+# 开启 --exclude-sub023 时剔除它;注意 reorder_vids.video_order_load 的 After_remarks 列表需同步剔除以保持被试位置对齐。
+if exclude_sub023:
+    data_paths = [p for p in data_paths if not p.startswith('sub023')]
 n_vids = 28;
 chn = 30;
 fs = 250;
@@ -47,4 +56,6 @@ for i in range(len(freqs)):
     
 print(de.shape)
 de = {'de': de}
-sio.savemat('./de_features.mat', de)
+out_name = './de_features_no023.mat' if exclude_sub023 else './de_features.mat'
+sio.savemat(out_name, de)
+print('saved:', out_name)

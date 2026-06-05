@@ -62,7 +62,7 @@ def load_srt_raw_newPre(data_dir, timeLen, timeStep, fs, channel_norm, time_norm
 
 
 def load_srt_de(data, channel_norm, isFilt, filtLen, label_type):
-    n_subs = 123
+    n_subs = data.shape[0]   # 按实际被试数推断(sub023 剔除后为 122)
     if label_type =='cls2':
         n_vids = 24
     elif label_type =='cls9':

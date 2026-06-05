@@ -24,9 +24,13 @@ parser.add_argument('--valid-method', default='10-folds', type=str, help='the va
 parser.add_argument('--n-vids', default=28, type=int, help='number of video')
 # parser.add_argument('--label-type', default ='cls2', type=str, help='2 classifier or 9 classifier')
 parser.add_argument('--train-or-test',default='train',type=str,help='Using for strategy')
+parser.add_argument('--exclude-sub023', action='store_true',
+                    help='剔除坏被试 sub023(122人)。开启后读 smooth_*_no023、写 results/<config>_no023/')
 
 args = parser.parse_args()
 train_or_test = args.train_or_test
+exclude_sub023 = args.exclude_sub023
+suffix = '_no023' if exclude_sub023 else ''
 
 random.seed(args.randSeed)
 np.random.seed(args.randSeed)
@@ -47,7 +51,7 @@ if n_vids == 24:
 elif n_vids == 28:
     label_type = 'cls9'
 
-n_subs = 123
+n_subs = 122 if exclude_sub023 else 123   # 剔除坏被试 sub023 时为 122
 if valid_method == '10-folds':
     n_folds = 10
 elif valid_method == 'loo':
@@ -63,7 +67,7 @@ filtLen = 1
 
 # create per-config result directories  [PATH] 结果按配置归位到 results/<config>/{models, subject_acc.csv}
 cls_tag = 'cls9' if n_vids == 28 else 'cls2'
-config_name = '%s_%s_%s' % (cls_tag, subjects_type, valid_method.replace('-', ''))
+config_name = '%s_%s_%s%s' % (cls_tag, subjects_type, valid_method.replace('-', ''), suffix)
 result_dir = os.path.join('./results', config_name)
 model_dir = os.path.join(result_dir, 'models')
 os.makedirs(model_dir, exist_ok=True)
@@ -76,7 +80,7 @@ else:
     folds_list = [int(args.training_fold)]
 
 
-root_dir = './smooth_' + str(n_vids)
+root_dir = './smooth_' + str(n_vids) + suffix
 save_dir = './'
 val_acc_folds = np.zeros(n_folds)
 best_C_folds = np.zeros(n_folds)
