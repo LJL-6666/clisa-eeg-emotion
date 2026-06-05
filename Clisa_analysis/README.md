@@ -64,6 +64,24 @@ CONDA_ENV=clisa-code bash scripts/run_local_faced_reference.sh
 
 详细的 fold-level score、路径和运行来源见 [docs/run_history.md](docs/run_history.md)。
 
+### 2026-06-05 最终补充方案
+
+新增的最终补充方案使用 4-47 Hz CLISA 分支数据，先按 CLISA 论文/参考代码方向重跑 paper-style pretrain 和 feature extraction，然后在同一组 extracted features 上保留两个效果最好的 MLP 设置。对应全流程脚本已经纳入仓库：
+
+| 脚本 | 作用 | 关键设置 |
+| --- | --- | --- |
+| `scripts/run_4_47_paper_pretrain_extract_background.sh` | 后台运行 `pretrain -> extract_fea` | `train.wd=0.015`、`train.restart_times=3`、`train.max_epochs=100`、`patience=30`、4-47 Hz `Processed_data-clisa` |
+| `scripts/run_4_47_paper100_best2_mlp.py` | 在已有 paper-style extracted features 上运行两个最佳 MLP case，并生成 visualization summary | `current_default=[128,64], dropout=0.1, wd=0.0022, batch=512`；`paper_30_30_wd0011=[30,30], dropout=0, wd=0.011, batch=256` |
+
+本地补充实验中保留的两个 case 为：
+
+| Case | 10-fold mean | overall |
+| --- | ---: | ---: |
+| `current_default` | `40.5944%` | `40.4288%` |
+| `paper_30_30_wd0011` | `40.4581%` | `40.2962%` |
+
+这组结果用于对照 paper-style pretrain 和 MLP 设置敏感性，不替代 0.05-47 Hz reference 主结果。
+
 > 对照基线：FACED 官方 **DE+SVM** 见 [`../Svm_analysis/`](../Svm_analysis/)。9 类跨被试 39.4%（本仓库 CLISA 42.5%）；完整四配置（9/2 类 × cross/intra）结果见该目录 [README](../Svm_analysis/README.md)。
 
 ## 仓库结构
@@ -164,6 +182,31 @@ bash scripts/run_faced_fold_parallel_005_47.sh
 ```
 
 如需重新运行一组实验，请将 `OUTPUT_RUN_ROOT` 改为新的目录，避免覆盖已有输出。
+
+### 最终补充方案：4-47 Hz paper-style pretrain + best2 MLP
+
+第一步运行 paper-style pretrain 和 feature extraction。脚本默认使用 `runtime_inputs/Processed_data-clisa`，输出到新的 `runs/run_4_47_paper_pretrain_extract_<UTC time>/`：
+
+```bash
+CONDA_ENV=clisa-code \
+DATA_SRC=./runtime_inputs/Processed_data-clisa \
+DEVICES='[0]' \
+bash scripts/run_4_47_paper_pretrain_extract_background.sh
+```
+
+脚本会后台启动任务，并在终端打印 `Run root`、日志路径和状态文件。等待 `stage_status/pretrain.done` 和 `stage_status/extract.done` 都生成后，再运行第二步。
+
+第二步在第一步产生的 extracted features 上运行两个保留的 MLP case，并生成可视化汇总：
+
+```bash
+python scripts/run_4_47_paper100_best2_mlp.py \
+  --source-run-root /abs/path/to/runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
+  --output-root ./runs/mlp_sweeps \
+  --sweep-name paper_pretrain_4_47_best2 \
+  --devices '[0]'
+```
+
+默认会运行 `current_default` 和 `paper_30_30_wd0011` 两个 case。每个 case 的输出目录包含 `stage_logs/`、`stage_status/`、`SWEEP_CASE.json` 和 `visualization/daest_faced_visualization_summary_de.json`；汇总表写入 sweep 根目录下的 `summary.csv` 和 `summary.json`。
 
 ## 分阶段运行
 
