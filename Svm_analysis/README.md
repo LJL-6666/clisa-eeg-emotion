@@ -20,10 +20,16 @@
 
 DE+SVM 全程 **纯 CPU 即可，不需要 GPU**（仅用到 mne 滤波、numpy 算 DE、sklearn SVM）。
 
-- **使用的 conda 环境**：`emotion_test`（已含 `numpy / scipy / mne / scikit-learn / hdf5storage / h5py / torch / pandas / joblib / matplotlib`）。
-- 任何装齐上述包的 Python 环境都能跑。
+- **Python 3.10**，依赖已钉版本于 [`requirements.txt`](requirements.txt)（与产出本仓库结果的环境一致）。
+- **环境重建**（在你自己的机器上执行其一）：
+  ```bash
+  conda create -n emotion_test python=3.10.4 -y && conda activate emotion_test
+  pip install -r requirements.txt
+  # 或任意 python=3.10 环境下直接：pip install -r requirements.txt
+  ```
 - 运行命令统一前缀：`conda run -n emotion_test --no-capture-output python ...`
   （`--no-capture-output` 直写终端，规避 conda 在中文 Windows 下的 GBK 重编码报错）。
+  环境名可自定，把前缀里的 `emotion_test` 换成你的即可。
 
 ---
 
