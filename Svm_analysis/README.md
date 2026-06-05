@@ -27,41 +27,39 @@ DE+SVM 全程 **纯 CPU 即可，不需要 GPU**（仅用到 mne 滤波、numpy 
 
 ---
 
-## 三、目录结构（已整理 · 轻量版）
+## 三、目录结构
 
-代码集中到 `src/`、结果按配置归位到 `results/<config>/`、日志统一到 `logs/`；
-体积大的输入数据与中间产物作为「共享仓库」留在根目录（跨配置复用）。
+**仓库只纳入代码与小体积结果**（`src/` + `results/`）；输入数据、中间产物、日志为本地运行时产物，
+**不入库**（见 `.gitignore`），运行脚本会自动生成。下图标注了「仓库内 / 本地不入库」。
 
 ```
 Svm_analysis/
-├─ src/                          # 全部代码（务必在【项目根目录】运行：python src/xxx.py）
+├─ src/                          # [仓库内] 全部代码（务必在【项目根目录】运行：python src/xxx.py）
 │   ├─ save_de.py                #   ① 算 DE 特征
 │   ├─ running_norm.py           #   ② running normalization
 │   ├─ smooth_lds.py             #   ③ LDS 卡尔曼平滑
 │   ├─ main_de_svm.py            #   ④ SVM 训练 / ⑤ 评测
 │   ├─ visualize_svm_results.py  #   ⑥ 可视化（混淆矩阵 + 逐折/逐被试准确率 + summary.json）
 │   ├─ load_data.py io_utils.py reorder_vids.py   # 辅助模块
-│   └─ run_all.sh                #   一键补跑其余 3 个配置
+│   ├─ run_full.sh               #   一键全量复现 4 配置（可选 --exclude-sub023）
+│   └─ run_all.sh                #   仅补跑除 cls9_cross 外的 3 配置（假定中间产物已存在）
 │
-├─ Processed_data/               # 输入：123 个 subXXX.pkl（6.2G，共享）
-├─ After_remarks/                # 实验呈现顺序（reorder_vids.py 读取，共享）
-├─ de_features.mat               # 中间产物：DE 特征 (123, 30ch, 840, 5band)，28视频/5频带，共享
-├─ running_norm_28/  smooth_28/  # 9 分类（n_vids=28）中间产物
-├─ running_norm_24/  smooth_24/  # 2 分类（n_vids=24）中间产物
-│
-├─ results/                      # 结果：每个配置一个文件夹
-│   ├─ cls9_cross_10folds/       #   9类·跨被试
+├─ results/                      # [仓库内] 结果：每个配置一个文件夹，123 版与 122(_no023) 版并存
+│   ├─ cls9_cross_10folds/       #   9类·跨被试（123 人）
 │   │   ├─ models/               #     10 折 SVM 模型（.joblib）
 │   │   ├─ subject_acc.csv       #     逐被试准确率
-│   │   └─ viz/                  #     confusion_matrix.png / fold_accuracy.png
+│   │   └─ viz/                  #     confusion_matrix.png / fold_accuracy.png /
 │   │                            #     subject_accuracy.png / summary.json
-│   ├─ cls9_intra_10folds/       #   9类·被试内
-│   ├─ cls2_cross_10folds/       #   2类·跨被试
-│   └─ cls2_intra_10folds/       #   2类·被试内
+│   ├─ cls9_intra_10folds/  cls2_cross_10folds/  cls2_intra_10folds/      # 另 3 个 123 版配置
+│   └─ <config>_10folds_no023/   #   对应 4 个配置的 122 人（剔除 sub023）版
 │
-├─ logs/                         # 全部运行日志：<config>_<step>.log + run_all_status.txt
-├─ README.md
-└─ 参考代码/                      # 参考代码（原样保留）
+├─ README.md                     # [仓库内]
+│
+├─ Processed_data/               # [本地·不入库] 输入：subXXX.pkl（FACED 自行下载）
+├─ After_remarks/                # [本地·不入库] 实验呈现顺序（reorder_vids.py 读取）
+├─ de_features[_no023].mat       # [本地·不入库] DE 特征中间产物 (n_subs, 30ch, 840, 5band)
+├─ running_norm_{28,24}[_no023]/ smooth_{28,24}[_no023]/   # [本地·不入库] 中间产物
+└─ logs/                         # [本地·不入库] 运行日志：<config>_<step>.log + run_full_*_status.txt
 ```
 
 > 路径已在脚本内改为相对项目根目录寻址，**所有命令都必须在项目根目录下执行**。
@@ -89,14 +87,18 @@ Svm_analysis/
 
 ## 五、运行方式
 
-### 5.1 一键补跑其余 3 个配置（cls9_cross 已完成）
+### 5.1 一键全量复现（推荐，两版均可）
 
 ```bash
-# 在项目根目录执行；自动跑 cls2 中间产物 + cls9_intra / cls2_cross / cls2_intra 的训练+评测+可视化
-bash src/run_all.sh
+bash src/run_full.sh                  # 123 人（含 sub023，原版）→ results/<config>_10folds/
+bash src/run_full.sh --exclude-sub023 # 122 人（剔除坏被试 sub023）→ results/<config>_10folds_no023/
 ```
 
-进度与每步退出码写在 `logs/run_all_status.txt`，各步日志在 `logs/<config>_<step>.log`。
+一条命令从 `save_de` 到 4 个配置的训练+评测+可视化全跑完。
+进度与每步退出码写在 `logs/run_full_<版本>_status.txt`，各步日志在 `logs/<config>_<版本>_<step>.log`。
+
+`--exclude-sub023` 是贯穿所有脚本（`save_de` / `running_norm` / `smooth_lds` / `main_de_svm` / `visualize`）的开关：
+**默认不加 = 123 人原行为**；加上则跳过 sub023（122 人），并把 DE 特征、中间产物、结果全部落到 `_no023` 命名空间，与原版互不覆盖。
 
 ### 5.2 从零完整跑（按顺序，均在项目根目录执行）
 
@@ -124,15 +126,14 @@ $P src/visualize_svm_results.py --subjects-type cross --n-vids 28
 
 二分类把所有 `--n-vids 28` 换成 `--n-vids 24` 即可。
 
-### 5.3 一键全量复现（两版均可）
+### 5.3 仅补跑部分配置（已有中间产物时）
 
 ```bash
-bash src/run_full.sh                  # 123 人（含 sub023，原版）→ results/<config>_10folds/
-bash src/run_full.sh --exclude-sub023 # 122 人（剔除坏被试 sub023）→ results/<config>_10folds_no023/
+# 假定 de_features.mat 与 smooth_* 已存在，仅跑除 cls9_cross 外的 3 个配置
+bash src/run_all.sh
 ```
 
-`--exclude-sub023` 是贯穿所有脚本（`save_de` / `running_norm` / `smooth_lds` / `main_de_svm` / `visualize`）的开关：
-**默认不加 = 123 人原行为**；加上则跳过 sub023（122 人），并把 DE 特征、中间产物、结果全部落到 `_no023` 命名空间，与原版互不覆盖。
+`run_all.sh` 是 `run_full.sh` 的轻量子集，用于中间产物已就绪、只想补算个别配置的场景。
 
 ---
 
@@ -179,5 +180,9 @@ Processed_data/sub*.pkl
 5. **新增可视化脚本** `visualize_svm_results.py`：输出混淆矩阵、逐折/逐被试准确率图与 `summary.json`，
    并补充了 intra（被试内）分支。
 6. **新增一键脚本** `src/run_all.sh`：串行补跑其余 3 个配置（训练+评测+可视化），每步独立日志与退出码记录。
+7. **坏被试 sub023 双版本支持**：实测 sub023 幅度异常（std≈26010，约为邻居 3000 倍），系坏记录。
+   为所有脚本增加 `--exclude-sub023` 开关（**默认关 = 123 人原行为不变**），开启则跳过 sub023（122 人）、
+   输出落到 `_no023` 命名空间，与原版并存互不覆盖；实测剔除前后 4 个配置准确率差异 ≤0.2 个点。
+8. **新增一键全量脚本** `src/run_full.sh`：从 `save_de` 到 4 配置一次跑完，支持 `--exclude-sub023` 两版复现。
 
-其余文件（io_utils.py、load_data.py、smooth_lds.py、save_de.py）与官方原版逻辑一致（仅路径相对根目录）。
+其余文件（io_utils.py、load_data.py）与官方原版逻辑一致（仅路径相对根目录、`n_subs` 按开关取 123/122）。
