@@ -1,0 +1,25 @@
+{
+  "run_root": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default",
+  "feature_dir": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z/data/ext_fea/fea_r1",
+  "checkpoint_dir": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default/checkpoints",
+  "mlp_log": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default/stage_logs/mlp.log",
+  "mode": "de",
+  "fold_scores": {
+    "0": 39.325397,
+    "1": 45.972221,
+    "2": 39.097221,
+    "3": 51.418652,
+    "4": 48.452381,
+    "5": 39.900795,
+    "6": 36.061508,
+    "7": 34.831348,
+    "8": 37.083332,
+    "9": 33.801586
+  },
+  "fold_mean_accuracy_percent": 40.5944441,
+  "fold_std_accuracy_percent": 5.695577720390803,
+  "overall_accuracy_percent": 40.42876500193574,
+  "mean_subject_accuracy_percent": 40.42876500193574,
+  "std_subject_accuracy_percent": 13.429271396302926,
+  "n_predictions": 103320
+}

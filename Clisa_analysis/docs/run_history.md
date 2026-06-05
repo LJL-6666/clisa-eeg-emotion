@@ -1,6 +1,6 @@
 # Run History
 
-This file keeps three result protocols side by side. The original code/results are preserved. New launchers and run directories are kept separately.
+This file keeps the main result protocols and the 2026-06-05 paper-style supplementary MLP result side by side. The original code/results are preserved. New launchers and run directories are kept separately.
 
 ## Single-GPU Sequential 0.05-47 Hz
 
@@ -70,6 +70,45 @@ Metrics:
 - Subject accuracy: `41.2505% +/- 14.0089%`
 - Fold scores: `42.5694, 48.6310, 39.3552, 53.7798, 46.4385, 40.8234, 35.4762, 32.8968, 39.8313, 34.4206`
 
+
+## Paper-Style 4-47 Hz Pretrain + Best-Two MLP Sweep
+
+This supplementary result uses the 4-47 Hz `runtime_inputs/Processed_data-clisa` branch. The pretrain/extract run follows the paper-style CLISA settings more closely than the local 80-epoch default, then only two retained MLP settings are uploaded.
+
+Pretrain/extract source:
+
+- Paper-style run root: `runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ`
+- Extracted feature source: `runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ/data/ext_fea/fea_r1`
+- Uploaded result root: `results/paper_pretrain_mlp_sweep_20260605/`
+- Metadata: `results/paper_pretrain_mlp_sweep_20260605/RUN_METADATA.json`
+- Summary: `results/paper_pretrain_mlp_sweep_20260605/summary_best_two.csv`
+
+Paper-style pretrain settings:
+
+- Pretrain epochs: `100`
+- Learning rate: `0.0007`
+- Weight decay: `0.015`
+- Contrastive temperature: `0.07`
+- Restart times: `3`
+- Validation method: `10`
+
+Feature extraction settings:
+
+- Feature mode: `de`
+- Input normalization: `ext_fea.normTrain=True`
+- Running normalization: `ext_fea.use_running_norm=True`, `ext_fea.rn_decay=0.990`
+- LDS: enabled, `ext_fea.lds_given_all=0`
+- Pretrain checkpoint for extraction: `best`
+
+Retained MLP results:
+
+| Case | MLP setting | 10-fold mean | Overall | Subject accuracy |
+| --- | --- | ---: | ---: | ---: |
+| `current_default` | `[128, 64]`, dropout `0.1`, wd `0.0022`, batch `512` | `40.5944%` | `40.4288%` | `40.4288% +/- 13.4293%` |
+| `paper_30_30_wd0011` | `[30, 30]`, dropout `0`, wd `0.011`, batch `256` | `40.4581%` | `40.2962%` | `40.2962% +/- 12.3983%` |
+
+Large processed inputs, extracted feature arrays, and checkpoints are not uploaded for this supplementary result. The uploaded files are the compact metadata, CSV/JSON summaries, prediction NPZ files, and visualization PNGs.
+
 ## Code Changes Kept Separately
 
 The new code keeps the old path/results intact and adds operational support:
@@ -80,6 +119,8 @@ The new code keeps the old path/results intact and adds operational support:
 - `visualize_daest_results.py` reads explicit `[fold-result][mlp] fold=N best_score=...` lines first, fixing merged-log fold parsing.
 - `scripts/run_faced_6gpu_full_after_upload.sh` runs the full pipeline in 6-GPU fold batches.
 - `scripts/run_processed_005_47_after_upload.sh` runs the 0.05-47 Hz branch into a separate run root and refuses to overwrite the 4-47 Hz local CLISA run.
+- `scripts/run_4_47_paper_pretrain_extract_background.sh` launches the 100-epoch paper-style 4-47 Hz pretrain/extract run.
+- `scripts/run_4_47_paper100_best2_mlp.py` runs only the two retained MLP settings on an existing paper-style feature directory.
 
 ## Interpretation
 
