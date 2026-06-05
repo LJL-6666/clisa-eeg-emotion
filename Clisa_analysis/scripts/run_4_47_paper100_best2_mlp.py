@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Run the two retained MLP settings on existing 4-47 Hz paper-style features.
+"""Run the two final MLP settings on existing 4-47 Hz paper-style features.
 
-The script intentionally keeps source run directories read-only. Each sweep
-case gets its own run_root under runs/mlp_sweeps, with data/ext_fea linked to
-the existing feature directory and new checkpoints/logs written locally.
+This staged helper keeps source run directories read-only. Each final case gets
+its own run_root, with data/ext_fea linked to the existing feature directory
+and new checkpoints/logs written locally.
 """
 
 from __future__ import annotations
@@ -51,9 +51,9 @@ CASES: tuple[Case, ...] = (
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the two retained MLP settings on 4-47 Hz paper-style CLISA features.")
-    parser.add_argument("--output-root", type=Path, default=REPO_ROOT / "runs" / "mlp_sweeps")
-    parser.add_argument("--sweep-name", default="paper_pretrain_4_47_best2_20260605")
+    parser = argparse.ArgumentParser(description="Run the two final MLP settings on 4-47 Hz paper-style CLISA features.")
+    parser.add_argument("--output-root", type=Path, default=REPO_ROOT / "runs" / "final_best2")
+    parser.add_argument("--sweep-name", default="paper_pretrain_4_47_best2_20260605", help="Output subdirectory name for this final best2 run.")
     parser.add_argument("--source-run-root", type=Path, default=DEFAULT_SOURCE_RUN_ROOT, help="Run root that already contains data/ext_fea/fea_r<run_id>.")
     parser.add_argument("--exp-name", default="local_faced_4_47_paper100_pretrain")
     parser.add_argument("--python-bin", type=Path, default=DEFAULT_PYTHON)

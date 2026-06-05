@@ -1,6 +1,6 @@
 # Paper-Style 4-47 Hz Pretrain + Best-Two MLP Results
 
-This directory stores the two retained MLP settings from the 2026-06-05 sweep on 4-47 Hz FACED features extracted from the paper-style CLISA pretrain run. Large inputs, feature arrays, and checkpoints are intentionally omitted.
+This directory stores the two final retained MLP settings from the 2026-06-05 best2 pipeline on 4-47 Hz FACED features extracted from the paper-style CLISA pretrain run. Large inputs, feature arrays, and checkpoints are intentionally omitted.
 
 ## Results
 
@@ -15,39 +15,30 @@ This directory stores the two retained MLP settings from the 2026-06-05 sweep on
 
 ## Provenance
 
-Pretrain/extract settings are recorded in `RUN_METADATA.json`. The source feature directory was produced by:
+Pretrain/extract settings are recorded in `RUN_METADATA.json`. The archived results correspond to a paper-style feature run with the following source layout:
 
 ```text
 runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ/data/ext_fea/fea_r1
 ```
 
-The uploaded result files are copied from:
+The repository stores only the final compact artifacts for `current_default` and `paper_30_30_wd0011`: metadata, CSV/JSON summaries, prediction NPZ files, and visualization PNGs.
 
-```text
-runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/<case>/
-```
+## Reproduction Entry Point
 
-## Reproduction Entry Points
-
-From `Clisa_analysis/`, generate the 4-47 Hz paper-style pretrain and extracted features:
+From `Clisa_analysis/`, run the final best2 full pipeline:
 
 ```bash
-bash scripts/run_4_47_paper_pretrain_extract_background.sh
+CONDA_ENV=clisa-code \
+DATA_SRC=./runtime_inputs/Processed_data-clisa \
+DEVICES='[0]' \
+bash scripts/run_4_47_paper100_best2_full_pipeline.sh
 ```
 
-Then run only the two retained MLP settings on an existing feature directory:
-
-```bash
-python scripts/run_4_47_paper100_best2_mlp.py \
-  --source-run-root runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
-  --parallelism 1
-```
-
-Use `--parallelism 2` only when the GPU memory budget is sufficient.
+The wrapper runs paper-style pretrain/extract first, then runs only the two final MLP cases: `current_default` and `paper_30_30_wd0011`. Use `SKIP_PRETRAIN_EXTRACT=1 RUN_ROOT=<existing_run_root>` only when reusing an existing paper-style feature directory.
 
 ## Files
 
 - `summary_best_two.csv`: compact metrics table for the two uploaded cases.
 - `summary_best_two.json`: metrics plus copied case metadata.
-- `<case>/SWEEP_CASE.json`: exact MLP setting and source feature path for that case.
+- `<case>/SWEEP_CASE.json`: exact final MLP setting and source feature path for that case.
 - `<case>/visualization/`: fold accuracy, subject accuracy, confusion matrix, summary JSON, and prediction NPZ.

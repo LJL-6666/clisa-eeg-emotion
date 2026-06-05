@@ -122,7 +122,7 @@ python main.py --clisa-or-not yes
 
 - E1/E3 需要 0.05-47 Hz `runtime_inputs/Processed_data/sub000.pkl` 到 `sub122.pkl`。
 - E2/E4/E5 需要 4-47 Hz `runtime_inputs/Processed_data-clisa/sub000.pkl` 到 `sub122.pkl`。
-- E4/E5 需要先运行一次 paper-style `pretrain -> extract_fea` 生成 feature run root，再在该 run root 上跑 MLP。
+- E4/E5 推荐使用最终 wrapper 一次串起 `pretrain -> extract_fea -> train_mlp -> visualize`；如已有 paper-style feature run root，也可只重跑 MLP。
 - 代码和脚本可复现完整流程；由于 GPU、PyTorch/CUDA、随机数轨迹和 fold-parallel 启动方式可能不同，重新训练结果不保证逐位一致。
 - 如需严格比较，固定相同数据分支、运行入口、seed、`run-id`、`pretrain-checkpoint`、`lds-given-all` 和执行协议。
 
@@ -135,8 +135,8 @@ python main.py --clisa-or-not yes
 | E1 | `scripts/run_local_faced_reference.sh` | `runtime_inputs/Processed_data` | 新输出写入 `runs/run_<UTC time>/`。 |
 | E2 | `scripts/run_faced_fold_parallel_4_47.sh` | `runtime_inputs/Processed_data-clisa` | 建议把 `OUTPUT_RUN_ROOT` 改成新目录，避免覆盖现有结果。 |
 | E3 | `scripts/run_faced_fold_parallel_005_47.sh` | `runtime_inputs/Processed_data` | 建议把 `OUTPUT_RUN_ROOT` 改成新目录，避免覆盖现有结果。 |
-| E4 | `scripts/run_4_47_paper_pretrain_extract_background.sh` -> `scripts/run_4_47_paper100_best2_mlp.py --cases current_default` | `runtime_inputs/Processed_data-clisa` | 输出写入 `runs/mlp_sweeps/<sweep-name>/4_47_paper100/current_default/`。 |
-| E5 | `scripts/run_4_47_paper_pretrain_extract_background.sh` -> `scripts/run_4_47_paper100_best2_mlp.py --cases paper_30_30_wd0011` | `runtime_inputs/Processed_data-clisa` | 输出写入 `runs/mlp_sweeps/<sweep-name>/4_47_paper100/paper_30_30_wd0011/`。 |
+| E4 | `scripts/run_4_47_paper100_best2_full_pipeline.sh` | `runtime_inputs/Processed_data-clisa` | 默认全流程生成 `current_default` 结果。 |
+| E5 | `scripts/run_4_47_paper100_best2_full_pipeline.sh` | `runtime_inputs/Processed_data-clisa` | 同一次默认全流程生成 `paper_30_30_wd0011` 结果。 |
 
 ### E1：顺序 10-fold reference（0.05-47 Hz）
 
@@ -191,42 +191,40 @@ bash scripts/run_faced_fold_parallel_005_47.sh
 
 如需重新运行 E2/E3，请将 `OUTPUT_RUN_ROOT` 改为新的目录，避免覆盖已有输出。
 
-### E4/E5：4-47 Hz paper-style pretrain + best2 MLP
+### E4/E5：4-47 Hz paper-style final best2 pipeline
 
-第一步运行 paper-style pretrain 和 feature extraction。脚本默认使用 `runtime_inputs/Processed_data-clisa`，输出到新的 `runs/run_4_47_paper_pretrain_extract_<UTC time>/`：
+推荐入口是最终全流程 wrapper。它默认只运行两个最终最佳方案，顺序串起：
+
+```text
+paper-style pretrain -> extract_fea -> current_default MLP + visualize -> paper_30_30_wd0011 MLP + visualize
+```
+
+默认使用 `runtime_inputs/Processed_data-clisa`，输出到新的 `runs/run_4_47_paper100_best2_full_<UTC time>/` 和 `runs/final_best2/<run>_mlp_best2/`：
 
 ```bash
 CONDA_ENV=clisa-code \
 DATA_SRC=./runtime_inputs/Processed_data-clisa \
 DEVICES='[0]' \
-bash scripts/run_4_47_paper_pretrain_extract_background.sh
+bash scripts/run_4_47_paper100_best2_full_pipeline.sh
 ```
 
-脚本会后台启动任务，并在终端打印 `Run root`、日志路径和状态文件。等待 `stage_status/pretrain.done` 和 `stage_status/extract.done` 都生成后，再运行 MLP。
+默认生成两个最终结果：
 
-运行 E4：
+| 输出 case | 对应实验 | MLP 设置 |
+| --- | --- | --- |
+| `current_default` | E4 | `[128,64]`, dropout `0.1`, wd `0.0022`, batch `512` |
+| `paper_30_30_wd0011` | E5 | `[30,30]`, dropout `0`, wd `0.011`, batch `256` |
+
+如果已经完成 paper-style pretrain/extract，只想复用已有 feature run root，可跳过第一段：
 
 ```bash
-python scripts/run_4_47_paper100_best2_mlp.py \
-  --source-run-root /abs/path/to/runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
-  --output-root ./runs/mlp_sweeps \
-  --sweep-name paper_pretrain_4_47_best2 \
-  --cases current_default \
-  --devices '[0]'
+SKIP_PRETRAIN_EXTRACT=1 \
+RUN_ROOT=/abs/path/to/runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
+DEVICES='[0]' \
+bash scripts/run_4_47_paper100_best2_full_pipeline.sh
 ```
 
-运行 E5：
-
-```bash
-python scripts/run_4_47_paper100_best2_mlp.py \
-  --source-run-root /abs/path/to/runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
-  --output-root ./runs/mlp_sweeps \
-  --sweep-name paper_pretrain_4_47_best2 \
-  --cases paper_30_30_wd0011 \
-  --devices '[0]'
-```
-
-如果不传 `--cases`，脚本默认连续运行 E4 和 E5 两个 case。每个 case 的输出目录包含 `stage_logs/`、`stage_status/`、`SWEEP_CASE.json` 和 `visualization/daest_faced_visualization_summary_de.json`；汇总表写入 sweep 根目录下的 `summary.csv` 和 `summary.json`。
+低层分步入口仍保留用于续跑和调试：`scripts/run_4_47_paper_pretrain_extract_background.sh` 只负责 pretrain/extract，`scripts/run_4_47_paper100_best2_mlp.py` 只负责两个最终 MLP case 和 visualization。默认不再运行旧的多 case 测试 sweep。
 
 ## 分阶段运行
 
@@ -386,7 +384,7 @@ runs/<run_id_or_timestamp>/
 | Model config | `cnn_clisa` | `cnn_clisa` | `cnn_clisa` | `cnn_clisa` |
 | Task | FACED 9-class, 10-fold cross-subject | same | same | same |
 | Data branch | 0.05-47 Hz `Processed_data` | 4-47 Hz `Processed_data-clisa` | 0.05-47 Hz `Processed_data` | 4-47 Hz `Processed_data-clisa` |
-| Execution | single-process sequential | fold-parallel | fold-parallel | pretrain/extract once, then MLP sweep |
+| Execution | single-process sequential | fold-parallel | fold-parallel | final best2 full pipeline |
 | Pretrain epochs | `80` | `80` | `80` | `100` |
 | Pretrain lr | `0.0007` | `0.0007` | `0.0007` | `0.0007` |
 | Pretrain weight decay | `0.00015` | `0.00015` | `0.00015` | `0.015` |
@@ -395,7 +393,7 @@ runs/<run_id_or_timestamp>/
 | Running normalization | `ext_fea.use_running_norm=True` | same | same | same, `rn_decay=0.990` |
 | LDS | `ext_fea.use_lds=True`, `lds_given_all=0` | same | same | same |
 | Pretrain checkpoint for extraction | `best` | `best` | `best` | `best` |
-| MLP setting | `[128,64]`, dropout `0.1`, wd `0.0022`, batch `512` | same | same | E4: same as current default; E5: `[30,30]`, dropout `0`, wd `0.011`, batch `256` |
+| MLP setting | `[128,64]`, dropout `0.1`, wd `0.0022`, batch `512` | same | same | E4: `[128,64]`, dropout `0.1`, wd `0.0022`, batch `512`; E5: `[30,30]`, dropout `0`, wd `0.011`, batch `256` |
 | MLP epochs | `100` | `100` | `100` | `100` |
 
 E1-E3 的训练命令设置 `min_epochs=max_epochs`，因此会按固定 epoch 完成训练；`patience` 不会触发提前停止。E4/E5 的 paper-style pretrain 脚本设置 `train.max_epochs=100` 和 `train.patience=30`，用于对齐论文/参考代码方向。LDS 在每个 video sequence 内做平滑，不跨 video 平滑。

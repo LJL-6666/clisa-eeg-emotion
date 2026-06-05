@@ -73,7 +73,7 @@ Metrics:
 
 ## Paper-Style 4-47 Hz Pretrain + Best-Two MLP Sweep
 
-This supplementary result uses the 4-47 Hz `runtime_inputs/Processed_data-clisa` branch. The pretrain/extract run follows the paper-style CLISA settings more closely than the local 80-epoch default, then only two retained MLP settings are uploaded.
+This supplementary result uses the 4-47 Hz `runtime_inputs/Processed_data-clisa` branch. The pretrain/extract run follows the paper-style CLISA settings more closely than the local 80-epoch default, then only the two final retained MLP settings are uploaded.
 
 Pretrain/extract source:
 
@@ -119,8 +119,9 @@ The new code keeps the old path/results intact and adds operational support:
 - `visualize_daest_results.py` reads explicit `[fold-result][mlp] fold=N best_score=...` lines first, fixing merged-log fold parsing.
 - `scripts/run_faced_6gpu_full_after_upload.sh` runs the full pipeline in 6-GPU fold batches.
 - `scripts/run_processed_005_47_after_upload.sh` runs the 0.05-47 Hz branch into a separate run root and refuses to overwrite the 4-47 Hz local CLISA run.
-- `scripts/run_4_47_paper_pretrain_extract_background.sh` launches the 100-epoch paper-style 4-47 Hz pretrain/extract run.
-- `scripts/run_4_47_paper100_best2_mlp.py` runs only the two retained MLP settings on an existing paper-style feature directory.
+- `scripts/run_4_47_paper100_best2_full_pipeline.sh` is the recommended final E4/E5 entry point and runs paper-style pretrain, feature extraction, both final MLP cases, and visualization.
+- `scripts/run_4_47_paper_pretrain_extract_background.sh` launches only the 100-epoch paper-style 4-47 Hz pretrain/extract run for staged execution.
+- `scripts/run_4_47_paper100_best2_mlp.py` runs only the two final retained MLP settings on an existing paper-style feature directory.
 
 ## Interpretation
 
