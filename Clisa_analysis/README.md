@@ -14,7 +14,7 @@ pretrain -> extract_fea -> train_mlp -> visualize
 
 ```bash
 git clone https://github.com/LJL-6666/clisa-eeg-emotion.git
-cd clisa-eeg-emotion
+cd clisa-eeg-emotion/Clisa_analysis   # CLISA 代码位于该子目录
 ```
 
 2. 创建环境。
