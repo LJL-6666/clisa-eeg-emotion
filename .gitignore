@@ -11,7 +11,8 @@ Clisa_analysis/results/
 # Local FACED runtime inputs are large and should not be committed.
 Clisa_analysis/runtime_inputs/Processed_data/*
 !Clisa_analysis/runtime_inputs/Processed_data/.gitkeep
-Clisa_analysis/runtime_inputs/Processed_data-clisa/
+Clisa_analysis/runtime_inputs/Processed_data-clisa/*
+!Clisa_analysis/runtime_inputs/Processed_data-clisa/.gitkeep
 
 # Large generated arrays/cache from local full runs, including variant runs.
 Clisa_analysis/runs/**/data/
