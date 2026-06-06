@@ -37,6 +37,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 DEFAULT_LOCAL_DATA_ROOT = Path(__file__).resolve().parent / "runtime_inputs" / "Processed_data"
 DEFAULT_LOCAL_AFTER_REMARKS_ROOT = Path(__file__).resolve().parent / "runtime_inputs" / "after_remarks"
 DEFAULT_LOCAL_OUTPUT_ROOT = Path(__file__).resolve().parent / "runs"
+DEFAULT_VARIANT_ID = "clisa_00547_seq_default_mlp128"
 _REQUIRED_STAGE_MODULES: tuple[tuple[str, str], ...] = (
     ("hydra", "hydra-core"),
     ("omegaconf", "omegaconf"),
@@ -657,6 +658,13 @@ def _resolve_n_folds(valid_method: str, *, work_data_root: Path) -> int:
     return int(valid_method_text)
 
 
+def _resolve_variant_id(variant_id: str) -> str:
+    normalized = str(variant_id).strip()
+    if not re.fullmatch(r"[a-z0-9_]+", normalized):
+        raise ValueError(f"invalid variant id: {variant_id!r}. Use lowercase ASCII letters, digits, and underscores.")
+    return normalized
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Environment-aware one-cell runner for the CLISA pipeline.")
     parser.add_argument(
@@ -672,7 +680,23 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-root",
         default=str(DEFAULT_LOCAL_OUTPUT_ROOT),
-        help="Writable output root. Defaults to ./runs under this repository.",
+        help="Writable output root. Defaults to ./runs; new runs are placed under ./runs/variants/<variant_id>/.",
+    )
+    parser.add_argument(
+        "--run-root",
+        default=None,
+        help=(
+            "Optional explicit run directory to create. This is useful for stable variant output paths. "
+            "It is mutually exclusive with --resume-run-root."
+        ),
+    )
+    parser.add_argument(
+        "--variant-id",
+        default=DEFAULT_VARIANT_ID,
+        help=(
+            "Variant id used when --run-root is not provided. New runs are created under "
+            "./runs/variants/<variant_id>/run_<UTC timestamp>/."
+        ),
     )
     parser.add_argument(
         "--work-data-root",
@@ -733,6 +757,8 @@ def run_pipeline(
     data_root: Optional[str] = None,
     after_remarks_dir: Optional[str] = None,
     output_root: Optional[str] = None,
+    run_root: Optional[str] = None,
+    variant_id: str = DEFAULT_VARIANT_ID,
     work_data_root: Optional[str] = None,
     resume_run_root: Optional[str] = None,
     data_config: str = "FACED_def",
@@ -758,13 +784,19 @@ def run_pipeline(
     wait_poll_seconds: int = 300,
 ) -> Path:
     _ensure_stage_runtime_dependencies()
+    explicit_run_root = Path(run_root).expanduser().resolve() if run_root else None
+    if resume_run_root and explicit_run_root is not None:
+        raise ValueError("--run-root and --resume-run-root are mutually exclusive")
     if resume_run_root:
         run_root = Path(resume_run_root).expanduser().resolve()
         if not run_root.is_dir():
             raise FileNotFoundError(f"resume run root not found: {run_root}")
+    elif explicit_run_root is not None:
+        run_root = explicit_run_root
+        run_root.mkdir(parents=True, exist_ok=False)
     else:
         output_root = _resolve_output_root(output_root)
-        run_root = output_root / datetime.utcnow().strftime("run_%Y%m%dT%H%M%SZ")
+        run_root = output_root / "variants" / _resolve_variant_id(variant_id) / datetime.utcnow().strftime("run_%Y%m%dT%H%M%SZ")
         run_root.mkdir(parents=True, exist_ok=False)
 
     explicit_work_data_root = Path(work_data_root).expanduser().resolve() if work_data_root else None
@@ -997,6 +1029,8 @@ def main() -> None:
         data_root=args.data_root,
         after_remarks_dir=args.after_remarks_dir,
         output_root=args.output_root,
+        run_root=args.run_root,
+        variant_id=args.variant_id,
         work_data_root=args.work_data_root,
         resume_run_root=args.resume_run_root,
         data_config=args.data_config,

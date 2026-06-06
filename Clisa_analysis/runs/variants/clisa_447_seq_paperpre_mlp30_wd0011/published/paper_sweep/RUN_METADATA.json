@@ -1,0 +1,46 @@
+{
+  "name": "paper_pretrain_mlp_sweep_20260605",
+  "created_from_local_run": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605",
+  "uploaded_cases": [
+    "current_default",
+    "paper_30_30_wd0011"
+  ],
+  "data_band": "4-47 Hz FACED processed data (runtime_inputs/Processed_data-clisa)",
+  "task": "FACED 9-class, 10-fold cross-subject",
+  "paper_style_pretrain_extract_run": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z",
+  "pretrain_settings": {
+    "train.max_epochs": 100,
+    "train.min_epochs": 0,
+    "train.patience": 30,
+    "train.lr": 0.0007,
+    "train.wd": 0.015,
+    "train.loss_temp": 0.07,
+    "train.restart_times": 3,
+    "train.valid_method": 10
+  },
+  "extract_settings": {
+    "ext_fea.mode": "de",
+    "ext_fea.normTrain": true,
+    "ext_fea.use_running_norm": true,
+    "ext_fea.rn_decay": 0.99,
+    "ext_fea.use_pretrain": true,
+    "ext_fea.use_lds": true,
+    "ext_fea.lds_given_all": 0,
+    "ext_fea.pretrain_checkpoint": "best"
+  },
+  "included_files": [
+    "per-case SWEEP_CASE.json",
+    "per-case visualization CSV/JSON/PNG",
+    "per-case daest_faced_predictions_de.npz",
+    "summary_best_two.csv",
+    "summary_best_two.json",
+    "RUN_METADATA.json"
+  ],
+  "omitted_files": [
+    "FACED processed input data",
+    "extracted feature arrays under data/ext_fea",
+    "pretrain and MLP checkpoints",
+    "temporary cache directories"
+  ],
+  "paper_style_pretrain_extract_run_example": "runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ"
+}

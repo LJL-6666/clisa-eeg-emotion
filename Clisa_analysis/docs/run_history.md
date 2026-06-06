@@ -6,9 +6,9 @@ This file keeps the main result protocols and the 2026-06-05 paper-style supplem
 
 This is the repository-preserved LDS-forward reference result. It is documented as the `0.05-47 Hz` `Processed_data` branch, not the `4-47 Hz` `Processed_data-clisa` branch.
 
-- Result root: `results/processed_data_full_fixed_v4_lds_forward/`
-- Run root: `results/processed_data_full_fixed_v4_lds_forward/run`
-- Visualization summary: `results/processed_data_full_fixed_v4_lds_forward/run/visualization/daest_faced_visualization_summary_de.json`
+- Result root: `runs/variants/clisa_00547_seq_default_mlp128/published/`
+- Run root: `runs/variants/clisa_00547_seq_default_mlp128/published/`
+- Visualization summary: `runs/variants/clisa_00547_seq_default_mlp128/published/visualization/daest_faced_visualization_summary_de.json`
 - Source data in run log: `source_data_root=<external FACED processed data root>`
 
 Metrics:
@@ -43,9 +43,9 @@ Common settings:
 
 - Source data: `runtime_inputs/Processed_data-clisa`
 - Data files: `sub000.pkl` through `sub122.pkl`
-- Run root: `runs/run_6gpu_full_current`
-- Provenance: `runs/run_6gpu_full_current/RUN_PROVENANCE.md`
-- Visualization summary: `runs/run_6gpu_full_current/visualization/daest_faced_visualization_summary_de.json`
+- Run root: `runs/variants/clisa_447_fold_default_mlp128/published/`
+- Provenance: `runs/variants/clisa_447_fold_default_mlp128/published/RUN_PROVENANCE.md`
+- Visualization summary: `runs/variants/clisa_447_fold_default_mlp128/published/visualization/daest_faced_visualization_summary_de.json`
 
 Metrics:
 
@@ -58,10 +58,10 @@ Metrics:
 
 - Source data: `runtime_inputs/Processed_data`
 - Data files: `sub000.pkl` through `sub122.pkl`
-- Run root: `runs/run_processed_005_47_full_current`
+- Run root: `runs/variants/clisa_00547_fold_default_mlp128/published/`
 - Run plan: `docs/run_plan_processed_005_47.md`
 - Wrapper launcher: `scripts/run_processed_005_47_after_upload.sh`
-- Visualization summary: `runs/run_processed_005_47_full_current/visualization/daest_faced_visualization_summary_de.json`
+- Visualization summary: `runs/variants/clisa_00547_fold_default_mlp128/published/visualization/daest_faced_visualization_summary_de.json`
 
 Metrics:
 
@@ -71,17 +71,29 @@ Metrics:
 - Fold scores: `42.5694, 48.6310, 39.3552, 53.7798, 46.4385, 40.8234, 35.4762, 32.8968, 39.8313, 34.4206`
 
 
+## Variant ids and Published Outputs
+
+Current protocols use the flat variant ids defined in `docs/variant_naming.md`. Published lightweight outputs and new reproduction runs both live under the single output root `runs/variants/`.
+
+| Variant id | Published output |
+| --- | --- |
+| `clisa_00547_seq_default_mlp128` | `runs/variants/clisa_00547_seq_default_mlp128/published/` |
+| `clisa_447_fold_default_mlp128` | `runs/variants/clisa_447_fold_default_mlp128/published/` |
+| `clisa_00547_fold_default_mlp128` | `runs/variants/clisa_00547_fold_default_mlp128/published/` |
+| `clisa_447_seq_paperpre_mlp128` | `runs/variants/clisa_447_seq_paperpre_mlp128/published/` |
+| `clisa_447_seq_paperpre_mlp30_wd0011` | `runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published/` |
+
 ## Paper-Style 4-47 Hz Pretrain + Best-Two MLP Sweep
 
 This supplementary result uses the 4-47 Hz `runtime_inputs/Processed_data-clisa` branch. The pretrain/extract run follows the paper-style CLISA settings more closely than the local 80-epoch default, then only the two final retained MLP settings are uploaded.
 
 Pretrain/extract source:
 
-- Paper-style run root: `runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ`
-- Extracted feature source: `runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ/data/ext_fea/fea_r1`
-- Uploaded result root: `results/paper_pretrain_mlp_sweep_20260605/`
-- Metadata: `results/paper_pretrain_mlp_sweep_20260605/RUN_METADATA.json`
-- Summary: `results/paper_pretrain_mlp_sweep_20260605/summary_best_two.csv`
+- Paper-style run root: `runs/variants/clisa_447_seq_paperpre_mlp128/run_YYYYMMDDTHHMMSSZ/paper_pretrain_extract`
+- Extracted feature source: `runs/variants/clisa_447_seq_paperpre_mlp128/run_YYYYMMDDTHHMMSSZ/paper_pretrain_extract/data/ext_fea/fea_r1`
+- Published result roots: `runs/variants/clisa_447_seq_paperpre_mlp128/published/` and `runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published/`
+- Metadata: `runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_sweep/RUN_METADATA.json` and `runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published/paper_sweep/RUN_METADATA.json`
+- Summary: `runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_sweep/summary_best_two.csv` and `runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published/paper_sweep/summary_best_two.csv`
 
 Paper-style pretrain settings:
 
@@ -127,8 +139,8 @@ The new code keeps the old path/results intact and adds operational support:
 
 The single-GPU sequential result and the 6-GPU fold-parallel results should not be treated as identical execution protocols:
 
-- The preserved repository result represents the single-GPU sequential reference result stored under `results/`.
-- The new local runs preserve source data and outputs under `runs/` without overwriting the reference.
+- The preserved repository result represents the single-GPU sequential reference result now stored under `runs/variants/clisa_00547_seq_default_mlp128/published/`.
+- New local runs should use `runs/variants/<variant_id>/<run_name>/` without overwriting the `published/` reference.
 - Fold-level parallelism changes the random-number trajectory compared with a single-process sequential fold loop. This can shift final accuracy by around one percentage point even when data and primary hyperparameters match.
 
-For exact comparison to the preserved reference protocol, run a separate single-process sequential 10-fold experiment into a new directory, for example `runs/run_processed_005_47_sequential_reference`.
+For exact comparison to the preserved reference protocol, run a separate single-process sequential 10-fold experiment into `runs/variants/clisa_00547_seq_default_mlp128/<run_name>/`.

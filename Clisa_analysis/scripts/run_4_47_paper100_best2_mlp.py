@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Run the two final MLP settings on existing 4-47 Hz paper-style features.
 
-This staged helper keeps source run directories read-only. Each final case gets
-its own run_root, with data/ext_fea linked to the existing feature directory
-and new checkpoints/logs written locally.
+The script intentionally keeps source run directories read-only. Each sweep
+case gets its own run_root under the requested output directory, with data/ext_fea
+linked to the existing feature directory and new checkpoints/logs written locally.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PYTHON = Path(sys.executable)
-DEFAULT_SOURCE_RUN_ROOT = REPO_ROOT / "runs" / "run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ"
+DEFAULT_SOURCE_RUN_ROOT = REPO_ROOT / "runs" / "variants" / "clisa_447_seq_paperpre_mlp128" / "run_YYYYMMDDTHHMMSSZ" / "paper_pretrain_extract"
 
 
 @dataclass(frozen=True)
@@ -52,8 +52,9 @@ CASES: tuple[Case, ...] = (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the two final MLP settings on 4-47 Hz paper-style CLISA features.")
-    parser.add_argument("--output-root", type=Path, default=REPO_ROOT / "runs" / "final_best2")
-    parser.add_argument("--sweep-name", default="paper_pretrain_4_47_best2_20260605", help="Output subdirectory name for this final best2 run.")
+    parser.add_argument("--output-root", type=Path, default=REPO_ROOT / "runs" / "variants" / "clisa_447_seq_paperpre_mlp128" / f"run_{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}")
+    parser.add_argument("--sweep-name", default="mlp")
+    parser.add_argument("--flat-output", action="store_true", help="Write the selected case directly under --output-root instead of --output-root/--sweep-name/<band>/<case>.")
     parser.add_argument("--source-run-root", type=Path, default=DEFAULT_SOURCE_RUN_ROOT, help="Run root that already contains data/ext_fea/fea_r<run_id>.")
     parser.add_argument("--exp-name", default="local_faced_4_47_paper100_pretrain")
     parser.add_argument("--python-bin", type=Path, default=DEFAULT_PYTHON)
@@ -305,7 +306,7 @@ def run_one_case(
     case: Case,
     args: argparse.Namespace,
 ) -> dict[str, Any]:
-    run_root = sweep_root / band.name / case.name
+    run_root = sweep_root if getattr(args, "flat_output", False) else sweep_root / band.name / case.name
     print(f"[case] band={band.name} case={case.name} run_root={run_root}")
     train_mlp_case(python_bin=python_bin, run_root=run_root, band=band, case=case, args=args)
     if not args.skip_visualize:
@@ -365,7 +366,9 @@ def main() -> None:
         source_run_root=args.source_run_root.expanduser().resolve(),
         exp_name=args.exp_name,
     )
-    sweep_root = (args.output_root / args.sweep_name).expanduser().resolve()
+    if args.flat_output and len(cases) != 1:
+        raise ValueError("--flat-output requires exactly one selected case")
+    sweep_root = args.output_root.expanduser().resolve() if args.flat_output else (args.output_root / args.sweep_name).expanduser().resolve()
     sweep_root.mkdir(parents=True, exist_ok=True)
 
     jobs = [(band, case) for case in cases]

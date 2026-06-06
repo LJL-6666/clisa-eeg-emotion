@@ -1,0 +1,6 @@
+{
+  "variant_id": "clisa_00547_seq_default_mlp128",
+  "canonical_output_root": "Clisa_analysis/runs/variants/clisa_00547_seq_default_mlp128/published",
+  "source_archive": "Clisa_analysis/results/processed_data_full_fixed_v4_lds_forward/run",
+  "note": "Migrated from legacy results/ archive to canonical runs/variants output root."
+}

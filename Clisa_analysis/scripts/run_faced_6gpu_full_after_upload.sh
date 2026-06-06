@@ -40,7 +40,8 @@ DATA_ROOT="${DATA_ROOT:-${REPO_ROOT}/runtime_inputs/Processed_data}"
 AFTER_REMARKS_DIR="${AFTER_REMARKS_DIR:-${REPO_ROOT}/runtime_inputs/after_remarks}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-${REPO_ROOT}/runs}"
 RUN_ID="${RUN_ID:-1}"
-EXP_NAME="${EXP_NAME:-local_faced_6gpu_full}"
+EXP_NAME="${EXP_NAME:-clisa_447_fold_default_mlp128}"
+VARIANT_ID="${VARIANT_ID:-clisa_447_fold_default_mlp128}"
 VALID_METHOD="${VALID_METHOD:-10}"
 N_SUBS="${N_SUBS:-123}"
 N_FOLDS="${N_FOLDS:-10}"
@@ -57,7 +58,7 @@ STOP_AFTER_PREPARE="${STOP_AFTER_PREPARE:-0}"
 
 mkdir -p "$OUTPUT_ROOT"
 if [ -z "$OUTPUT_RUN_ROOT" ]; then
-  OUTPUT_RUN_ROOT="${OUTPUT_ROOT}/run_$(date -u +%Y%m%dT%H%M%SZ)_6gpu"
+  OUTPUT_RUN_ROOT="${OUTPUT_ROOT}/variants/${VARIANT_ID}/run_$(date -u +%Y%m%dT%H%M%SZ)"
 fi
 mkdir -p "$OUTPUT_RUN_ROOT" "$OUTPUT_RUN_ROOT/stage_logs" "$OUTPUT_RUN_ROOT/stage_status" "$OUTPUT_RUN_ROOT/checkpoints" "$OUTPUT_RUN_ROOT/tmp"
 

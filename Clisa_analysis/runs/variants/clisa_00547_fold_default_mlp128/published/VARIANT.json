@@ -1,0 +1,6 @@
+{
+  "variant_id": "clisa_00547_fold_default_mlp128",
+  "canonical_output_root": "Clisa_analysis/runs/variants/clisa_00547_fold_default_mlp128/published",
+  "source_archive": "Clisa_analysis/runs/run_processed_005_47_full_current",
+  "note": "Migrated from legacy ad-hoc runs/run_processed_005_47_full_current output root."
+}

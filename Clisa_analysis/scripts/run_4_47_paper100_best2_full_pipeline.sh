@@ -11,10 +11,13 @@ DATA_SRC="${DATA_SRC:-${REPO_ROOT}/runtime_inputs/Processed_data-clisa}"
 AFTER_REMARKS_SRC="${AFTER_REMARKS_SRC:-${REPO_ROOT}/runtime_inputs/after_remarks}"
 DEVICES="${DEVICES:-[0]}"
 RUN_ID="${RUN_ID:-1}"
-EXP_NAME="${EXP_NAME:-local_faced_4_47_paper100_best2_final}"
-RUN_ROOT="${RUN_ROOT:-${REPO_ROOT}/runs/run_4_47_paper100_best2_full_$(date -u +%Y%m%dT%H%M%SZ)}"
-SWEEP_ROOT="${SWEEP_ROOT:-${REPO_ROOT}/runs/final_best2}"
-SWEEP_NAME="${SWEEP_NAME:-$(basename "$RUN_ROOT")_mlp_best2}"
+RUN_NAME="${RUN_NAME:-run_$(date -u +%Y%m%dT%H%M%SZ)}"
+CURRENT_VARIANT_ID="${CURRENT_VARIANT_ID:-clisa_447_seq_paperpre_mlp128}"
+PAPER_VARIANT_ID="${PAPER_VARIANT_ID:-clisa_447_seq_paperpre_mlp30_wd0011}"
+CURRENT_RUN_ROOT="${CURRENT_RUN_ROOT:-${REPO_ROOT}/runs/variants/${CURRENT_VARIANT_ID}/${RUN_NAME}}"
+PAPER_RUN_ROOT="${PAPER_RUN_ROOT:-${REPO_ROOT}/runs/variants/${PAPER_VARIANT_ID}/${RUN_NAME}}"
+RUN_ROOT="${RUN_ROOT:-${CURRENT_RUN_ROOT}/paper_pretrain_extract}"
+EXP_NAME="${EXP_NAME:-clisa_447_seq_paperpre}"
 CASES="${CASES:-current_default,paper_30_30_wd0011}"
 POLL_SECONDS="${POLL_SECONDS:-60}"
 MLP_PARALLELISM="${MLP_PARALLELISM:-1}"
@@ -62,7 +65,6 @@ if [ -z "$CONDA_LIB" ]; then
   fi
 fi
 
-
 if [ ! -d "$DATA_SRC" ]; then
   echo "错误: DATA_SRC 不存在: $DATA_SRC" >&2
   exit 1
@@ -100,6 +102,7 @@ if [ "$SKIP_PRETRAIN_EXTRACT" != "1" ]; then
   DEVICES="$DEVICES" \
   RUN_ID="$RUN_ID" \
   EXP_NAME="$EXP_NAME" \
+  VARIANT_ID="$CURRENT_VARIANT_ID" \
   PYTHON_BIN="$PYTHON_BIN" \
   CONDA_LIB="$CONDA_LIB" \
   bash scripts/run_4_47_paper_pretrain_extract_background.sh
@@ -113,28 +116,48 @@ else
   fi
 fi
 
-MLP_ARGS=(
-  "--source-run-root" "$RUN_ROOT"
-  "--output-root" "$SWEEP_ROOT"
-  "--sweep-name" "$SWEEP_NAME"
-  "--devices" "$DEVICES"
-  "--run-id" "$RUN_ID"
-  "--cases" "$CASES"
-  "--parallelism" "$MLP_PARALLELISM"
-  "--python-bin" "$PYTHON_BIN"
-)
+IFS=',' read -r -a CASE_ARRAY <<< "$CASES"
+for case_name in "${CASE_ARRAY[@]}"; do
+  case_name="$(echo "$case_name" | xargs)"
+  [ -n "$case_name" ] || continue
+  case "$case_name" in
+    current_default)
+      case_run_root="$CURRENT_RUN_ROOT"
+      ;;
+    paper_30_30_wd0011)
+      case_run_root="$PAPER_RUN_ROOT"
+      ;;
+    *)
+      echo "错误: unknown final MLP case: $case_name" >&2
+      exit 1
+      ;;
+  esac
 
-if [ -n "$CONDA_LIB" ]; then
-  MLP_ARGS+=("--conda-lib" "$CONDA_LIB")
-fi
+  MLP_ARGS=(
+    "--source-run-root" "$RUN_ROOT"
+    "--output-root" "$case_run_root"
+    "--sweep-name" "mlp"
+    "--flat-output"
+    "--devices" "$DEVICES"
+    "--run-id" "$RUN_ID"
+    "--cases" "$case_name"
+    "--parallelism" "$MLP_PARALLELISM"
+    "--python-bin" "$PYTHON_BIN"
+  )
 
-if [ "$FORCE_MLP" = "1" ]; then
-  MLP_ARGS+=("--force")
-fi
+  if [ -n "$CONDA_LIB" ]; then
+    MLP_ARGS+=("--conda-lib" "$CONDA_LIB")
+  fi
 
-"$PYTHON_BIN" scripts/run_4_47_paper100_best2_mlp.py "${MLP_ARGS[@]}"
+  if [ "$FORCE_MLP" = "1" ]; then
+    MLP_ARGS+=("--force")
+  fi
+
+  "$PYTHON_BIN" scripts/run_4_47_paper100_best2_mlp.py "${MLP_ARGS[@]}"
+done
 
 echo "最终 best2 全流程完成"
-echo "Pretrain/extract run root: $RUN_ROOT"
-echo "Final best2 output root: ${SWEEP_ROOT}/${SWEEP_NAME}"
+echo "Paper-style source run root: $RUN_ROOT"
+echo "current_default output root: $CURRENT_RUN_ROOT"
+echo "paper_30_30_wd0011 output root: $PAPER_RUN_ROOT"
 echo "Cases: $CASES"

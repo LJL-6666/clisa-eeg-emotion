@@ -49,10 +49,11 @@ if [ -z "$CONDA_LIB" ]; then
 fi
 DEVICES="${DEVICES:-[0]}"
 RUN_ID="${RUN_ID:-1}"
-EXP_NAME="${EXP_NAME:-local_faced_4_47_paper_pretrain}"
+EXP_NAME="${EXP_NAME:-clisa_447_seq_paperpre}"
+VARIANT_ID="${VARIANT_ID:-clisa_447_seq_paperpre_mlp128}"
 DATA_SRC="${DATA_SRC:-${REPO_ROOT}/runtime_inputs/Processed_data-clisa}"
 AFTER_REMARKS_SRC="${AFTER_REMARKS_SRC:-${REPO_ROOT}/runtime_inputs/after_remarks}"
-RUN_ROOT="${RUN_ROOT:-${REPO_ROOT}/runs/run_4_47_paper_pretrain_extract_$(date -u +%Y%m%dT%H%M%SZ)}"
+RUN_ROOT="${RUN_ROOT:-${REPO_ROOT}/runs/variants/${VARIANT_ID}/run_$(date -u +%Y%m%dT%H%M%SZ)/paper_pretrain_extract}"
 WORK_DATA_ROOT="${RUN_ROOT}/data"
 LOG_FILE="${RUN_ROOT}/paper_pretrain_extract.nohup.log"
 PID_FILE="${RUN_ROOT}/paper_pretrain_extract.pid"
@@ -142,6 +143,7 @@ after_remarks_src=${AFTER_REMARKS_SRC}
 devices=${DEVICES}
 run_id=${RUN_ID}
 exp_name=${EXP_NAME}
+variant_id=${VARIANT_ID}
 train_wd=0.015
 train_restart_times=3
 train_epochs=100
@@ -226,6 +228,7 @@ nohup setsid env \
   DEVICES="$DEVICES" \
   RUN_ID="$RUN_ID" \
   EXP_NAME="$EXP_NAME" \
+  VARIANT_ID="$VARIANT_ID" \
   DATA_SRC="$DATA_SRC" \
   AFTER_REMARKS_SRC="$AFTER_REMARKS_SRC" \
   "$0" >> "$LOG_FILE" 2>&1 &

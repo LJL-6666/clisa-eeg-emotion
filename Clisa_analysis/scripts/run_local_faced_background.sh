@@ -65,6 +65,7 @@ fi
 DATA_ROOT="${DATA_ROOT:-${REPO_ROOT}/runtime_inputs/Processed_data}"
 AFTER_REMARKS_DIR="${AFTER_REMARKS_DIR:-${REPO_ROOT}/runtime_inputs/after_remarks}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-${REPO_ROOT}/runs}"
+RUN_ROOT="${RUN_ROOT:-${OUTPUT_ROOT}/variants/clisa_00547_seq_default_mlp128/run_$(date -u +%Y%m%dT%H%M%SZ)}"
 WORK_DATA_ROOT="${WORK_DATA_ROOT:-}"
 DATA_CONFIG="${DATA_CONFIG:-FACED_def}"
 MODEL_CONFIG="${MODEL_CONFIG:-cnn_clisa}"
@@ -106,6 +107,8 @@ CMD=(
   "--data-root" "${DATA_ROOT}"
   "--after-remarks-dir" "${AFTER_REMARKS_DIR}"
   "--output-root" "${OUTPUT_ROOT}"
+  "--run-root" "${RUN_ROOT}"
+  "--variant-id" "clisa_00547_seq_default_mlp128"
   "--data-config" "${DATA_CONFIG}"
   "--model-config" "${MODEL_CONFIG}"
   "--devices" "${DEVICES}"
@@ -154,6 +157,7 @@ python_bin=${PYTHON_BIN}
 data_root=${DATA_ROOT}
 after_remarks_dir=${AFTER_REMARKS_DIR}
 output_root=${OUTPUT_ROOT}
+run_root=${RUN_ROOT}
 work_data_root=${WORK_DATA_ROOT}
 data_config=${DATA_CONFIG}
 model_config=${MODEL_CONFIG}

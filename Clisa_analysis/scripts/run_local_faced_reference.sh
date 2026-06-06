@@ -41,6 +41,7 @@ fi
 DATA_ROOT="${DATA_ROOT:-${REPO_ROOT}/runtime_inputs/Processed_data}"
 AFTER_REMARKS_DIR="${AFTER_REMARKS_DIR:-${REPO_ROOT}/runtime_inputs/after_remarks}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-${REPO_ROOT}/runs}"
+RUN_ROOT="${RUN_ROOT:-${OUTPUT_ROOT}/variants/clisa_00547_seq_default_mlp128/run_$(date -u +%Y%m%dT%H%M%SZ)}"
 
 CUDA_DEVICE_MEMORY_SHARED_CACHE_PATH="${CUDA_DEVICE_MEMORY_SHARED_CACHE_PATH:-/dev/shm/clisa_local_faced_reference.hami.cache}"
 MPLCONFIGDIR="${MPLCONFIGDIR:-/dev/shm/mplconfig_daest}"
@@ -55,7 +56,7 @@ echo "mplconfigdir=$MPLCONFIGDIR"
 "$PYTHON_BIN" main.py \
   --data-root "${DATA_ROOT}" \
   --after-remarks-dir "${AFTER_REMARKS_DIR}" \
-  --output-root "${OUTPUT_ROOT}" \
+  --run-root "${RUN_ROOT}" \
   --data-config FACED_def \
   --model-config cnn_clisa \
   --project-name CLISA_CODE \

@@ -4,14 +4,20 @@ __pycache__/
 daest_run
 
 # ===== Clisa_analysis/（CLISA 方案）本地大文件，不纳入版本管理 =====
-Clisa_analysis/results/processed_data_full_fixed_v4_lds_forward/features/processed_data_full_fixed_v4_lds_forward_r1_f*_fea_de.npy
+# CLISA outputs use one root only: Clisa_analysis/runs/variants/.
+# Do not create new tracked outputs under the old results/ root.
+Clisa_analysis/results/
+
 # Local FACED runtime inputs are large and should not be committed.
 Clisa_analysis/runtime_inputs/Processed_data/*
 !Clisa_analysis/runtime_inputs/Processed_data/.gitkeep
 Clisa_analysis/runtime_inputs/Processed_data-clisa/
-# Large generated arrays from local full runs.
-Clisa_analysis/runs/*/data/
-Clisa_analysis/runs/*/matplotlib_cache/
+
+# Large generated arrays/cache from local full runs, including variant runs.
+Clisa_analysis/runs/**/data/
+Clisa_analysis/runs/**/matplotlib_cache/
+Clisa_analysis/runs/**/tmp/
+Clisa_analysis/runs/**/hami_vgpu.cache
 Clisa_analysis/runs/debug_trace/
 
 # ===== Svm_analysis/（DE+SVM 方案）另有其目录内 .gitignore 兜底 =====
