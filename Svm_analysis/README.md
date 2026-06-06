@@ -12,7 +12,7 @@
 - **输入数据**：`Processed_data`（123 个 `subXXX.pkl`，每个为 `28视频 × 32电极 × (30s×250Hz)`）。
 - **带通滤波**：**0.05–47 Hz**（主分支预处理，见官方 Readme 预处理第 4 步）。
 - **DE 频带**：5 个（delta 1–4 / theta 4–8 / alpha 8–14 / beta 14–30 / gamma 30–47 Hz）。
-- 注意：CLISA 方案才用 `Clisa_data`（4–47 Hz）；**DE+SVM 不用 Clisa_data**。
+- 注意：CLISA 的 4–47 Hz 分支数据放在 `Clisa_analysis/runtime_inputs/Processed_data-clisa/`（预处理时 `--clisa-or-not yes` 产出）；**DE+SVM 只用 0.05–47 Hz 的 `Processed_data`**。
 
 ---
 
@@ -76,6 +76,8 @@ Svm_analysis/
 
 本仓库同时提供两版结果：**123 人（原版，含 sub023）** 与 **122 人（剔除坏被试 sub023）**，
 对应 `results/<config>_10folds/` 与 `results/<config>_10folds_no023/`。
+
+下表准确率均为 **subject mean**（`viz/summary.json` 的 `subject_acc_mean`，与 `overall_acc` 相同）。
 
 | 配置 | 协议 | 123 人（原） | 122 人（剔 sub023） | FACED 论文 |
 |---|---|---:|---:|---:|

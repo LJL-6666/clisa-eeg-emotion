@@ -42,7 +42,7 @@ VARIANTS: tuple[Variant, ...] = (
         classifier="current MLP: [128,64], dropout=0.1, wd=0.0022, batch=512",
         command_kind="main_sequential",
         canonical_output="runs/variants/clisa_00547_seq_default_mlp128/<run_name>/",
-        notes="Closest to the preserved 42.5230% reference result.",
+        notes="Primary cross-method reference: subject mean 42.3790% (fold mean 42.5230%).",
     ),
     Variant(
         id="clisa_447_fold_default_mlp128",

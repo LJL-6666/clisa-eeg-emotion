@@ -10,17 +10,19 @@
 | [`Svm_analysis/`](Svm_analysis/) | **DE + SVM**（官方基线） | FACED 官方 DE 特征 + 线性 SVM 基线，作为 CLISA 的对照。详见 [Svm_analysis/README.md](Svm_analysis/README.md)。 |
 | [`preprocessing/`](preprocessing/) | **共享预处理** | 可选：FACED raw EEG → processed data（两种方案共用）。详见 [preprocessing/README.md](preprocessing/README.md)。 |
 
-## 结果对照（FACED 9 类 · cross-subject · 10-fold）
+## 结果对照（FACED 9 类 · cross-subject · 10-fold · subject mean）
 
-| 方法 | 本仓库 | FACED 论文 |
+两方案横向对比统一使用 **subject mean**（逐被试准确率再平均；CLISA 对应 `mean_subject_accuracy_percent`，DE+SVM 对应 `summary.json` 的 `subject_acc_mean` / `overall_acc`）。
+
+| 方法 | 本仓库（subject mean） | FACED 论文 |
 | --- | ---: | ---: |
-| **CLISA** | 42.5% | 42.4 ± 1.2% |
+| **CLISA** | 42.4% | 42.4 ± 1.2% |
 | **DE + SVM** | 39.4% | 35.2 ± 1.0% |
 
 > DE+SVM 的完整四配置（9/2 类 × cross/intra）结果见 [Svm_analysis/README.md](Svm_analysis/README.md)；
 > CLISA 的 5 个扁平 variant 复现口径见 [Clisa_analysis/README.md](Clisa_analysis/README.md) 和 [Clisa_analysis/docs/variant_naming.md](Clisa_analysis/docs/variant_naming.md)。
 >
-> 表中的 CLISA `42.5%` 指 `clisa_00547_seq_default_mlp128`。`clisa_447_seq_paperpre_mlp128` / `clisa_447_seq_paperpre_mlp30_wd0011` 为 paper-style pretrain 补充对照，不替代主结果。
+> 表中的 CLISA `42.4%`（精确值 `42.3790%`）指 `clisa_00547_seq_default_mlp128`。`clisa_447_seq_paperpre_mlp128` / `clisa_447_seq_paperpre_mlp30_wd0011` 为 paper-style pretrain 补充对照，不替代主结果。各方案 README 中另列 fold mean 等细项指标。
 
 ## 数据说明
 

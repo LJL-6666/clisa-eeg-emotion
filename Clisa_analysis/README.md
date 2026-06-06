@@ -57,7 +57,9 @@ clisa_<band>_<execution>_<pretrain>_<mlp>
 
 ## 结果总览
 
-| Variant id | 10-fold mean | overall | subject mean +/- std |
+根 [README.md](../README.md) 两方案横向对比统一使用 **subject mean**（下表第三列 `overall` / 第四列 subject mean 在本任务中数值相同）。
+
+| Variant id | 10-fold mean | overall / subject mean | subject mean +/- std |
 | --- | ---: | ---: | ---: |
 | `clisa_00547_seq_default_mlp128` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
 | `clisa_447_fold_default_mlp128` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |

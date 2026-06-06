@@ -2,6 +2,8 @@
 
 This file keeps the main result protocols and the 2026-06-05 paper-style supplementary MLP result side by side. The original code/results are preserved. New launchers and run directories are kept separately.
 
+For cross-method comparison with DE+SVM, the repository root [README.md](../../README.md) uses **subject mean** (`mean_subject_accuracy_percent` / `overall_accuracy_percent` here; they match for this task).
+
 ## Single-GPU Sequential 0.05-47 Hz
 
 This is the repository-preserved LDS-forward reference result. It is documented as the `0.05-47 Hz` `Processed_data` branch, not the `4-47 Hz` `Processed_data-clisa` branch.
