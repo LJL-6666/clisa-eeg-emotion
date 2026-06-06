@@ -57,13 +57,13 @@ clisa_<band>_<execution>_<pretrain>_<mlp>
 
 ## 结果总览
 
-| Variant id | Published output | 10-fold mean | overall | subject mean +/- std |
-| --- | --- | ---: | ---: | ---: |
-| `clisa_00547_seq_default_mlp128` | `runs/variants/clisa_00547_seq_default_mlp128/published/` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
-| `clisa_447_fold_default_mlp128` | `runs/variants/clisa_447_fold_default_mlp128/published/` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
-| `clisa_00547_fold_default_mlp128` | `runs/variants/clisa_00547_fold_default_mlp128/published/` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
-| `clisa_447_seq_paperpre_mlp128` | `runs/variants/clisa_447_seq_paperpre_mlp128/published/` | `40.5944%` | `40.4288%` | `40.4288% +/- 13.4293%` |
-| `clisa_447_seq_paperpre_mlp30_wd0011` | `runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published/` | `40.4581%` | `40.2962%` | `40.2962% +/- 12.3983%` |
+| Variant id | 10-fold mean | overall | subject mean +/- std |
+| --- | ---: | ---: | ---: |
+| `clisa_00547_seq_default_mlp128` | `42.5230%` | `42.3790%` | `42.3790% +/- 13.6889%` |
+| `clisa_447_fold_default_mlp128` | `40.1986%` | `40.1055%` | `40.1055% +/- 12.3194%` |
+| `clisa_00547_fold_default_mlp128` | `41.4222%` | `41.2505%` | `41.2505% +/- 14.0089%` |
+| `clisa_447_seq_paperpre_mlp128` | `40.5944%` | `40.4288%` | `40.4288% +/- 13.4293%` |
+| `clisa_447_seq_paperpre_mlp30_wd0011` | `40.4581%` | `40.2962%` | `40.2962% +/- 12.3983%` |
 
 详细 fold-level score 和运行来源见 [docs/run_history.md](docs/run_history.md)。
 
