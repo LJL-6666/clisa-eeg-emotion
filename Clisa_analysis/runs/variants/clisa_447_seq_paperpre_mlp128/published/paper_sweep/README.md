@@ -18,7 +18,7 @@ This directory stores the two final retained MLP settings from the 2026-06-05 be
 Pretrain/extract settings are recorded in `RUN_METADATA.json`. The archived results correspond to a paper-style feature run with the following source layout:
 
 ```text
-runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ/data/ext_fea/fea_r1
+runs/variants/clisa_447_seq_paperpre_mlp128/<run_name>/paper_pretrain_extract/data/ext_fea/fea_r1
 ```
 
 The repository stores only the final compact artifacts for `current_default` and `paper_30_30_wd0011`: metadata, CSV/JSON summaries, prediction NPZ files, and visualization PNGs.

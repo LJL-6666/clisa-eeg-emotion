@@ -2,8 +2,8 @@
 
 This run is the 4-47 Hz local CLISA-data run.
 
-- Run root: `/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current`
-- Intended source data: `/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/Processed_data-clisa`
+- Run root: `runs/variants/clisa_447_fold_default_mlp128/published`
+- Intended source data: `runtime_inputs/Processed_data-clisa`
 - Frequency band: 4-47 Hz
 - Pipeline: pretrain -> extract_fea -> train_mlp -> visualize
 - Final corrected fold mean accuracy: 40.1986107%

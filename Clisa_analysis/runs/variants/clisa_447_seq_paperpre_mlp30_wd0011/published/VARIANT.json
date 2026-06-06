@@ -1,6 +1,6 @@
 {
   "variant_id": "clisa_447_seq_paperpre_mlp30_wd0011",
   "canonical_output_root": "Clisa_analysis/runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published",
-  "source_archive": "Clisa_analysis/results/paper_pretrain_mlp_sweep_20260605/paper_30_30_wd0011",
-  "note": "Migrated from legacy results/ paper sweep archive to canonical runs/variants output root."
+  "source_archive": "Clisa_analysis/runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/published",
+  "note": "Migrated from historical paper sweep archive to canonical runs/variants output root."
 }

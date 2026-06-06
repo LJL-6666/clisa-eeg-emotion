@@ -1,8 +1,8 @@
 {
-  "run_root": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default",
-  "feature_dir": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z/data/ext_fea/fea_r1",
-  "checkpoint_dir": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default/checkpoints",
-  "mlp_log": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/current_default/stage_logs/mlp.log",
+  "run_root": "runs/variants/clisa_447_seq_paperpre_mlp128/published",
+  "feature_dir": "runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_pretrain_extract/data/ext_fea/fea_r1",
+  "checkpoint_dir": "runs/variants/clisa_447_seq_paperpre_mlp128/published/checkpoints",
+  "mlp_log": "runs/variants/clisa_447_seq_paperpre_mlp128/published/stage_logs/mlp.log",
   "mode": "de",
   "fold_scores": {
     "0": 39.325397,

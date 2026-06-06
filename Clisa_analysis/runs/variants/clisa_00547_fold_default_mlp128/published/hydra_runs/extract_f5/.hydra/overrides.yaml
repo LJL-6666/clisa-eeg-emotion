@@ -1,8 +1,8 @@
 - data=FACED_def
 - model=cnn_clisa
-- data.data_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/data
-- +data.after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
-- log.cp_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints
+- data.data_dir=runs/variants/clisa_00547_fold_default_mlp128/published/data
+- +data.after_remarks_dir=runtime_inputs/after_remarks
+- log.cp_dir=runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints
 - log.run=1
 - log.exp_name=local_faced_processed_005_47_full
 - log.proj_name=CLISA_CODE

@@ -1,8 +1,8 @@
 {
-  "run_root": "results/processed_data_full_fixed_v4_lds_forward/run",
-  "feature_dir": "results/processed_data_full_fixed_v4_lds_forward/features",
-  "checkpoint_dir": "results/processed_data_full_fixed_v4_lds_forward/run/checkpoints",
-  "mlp_log": "results/processed_data_full_fixed_v4_lds_forward/run/stage_logs/mlp.log",
+  "run_root": "runs/variants/clisa_00547_seq_default_mlp128/published",
+  "feature_dir": "runs/variants/clisa_00547_seq_default_mlp128/published/features",
+  "checkpoint_dir": "runs/variants/clisa_00547_seq_default_mlp128/published/checkpoints",
+  "mlp_log": "runs/variants/clisa_00547_seq_default_mlp128/published/stage_logs/mlp.log",
   "mode": "de",
   "fold_scores": {
     "0": 41.994049072265625,

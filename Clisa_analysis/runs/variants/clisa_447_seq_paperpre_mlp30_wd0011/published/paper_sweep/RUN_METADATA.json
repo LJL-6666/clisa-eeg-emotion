@@ -1,13 +1,13 @@
 {
   "name": "paper_pretrain_mlp_sweep_20260605",
-  "created_from_local_run": "runs/mlp_sweeps/paper_pretrain_4_47_features_20260605",
+  "created_from_local_run": "runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_sweep",
   "uploaded_cases": [
     "current_default",
     "paper_30_30_wd0011"
   ],
   "data_band": "4-47 Hz FACED processed data (runtime_inputs/Processed_data-clisa)",
   "task": "FACED 9-class, 10-fold cross-subject",
-  "paper_style_pretrain_extract_run": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z",
+  "paper_style_pretrain_extract_run": "runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_pretrain_extract",
   "pretrain_settings": {
     "train.max_epochs": 100,
     "train.min_epochs": 0,
@@ -42,5 +42,5 @@
     "pretrain and MLP checkpoints",
     "temporary cache directories"
   ],
-  "paper_style_pretrain_extract_run_example": "runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ"
+  "paper_style_pretrain_extract_run_example": "runs/variants/clisa_447_seq_paperpre_mlp128/<run_name>/paper_pretrain_extract"
 }

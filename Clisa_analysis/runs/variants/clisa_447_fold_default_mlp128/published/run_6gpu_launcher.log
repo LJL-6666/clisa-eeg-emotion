@@ -1,16 +1,16 @@
-[launcher] repo=/root/autodl-tmp/clisa-eeg-emotion
+[launcher] repo=.
 [launcher] python=/root/miniconda3/envs/ty_eeg_speech_stage1/bin/python
 Python 3.11.15
-[launcher] data_root=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/Processed_data
-[launcher] after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
-[launcher] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current
+[launcher] data_root=runtime_inputs/Processed_data
+[launcher] after_remarks_dir=runtime_inputs/after_remarks
+[launcher] run_root=runs/variants/clisa_447_fold_default_mlp128/published
 [launcher] n_subs=123 n_folds=10 pretrain_epochs=80 mlp_epochs=100
-[launcher] repo=/root/autodl-tmp/clisa-eeg-emotion
+[launcher] repo=.
 [launcher] python=/root/miniconda3/envs/ty_eeg_speech_stage1/bin/python
 Python 3.11.15
-[launcher] data_root=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/Processed_data
-[launcher] after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
-[launcher] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current
+[launcher] data_root=runtime_inputs/Processed_data
+[launcher] after_remarks_dir=runtime_inputs/after_remarks
+[launcher] run_root=runs/variants/clisa_447_fold_default_mlp128/published
 [launcher] n_subs=123 n_folds=10 pretrain_epochs=80 mlp_epochs=100
 [wait-data] count=123/123 bytes=6.6125e+09 last=[sub122.pkl 53760164] stable=0/1
 [wait-data] count=123/123 bytes=6.6125e+09 last=[sub122.pkl 53760164] stable=0/1
@@ -79,4 +79,4 @@ Python 3.11.15
 [stage:mlp] done fold=7 gpu=1
 [stage:visualize] start
 [stage:visualize] done
-[done] run_root=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current
+[done] run_root=runs/variants/clisa_447_fold_default_mlp128/published

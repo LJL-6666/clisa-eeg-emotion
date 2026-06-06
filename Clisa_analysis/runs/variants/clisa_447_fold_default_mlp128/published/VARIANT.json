@@ -1,6 +1,6 @@
 {
   "variant_id": "clisa_447_fold_default_mlp128",
   "canonical_output_root": "Clisa_analysis/runs/variants/clisa_447_fold_default_mlp128/published",
-  "source_archive": "Clisa_analysis/runs/run_6gpu_full_current",
-  "note": "Migrated from legacy ad-hoc runs/run_6gpu_full_current output root."
+  "source_archive": "Clisa_analysis/runs/variants/clisa_447_fold_default_mlp128/published",
+  "note": "Migrated from legacy ad-hoc runs/variants/clisa_447_fold_default_mlp128/published output root."
 }

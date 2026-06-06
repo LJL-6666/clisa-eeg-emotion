@@ -18,13 +18,13 @@ This directory stores the two retained MLP settings from the 2026-06-05 sweep on
 Pretrain/extract settings are recorded in `RUN_METADATA.json`. The source feature directory was produced by:
 
 ```text
-runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ/data/ext_fea/fea_r1
+runs/variants/clisa_447_seq_paperpre_mlp128/<run_name>/paper_pretrain_extract/data/ext_fea/fea_r1
 ```
 
 The uploaded result files are copied from:
 
 ```text
-runs/mlp_sweeps/paper_pretrain_4_47_features_20260605/4_47_paper100/<case>/
+runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_sweep/4_47_paper100/<case>/
 ```
 
 ## Reproduction Entry Points
@@ -39,7 +39,7 @@ Then run only the two retained MLP settings on an existing feature directory:
 
 ```bash
 python scripts/run_4_47_paper100_best2_mlp.py \
-  --source-run-root runs/run_4_47_paper_pretrain_extract_YYYYMMDDTHHMMSSZ \
+  --source-run-root runs/variants/clisa_447_seq_paperpre_mlp128/<run_name>/paper_pretrain_extract \
   --parallelism 1
 ```
 

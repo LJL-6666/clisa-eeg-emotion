@@ -1,6 +1,6 @@
 hydra:
   run:
-    dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/hydra_runs/mlp_f1
+    dir: runs/variants/clisa_00547_fold_default_mlp128/published/hydra_runs/mlp_f1
   sweep:
     dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
     subdir: ${hydra.job.num}
@@ -111,14 +111,14 @@ hydra:
   overrides:
     hydra:
     - hydra.job.chdir=False
-    - hydra.run.dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/hydra_runs/mlp_f1
+    - hydra.run.dir=runs/variants/clisa_00547_fold_default_mlp128/published/hydra_runs/mlp_f1
     - hydra.mode=RUN
     task:
     - data=FACED_def
     - model=cnn_clisa
-    - data.data_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/data
-    - +data.after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
-    - log.cp_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints
+    - data.data_dir=runs/variants/clisa_00547_fold_default_mlp128/published/data
+    - +data.after_remarks_dir=runtime_inputs/after_remarks
+    - log.cp_dir=runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints
     - log.run=1
     - log.exp_name=local_faced_processed_005_47_full
     - log.proj_name=CLISA_CODE
@@ -144,7 +144,7 @@ hydra:
   job:
     name: train_mlp
     chdir: false
-    override_dirname: +data.after_remarks_dir=/root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks,+log.use_wandb=false,data.data_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/data,data=FACED_def,ext_fea.batch_size=2048,ext_fea.lds_given_all=0,ext_fea.mode=de,ext_fea.normTrain=True,ext_fea.pretrain_checkpoint=best,ext_fea.use_lds=True,ext_fea.use_pretrain=True,log.cp_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints,log.exp_name=local_faced_processed_005_47_full,log.proj_name=CLISA_CODE,log.run=1,mlp.batch_size=512,mlp.max_epochs=100,mlp.min_epochs=100,mlp.num_workers=0,mlp.wd=0.0022,model=cnn_clisa,train.gpus=[0],train.iftest=False,train.max_epochs=80,train.min_epochs=80,train.num_workers=0,train.valid_method=10
+    override_dirname: +data.after_remarks_dir=runtime_inputs/after_remarks,+log.use_wandb=false,data.data_dir=runs/variants/clisa_00547_fold_default_mlp128/published/data,data=FACED_def,ext_fea.batch_size=2048,ext_fea.lds_given_all=0,ext_fea.mode=de,ext_fea.normTrain=True,ext_fea.pretrain_checkpoint=best,ext_fea.use_lds=True,ext_fea.use_pretrain=True,log.cp_dir=runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints,log.exp_name=local_faced_processed_005_47_full,log.proj_name=CLISA_CODE,log.run=1,mlp.batch_size=512,mlp.max_epochs=100,mlp.min_epochs=100,mlp.num_workers=0,mlp.wd=0.0022,model=cnn_clisa,train.gpus=[0],train.iftest=False,train.max_epochs=80,train.min_epochs=80,train.num_workers=0,train.valid_method=10
     id: ???
     num: ???
     config_name: config
@@ -158,18 +158,18 @@ hydra:
   runtime:
     version: 1.3.2
     version_base: '1.3'
-    cwd: /root/autodl-tmp/clisa-eeg-emotion
+    cwd: .
     config_sources:
     - path: hydra.conf
       schema: pkg
       provider: hydra
-    - path: /root/autodl-tmp/clisa-eeg-emotion/cfgs
+    - path: cfgs
       schema: file
       provider: main
     - path: ''
       schema: structured
       provider: schema
-    output_dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/hydra_runs/mlp_f1
+    output_dir: runs/variants/clisa_00547_fold_default_mlp128/published/hydra_runs/mlp_f1
     choices:
       model: cnn_clisa
       data: FACED_def

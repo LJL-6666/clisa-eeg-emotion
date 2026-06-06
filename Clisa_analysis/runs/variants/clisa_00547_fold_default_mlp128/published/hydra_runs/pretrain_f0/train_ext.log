@@ -1,3 +1,3 @@
 [2026-05-31 22:40:35,328][__main__][INFO] - Total number of parameters: 2464
 [2026-05-31 22:40:35,328][__main__][INFO] - Model size: 9856 bytes (0.01 MB)
-[2026-06-01 01:25:48,421][__main__][INFO] - [fold-result][pretrain] fold=0 best_score=32.061687 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints/FACED/r1/f0_epoch=65.ckpt last_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints/FACED/r1/f0_last.ckpt
+[2026-06-01 01:25:48,421][__main__][INFO] - [fold-result][pretrain] fold=0 best_score=32.061687 best_model_path=runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints/FACED/r1/f0_epoch=65.ckpt last_model_path=runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints/FACED/r1/f0_last.ckpt

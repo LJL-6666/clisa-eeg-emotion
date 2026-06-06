@@ -1,8 +1,8 @@
 {
-  "run_root": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current",
-  "feature_dir": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/data/ext_fea/fea_r1",
-  "checkpoint_dir": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints",
-  "mlp_log": "/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/stage_logs/mlp.log",
+  "run_root": "runs/variants/clisa_447_fold_default_mlp128/published",
+  "feature_dir": "runs/variants/clisa_447_fold_default_mlp128/published/data/ext_fea/fea_r1",
+  "checkpoint_dir": "runs/variants/clisa_447_fold_default_mlp128/published/checkpoints",
+  "mlp_log": "runs/variants/clisa_447_fold_default_mlp128/published/stage_logs/mlp.log",
   "mode": "de",
   "fold_scores": {
     "0": 40.267857,

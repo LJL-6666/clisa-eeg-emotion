@@ -37,7 +37,7 @@ runtime_inputs/Processed_data-clisa/
   sub122.pkl
 ```
 
-代码同时支持 `sub*.pkl` 和 `sub*.mat`。仓库已经包含 `runtime_inputs/after_remarks/sub*/After_remarks.mat`，一般不需要额外准备。
+统一入口会在真实运行前检查数据目录。`clisa_00547_seq_default_mlp128` 和两个 paper-style variant 支持 `sub*.pkl` 或 `sub*.mat`；两个 fold-parallel variant 当前底层脚本要求完整的 `sub000.pkl` 到 `sub122.pkl`。仓库已经包含 `runtime_inputs/after_remarks/sub*/After_remarks.mat`，一般不需要额外准备。
 
 ## Variant 命名
 

@@ -4,14 +4,14 @@ train_subs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np
 val_subs: [108 109 110 111 112 113 114 115 116 117 118 119 120 121 122]
 [2026-05-31 14:56:39,704][__main__][INFO] - Total number of parameters: 2464
 [2026-05-31 14:56:39,704][__main__][INFO] - Model size: 9856 bytes (0.01 MB)
-[pretrain][debug][fold-config] fold=9/9 dataset=FACED model=ConvNet_baseNonlinearHead timeLen=5 timeStep=2 train_subs=108 val_subs=15 train_vids=28 val_vids=28 lr=0.000700 wd=0.000150 epochs=80 min_epochs=80 patience=30 num_workers=0 params=2464 model_mb=0.01 checkpoint_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1
+[pretrain][debug][fold-config] fold=9/9 dataset=FACED model=ConvNet_baseNonlinearHead timeLen=5 timeStep=2 train_subs=108 val_subs=15 train_vids=28 val_vids=28 lr=0.000700 wd=0.000150 epochs=80 min_epochs=80 patience=30 num_workers=0 params=2464 model_mb=0.01 checkpoint_dir=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1
 GPU available: True (cuda), used: True
 TPU available: False, using: 0 TPU cores
 💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
 `Trainer(limit_val_batches=1.0)` was configured so 100% of the batches will be used..
 sliced data exist!
 prepare data finished!
-/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:881: Checkpoint directory /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1 exists and is not empty.
+/root/miniconda3/envs/ty_eeg_speech_stage1/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:881: Checkpoint directory runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1 exists and is not empty.
 LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [3]
 ┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
 ┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃ FLOPs ┃
@@ -41,7 +41,7 @@ Total FLOPs: 0
 [train] epoch=0 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=1/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7433 top1=1.7857 top5=21.4286 data_mean=-0.0001 data_std=1.0007 data_absmax=45.7249 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1696 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=1/80 train_loss=na train_acc=na train_acc5=na val_loss=3.8479 val_acc=6.8878 val_acc5=24.7959
-Epoch 0, global step 5778: 'ext/val/acc' reached 6.88775 (best 6.88775), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=0.ckpt' as top 1
+Epoch 0, global step 5778: 'ext/val/acc' reached 6.88775 (best 6.88775), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=0.ckpt' as top 1
 [train] epoch=1 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=2/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=2/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5915 top1=8.9286 top5=42.8571 data_mean=-0.0000 data_std=0.9931 data_absmax=14.6834 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1952 proj_finite=1
@@ -53,7 +53,7 @@ Epoch 0, global step 5778: 'ext/val/acc' reached 6.88775 (best 6.88775), saving 
 [train] epoch=1 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=2/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5321 top1=16.0714 top5=35.7143 data_mean=0.0000 data_std=1.3553 data_absmax=137.4487 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1738 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=2/80 train_loss=3.8775 train_acc=7.0437 train_acc5=23.5768 val_loss=3.8005 val_acc=9.3878 val_acc5=27.4830
-Epoch 1, global step 11556: 'ext/val/acc' reached 9.38776 (best 9.38776), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=1.ckpt' as top 1
+Epoch 1, global step 11556: 'ext/val/acc' reached 9.38776 (best 9.38776), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=1.ckpt' as top 1
 [train] epoch=2 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=3/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=3/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4146 top1=21.4286 top5=46.4286 data_mean=-0.0000 data_std=1.0171 data_absmax=53.2738 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1468 proj_finite=1
@@ -65,7 +65,7 @@ Epoch 1, global step 11556: 'ext/val/acc' reached 9.38776 (best 9.38776), saving
 [train] epoch=2 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=3/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7938 top1=7.1429 top5=28.5714 data_mean=-0.0001 data_std=1.0631 data_absmax=70.0975 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.1577 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=3/80 train_loss=3.6668 train_acc=11.4378 train_acc5=32.2291 val_loss=3.7625 val_acc=9.5748 val_acc5=28.6905
-Epoch 2, global step 17334: 'ext/val/acc' reached 9.57483 (best 9.57483), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=2.ckpt' as top 1
+Epoch 2, global step 17334: 'ext/val/acc' reached 9.57483 (best 9.57483), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=2.ckpt' as top 1
 [train] epoch=3 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=4/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=4/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7142 top1=10.7143 top5=28.5714 data_mean=-0.0001 data_std=1.0435 data_absmax=56.1334 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.2030 proj_finite=1
@@ -89,7 +89,7 @@ Epoch 3, global step 23112: 'ext/val/acc' was not in top 1
 [train] epoch=4 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=5/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7640 top1=7.1429 top5=26.7857 data_mean=-0.0000 data_std=1.0216 data_absmax=48.9900 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1909 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=5/80 train_loss=3.5480 train_acc=14.0255 train_acc5=36.5728 val_loss=3.7237 val_acc=10.6122 val_acc5=30.9354
-Epoch 4, global step 28890: 'ext/val/acc' reached 10.61224 (best 10.61224), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=4.ckpt' as top 1
+Epoch 4, global step 28890: 'ext/val/acc' reached 10.61224 (best 10.61224), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=4.ckpt' as top 1
 [train] epoch=5 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=6/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=6/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5232 top1=8.9286 top5=35.7143 data_mean=-0.0001 data_std=1.0075 data_absmax=22.3083 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1977 proj_finite=1
@@ -101,7 +101,7 @@ Epoch 4, global step 28890: 'ext/val/acc' reached 10.61224 (best 10.61224), savi
 [train] epoch=5 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=6/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.3219 top1=21.4286 top5=46.4286 data_mean=0.0000 data_std=1.1754 data_absmax=49.8991 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.1765 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=6/80 train_loss=3.5195 train_acc=14.7685 train_acc5=37.6165 val_loss=3.7140 val_acc=11.0204 val_acc5=32.0578
-Epoch 5, global step 34668: 'ext/val/acc' reached 11.02041 (best 11.02041), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=5.ckpt' as top 1
+Epoch 5, global step 34668: 'ext/val/acc' reached 11.02041 (best 11.02041), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=5.ckpt' as top 1
 [train] epoch=6 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=7/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=7/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5508 top1=16.0714 top5=39.2857 data_mean=0.0000 data_std=1.0091 data_absmax=21.9661 data_finite=1 proj_mean=-0.0002 proj_std=0.0208 proj_absmax=0.2142 proj_finite=1
@@ -137,7 +137,7 @@ Epoch 7, global step 46224: 'ext/val/acc' was not in top 1
 [train] epoch=8 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=9/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5871 top1=19.6429 top5=33.9286 data_mean=-0.0000 data_std=1.1312 data_absmax=49.8991 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2185 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=9/80 train_loss=3.4792 train_acc=15.7543 train_acc5=39.0786 val_loss=3.6922 val_acc=11.4626 val_acc5=32.7041
-Epoch 8, global step 52002: 'ext/val/acc' reached 11.46259 (best 11.46259), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=8.ckpt' as top 1
+Epoch 8, global step 52002: 'ext/val/acc' reached 11.46259 (best 11.46259), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=8.ckpt' as top 1
 [train] epoch=9 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=10/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=10/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4082 top1=10.7143 top5=42.8571 data_mean=-0.0000 data_std=1.0066 data_absmax=82.2740 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2323 proj_finite=1
@@ -149,7 +149,7 @@ Epoch 8, global step 52002: 'ext/val/acc' reached 11.46259 (best 11.46259), savi
 [train] epoch=9 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=10/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.6101 top1=14.2857 top5=35.7143 data_mean=-0.0001 data_std=1.2838 data_absmax=58.1543 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3723 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=10/80 train_loss=3.4667 train_acc=16.0881 train_acc5=39.3602 val_loss=3.6918 val_acc=12.0748 val_acc5=31.8878
-Epoch 9, global step 57780: 'ext/val/acc' reached 12.07483 (best 12.07483), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=9.ckpt' as top 1
+Epoch 9, global step 57780: 'ext/val/acc' reached 12.07483 (best 12.07483), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=9.ckpt' as top 1
 [train] epoch=10 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=11/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=11/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.7316 top1=17.8571 top5=35.7143 data_mean=0.0000 data_std=1.0246 data_absmax=27.6101 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2550 proj_finite=1
@@ -245,7 +245,7 @@ Epoch 16, global step 98226: 'ext/val/acc' was not in top 1
 [train] epoch=17 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=18/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.9523 top1=7.1429 top5=26.7857 data_mean=-0.0001 data_std=0.8793 data_absmax=12.9134 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2559 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=18/80 train_loss=3.4221 train_acc=17.3302 train_acc5=40.8542 val_loss=3.6879 val_acc=12.2959 val_acc5=33.0952
-Epoch 17, global step 104004: 'ext/val/acc' reached 12.29592 (best 12.29592), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=17.ckpt' as top 1
+Epoch 17, global step 104004: 'ext/val/acc' reached 12.29592 (best 12.29592), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=17.ckpt' as top 1
 [train] epoch=18 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=19/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=19/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2214 top1=14.2857 top5=48.2143 data_mean=0.0000 data_std=0.9871 data_absmax=27.6101 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3002 proj_finite=1
@@ -281,7 +281,7 @@ Epoch 19, global step 115560: 'ext/val/acc' was not in top 1
 [train] epoch=20 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=21/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5384 top1=16.0714 top5=33.9286 data_mean=-0.0001 data_std=1.1708 data_absmax=137.4487 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2712 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=21/80 train_loss=3.4214 train_acc=17.2931 train_acc5=41.0356 val_loss=3.6812 val_acc=12.7721 val_acc5=33.4184
-Epoch 20, global step 121338: 'ext/val/acc' reached 12.77211 (best 12.77211), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=20.ckpt' as top 1
+Epoch 20, global step 121338: 'ext/val/acc' reached 12.77211 (best 12.77211), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=20.ckpt' as top 1
 [train] epoch=21 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=22/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=22/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.8604 top1=16.0714 top5=28.5714 data_mean=-0.0000 data_std=1.0406 data_absmax=82.2740 data_finite=1 proj_mean=-0.0003 proj_std=0.0208 proj_absmax=0.3408 proj_finite=1
@@ -293,7 +293,7 @@ Epoch 20, global step 121338: 'ext/val/acc' reached 12.77211 (best 12.77211), sa
 [train] epoch=21 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=22/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4966 top1=12.5000 top5=35.7143 data_mean=-0.0000 data_std=0.9797 data_absmax=45.7249 data_finite=1 proj_mean=-0.0000 proj_std=0.0208 proj_absmax=0.4509 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=22/80 train_loss=3.4093 train_acc=17.6340 train_acc5=41.2720 val_loss=3.6562 val_acc=12.7891 val_acc5=32.8741
-Epoch 21, global step 127116: 'ext/val/acc' reached 12.78912 (best 12.78912), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=21.ckpt' as top 1
+Epoch 21, global step 127116: 'ext/val/acc' reached 12.78912 (best 12.78912), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=21.ckpt' as top 1
 [train] epoch=22 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=23/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=23/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2517 top1=19.6429 top5=44.6429 data_mean=0.0001 data_std=0.9766 data_absmax=26.0997 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3463 proj_finite=1
@@ -533,7 +533,7 @@ Epoch 40, global step 236898: 'ext/val/acc' was not in top 1
 [train] epoch=41 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=42/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4526 top1=19.6429 top5=41.0714 data_mean=-0.0000 data_std=1.2290 data_absmax=156.9473 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2888 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=42/80 train_loss=3.3734 train_acc=18.5253 train_acc5=42.5054 val_loss=3.6613 val_acc=12.9592 val_acc5=34.4728
-Epoch 41, global step 242676: 'ext/val/acc' reached 12.95918 (best 12.95918), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=41.ckpt' as top 1
+Epoch 41, global step 242676: 'ext/val/acc' reached 12.95918 (best 12.95918), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=41.ckpt' as top 1
 [train] epoch=42 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=43/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=43/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=2.9467 top1=28.5714 top5=55.3571 data_mean=0.0000 data_std=0.9949 data_absmax=27.6101 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3261 proj_finite=1
@@ -593,7 +593,7 @@ Epoch 45, global step 265788: 'ext/val/acc' was not in top 1
 [train] epoch=46 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=47/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5857 top1=10.7143 top5=41.0714 data_mean=-0.0000 data_std=1.1790 data_absmax=70.0975 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3399 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=47/80 train_loss=3.3688 train_acc=18.3798 train_acc5=42.6207 val_loss=3.6592 val_acc=13.3844 val_acc5=34.3537
-Epoch 46, global step 271566: 'ext/val/acc' reached 13.38435 (best 13.38435), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=46.ckpt' as top 1
+Epoch 46, global step 271566: 'ext/val/acc' reached 13.38435 (best 13.38435), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=46.ckpt' as top 1
 [train] epoch=47 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=48/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=48/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.2027 top1=19.6429 top5=50.0000 data_mean=-0.0000 data_std=1.0340 data_absmax=56.1334 data_finite=1 proj_mean=-0.0002 proj_std=0.0208 proj_absmax=0.2836 proj_finite=1
@@ -689,7 +689,7 @@ Epoch 53, global step 312012: 'ext/val/acc' was not in top 1
 [train] epoch=54 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=55/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5407 top1=12.5000 top5=30.3571 data_mean=-0.0001 data_std=1.2756 data_absmax=70.0975 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3334 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=55/80 train_loss=3.3625 train_acc=18.6863 train_acc5=42.8058 val_loss=3.6537 val_acc=13.8435 val_acc5=33.6735
-Epoch 54, global step 317790: 'ext/val/acc' reached 13.84354 (best 13.84354), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=54.ckpt' as top 1
+Epoch 54, global step 317790: 'ext/val/acc' reached 13.84354 (best 13.84354), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=54.ckpt' as top 1
 [train] epoch=55 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=56/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=56/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.0353 top1=23.2143 top5=57.1429 data_mean=-0.0000 data_std=1.0226 data_absmax=27.6101 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.2766 proj_finite=1
@@ -857,7 +857,7 @@ Epoch 67, global step 392904: 'ext/val/acc' was not in top 1
 [train] epoch=68 batch=5778/5778
 [pretrain][debug][val-batch0] epoch=69/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.4828 top1=25.0000 top5=41.0714 data_mean=-0.0001 data_std=1.2833 data_absmax=58.1543 data_finite=1 proj_mean=-0.0001 proj_std=0.0208 proj_absmax=0.3203 proj_finite=1
 [pretrain][debug][epoch-summary] epoch=69/80 train_loss=3.3573 train_acc=18.8470 train_acc5=43.0515 val_loss=3.6541 val_acc=13.9966 val_acc5=34.2007
-Epoch 68, global step 398682: 'ext/val/acc' reached 13.99660 (best 13.99660), saving model to '/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=68.ckpt' as top 1
+Epoch 68, global step 398682: 'ext/val/acc' reached 13.99660 (best 13.99660), saving model to 'runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=68.ckpt' as top 1
 [train] epoch=69 total_batches=5778 print_every=1000
 [pretrain][debug][epoch-start] epoch=70/80 lr=0.0007 train_batches=5778 val_batches=[105]
 [pretrain][debug][train-batch0] epoch=70/80 data_shape=(56, 1, 30, 1250) labels_shape=(56,) proj_shape=(56, 2304) labels_unique=9 labels_minmax=(0,8) loss=3.5133 top1=17.8571 top5=44.6429 data_mean=0.0000 data_std=0.9863 data_absmax=18.4856 data_finite=1 proj_mean=-0.0002 proj_std=0.0208 proj_absmax=0.3140 proj_finite=1
@@ -991,5 +991,5 @@ Epoch 78, global step 456462: 'ext/val/acc' was not in top 1
 [pretrain][debug][epoch-summary] epoch=80/80 train_loss=3.3573 train_acc=18.7311 train_acc5=43.0089 val_loss=3.6916 val_acc=11.9388 val_acc5=32.2109
 Epoch 79, global step 462240: 'ext/val/acc' was not in top 1
 `Trainer.fit` stopped: `max_epochs=80` reached.
-[2026-05-31 17:35:30,416][__main__][INFO] - [fold-result][pretrain] fold=9 best_score=13.996598 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=68.ckpt last_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_last.ckpt
-[pretrain][debug][fit-end] fold=9 best_model_path=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/f9_epoch=68.ckpt best_model_score=13.996598243713379 checkpoint_dir=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1
+[2026-05-31 17:35:30,416][__main__][INFO] - [fold-result][pretrain] fold=9 best_score=13.996598 best_model_path=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=68.ckpt last_model_path=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_last.ckpt
+[pretrain][debug][fit-end] fold=9 best_model_path=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/f9_epoch=68.ckpt best_model_score=13.996598243713379 checkpoint_dir=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -169,14 +170,50 @@ def base_env(args: argparse.Namespace, run_root: Path, *, create_dirs: bool = Tr
     return env
 
 
+def subject_files(data_dir: Path, *, suffixes: tuple[str, ...]) -> list[Path]:
+    if not data_dir.is_dir():
+        return []
+    suffix_pattern = "|".join(re.escape(suffix.lstrip(".")) for suffix in suffixes)
+    pattern = re.compile(rf"sub\d+\.({suffix_pattern})$")
+    return sorted(path for path in data_dir.iterdir() if path.is_file() and pattern.fullmatch(path.name))
+
+
+def require_subject_data(data_dir: Path, *, variant: Variant, suffixes: tuple[str, ...], expected_count: int = 123) -> None:
+    files = subject_files(data_dir, suffixes=suffixes)
+    suffix_label = ", ".join(f"sub*.{suffix.lstrip('.')}" for suffix in suffixes)
+    if not data_dir.is_dir():
+        raise FileNotFoundError(
+            f"{variant.id} requires FACED subject files under {data_dir}. "
+            f"Create this directory and place {suffix_label} files there."
+        )
+    if len(files) < expected_count:
+        raise FileNotFoundError(
+            f"{variant.id} requires {expected_count} FACED subject files ({suffix_label}) under {data_dir}; "
+            f"found {len(files)}."
+        )
+
+
+def require_after_remarks(after_remarks_dir: Path, *, expected_count: int = 123) -> None:
+    count = len(list(after_remarks_dir.glob("sub*/After_remarks.mat"))) if after_remarks_dir.is_dir() else 0
+    if count < expected_count:
+        raise FileNotFoundError(
+            f"Expected {expected_count} after-remarks files under {after_remarks_dir}; found {count}."
+        )
+
+
 def run_main_sequential(args: argparse.Namespace, variant: Variant, run_root: Path) -> None:
+    data_dir = REPO_ROOT / "runtime_inputs" / "Processed_data"
+    after_remarks_dir = REPO_ROOT / "runtime_inputs" / "after_remarks"
+    if not args.dry_run:
+        require_subject_data(data_dir, variant=variant, suffixes=("pkl", "mat"))
+        require_after_remarks(after_remarks_dir)
     cmd = [
         str(args.python_bin.expanduser().resolve()),
         str(REPO_ROOT / "main.py"),
         "--data-root",
-        str(REPO_ROOT / "runtime_inputs" / "Processed_data"),
+        str(data_dir),
         "--after-remarks-dir",
-        str(REPO_ROOT / "runtime_inputs" / "after_remarks"),
+        str(after_remarks_dir),
         "--run-root",
         str(run_root),
         "--data-config",
@@ -216,12 +253,15 @@ def run_main_sequential(args: argparse.Namespace, variant: Variant, run_root: Pa
 
 
 def run_fold_wrapper(args: argparse.Namespace, variant: Variant, run_root: Path, *, data_branch: str) -> None:
+    data_dir = REPO_ROOT / "runtime_inputs" / data_branch
     if not args.dry_run:
+        require_subject_data(data_dir, variant=variant, suffixes=("pkl",))
+        require_after_remarks(REPO_ROOT / "runtime_inputs" / "after_remarks")
         write_variant_metadata(run_root, variant)
     env = base_env(args, run_root, create_dirs=not args.dry_run)
     env["OUTPUT_RUN_ROOT"] = str(run_root)
     env["EXP_NAME"] = variant.id
-    env["DATA_ROOT"] = str(REPO_ROOT / "runtime_inputs" / data_branch)
+    env["DATA_ROOT"] = str(data_dir)
     env["CONDA_ENV"] = args.conda_env
     script = "run_faced_fold_parallel_4_47.sh" if data_branch == "Processed_data-clisa" else "run_faced_fold_parallel_005_47.sh"
     run_command(["bash", str(REPO_ROOT / "scripts" / script)], cwd=REPO_ROOT, env=env, dry_run=args.dry_run)
@@ -235,13 +275,18 @@ def find_latest_paper_source() -> Path | None:
 
 def run_paper_pretrain(args: argparse.Namespace, variant: Variant, run_root: Path) -> Path:
     source_root = run_root / "paper_pretrain_extract"
+    data_dir = REPO_ROOT / "runtime_inputs" / "Processed_data-clisa"
+    after_remarks_dir = REPO_ROOT / "runtime_inputs" / "after_remarks"
+    if not args.dry_run:
+        require_subject_data(data_dir, variant=variant, suffixes=("pkl", "mat"))
+        require_after_remarks(after_remarks_dir)
     env = base_env(args, source_root, create_dirs=not args.dry_run)
     env["RUN_ROOT"] = str(source_root)
     env["DEVICES"] = args.fold_devices
     env["EXP_NAME"] = "clisa_447_seq_paperpre"
     env["VARIANT_ID"] = variant.id
-    env["DATA_SRC"] = str(REPO_ROOT / "runtime_inputs" / "Processed_data-clisa")
-    env["AFTER_REMARKS_SRC"] = str(REPO_ROOT / "runtime_inputs" / "after_remarks")
+    env["DATA_SRC"] = str(data_dir)
+    env["AFTER_REMARKS_SRC"] = str(after_remarks_dir)
     cmd = ["bash", str(REPO_ROOT / "scripts" / "run_4_47_paper_pretrain_extract_background.sh")]
     run_command(cmd, cwd=REPO_ROOT, env=env, dry_run=args.dry_run)
     return source_root
@@ -375,16 +420,19 @@ def main() -> None:
         else:
             raise FileExistsError(f"Run root already exists: {run_root}. Use a new --run-name. --force only reruns MLP cases inside paper-style variants.")
 
-    if variant.command_kind == "main_sequential":
-        run_main_sequential(args, variant, run_root)
-    elif variant.command_kind == "fold_4_47":
-        run_fold_wrapper(args, variant, run_root, data_branch="Processed_data-clisa")
-    elif variant.command_kind == "fold_005_47":
-        run_fold_wrapper(args, variant, run_root, data_branch="Processed_data")
-    elif variant.command_kind in PAPER_MLP_CASE_BY_KIND:
-        run_paper_mlp(args, variant, run_root)
-    else:
-        raise ValueError(f"Unsupported command kind: {variant.command_kind}")
+    try:
+        if variant.command_kind == "main_sequential":
+            run_main_sequential(args, variant, run_root)
+        elif variant.command_kind == "fold_4_47":
+            run_fold_wrapper(args, variant, run_root, data_branch="Processed_data-clisa")
+        elif variant.command_kind == "fold_005_47":
+            run_fold_wrapper(args, variant, run_root, data_branch="Processed_data")
+        elif variant.command_kind in PAPER_MLP_CASE_BY_KIND:
+            run_paper_mlp(args, variant, run_root)
+        else:
+            raise ValueError(f"Unsupported command kind: {variant.command_kind}")
+    except (FileNotFoundError, FileExistsError, RuntimeError, ValueError) as exc:
+        raise SystemExit(f"error: {exc}") from None
 
     print(f"variant={variant.id}")
     print(f"run_root={run_root}")

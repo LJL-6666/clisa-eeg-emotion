@@ -44,4 +44,4 @@ runs/variants/clisa_00547_seq_default_mlp128/run_20260606T120000Z/
 runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/run_20260606T120000Z/
 ```
 
-The repository keeps CLISA outputs under `runs/variants/` only. The old `results/` and ad-hoc `runs/run_*` roots should not be recreated.
+The repository keeps CLISA outputs under `runs/variants/` only. Legacy ad-hoc output roots should not be recreated.

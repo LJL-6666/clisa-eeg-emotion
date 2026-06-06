@@ -1,16 +1,16 @@
-[visualize] saved /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/visualization/daest_faced_10fold_fold_accuracy_de.png
-[visualize] fold=0 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f0_wd=0.0022_epoch=3.ckpt
-[visualize] fold=1 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f1_wd=0.0022_epoch=6.ckpt
-[visualize] fold=2 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f2_wd=0.0022_epoch=2.ckpt
-[visualize] fold=3 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f3_wd=0.0022_epoch=3.ckpt
-[visualize] fold=4 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f4_wd=0.0022_epoch=6.ckpt
-[visualize] fold=5 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f5_wd=0.0022_epoch=4.ckpt
-[visualize] fold=6 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f6_wd=0.0022_epoch=3.ckpt
-[visualize] fold=7 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f7_wd=0.0022_epoch=1.ckpt
-[visualize] fold=8 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f8_wd=0.0022_epoch=1.ckpt
-[visualize] fold=9 ckpt=/root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/checkpoints/FACED/r1/mlp_f9_wd=0.0022_epoch=16.ckpt
-[visualize] saved /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/visualization/daest_faced_10fold_subject_accuracy_de.png
-[visualize] saved /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/visualization/daest_faced_10fold_cls9_confusion_de.png
+[visualize] saved runs/variants/clisa_447_fold_default_mlp128/published/visualization/daest_faced_10fold_fold_accuracy_de.png
+[visualize] fold=0 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f0_wd=0.0022_epoch=3.ckpt
+[visualize] fold=1 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f1_wd=0.0022_epoch=6.ckpt
+[visualize] fold=2 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f2_wd=0.0022_epoch=2.ckpt
+[visualize] fold=3 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f3_wd=0.0022_epoch=3.ckpt
+[visualize] fold=4 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f4_wd=0.0022_epoch=6.ckpt
+[visualize] fold=5 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f5_wd=0.0022_epoch=4.ckpt
+[visualize] fold=6 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f6_wd=0.0022_epoch=3.ckpt
+[visualize] fold=7 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f7_wd=0.0022_epoch=1.ckpt
+[visualize] fold=8 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f8_wd=0.0022_epoch=1.ckpt
+[visualize] fold=9 ckpt=runs/variants/clisa_447_fold_default_mlp128/published/checkpoints/FACED/r1/mlp_f9_wd=0.0022_epoch=16.ckpt
+[visualize] saved runs/variants/clisa_447_fold_default_mlp128/published/visualization/daest_faced_10fold_subject_accuracy_de.png
+[visualize] saved runs/variants/clisa_447_fold_default_mlp128/published/visualization/daest_faced_10fold_cls9_confusion_de.png
 [visualize] overall accuracy: 40.1055%
 [visualize] subject accuracy: 40.1055% +/- 12.3194%
-[visualize] outputs: /root/autodl-tmp/clisa-eeg-emotion/runs/run_6gpu_full_current/visualization
+[visualize] outputs: runs/variants/clisa_447_fold_default_mlp128/published/visualization

@@ -3,7 +3,7 @@ log:
   run: 1
   proj_name: CLISA_CODE
   exp_name: local_faced_processed_005_47_full
-  cp_dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/checkpoints
+  cp_dir: runs/variants/clisa_00547_fold_default_mlp128/published/checkpoints
   use_wandb: false
 train:
   gpus:
@@ -56,7 +56,7 @@ ext_fea:
   pretrain_checkpoint: best
 data:
   dataset_name: FACED
-  data_dir: /root/autodl-tmp/clisa-eeg-emotion/runs/run_processed_005_47_full_current/data
+  data_dir: runs/variants/clisa_00547_fold_default_mlp128/published/data
   fs: 250
   n_channs: 30
   n_session: 1
@@ -77,7 +77,7 @@ data:
   - Inspiration
   - Joy
   - Tenderness
-  after_remarks_dir: /root/autodl-tmp/clisa-eeg-emotion/runtime_inputs/after_remarks
+  after_remarks_dir: runtime_inputs/after_remarks
 model:
   _target_: model.models.ConvNet_baseNonlinearHead
   n_timeFilters: 16

@@ -1,7 +1,7 @@
 {
   "band": "4_47_paper100",
-  "source_run_root": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z",
-  "source_feature_dir": "runs/run_4_47_paper_pretrain_extract_20260604T093047Z/data/ext_fea/fea_r1",
+  "source_run_root": "runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_pretrain_extract",
+  "source_feature_dir": "runs/variants/clisa_447_seq_paperpre_mlp128/published/paper_pretrain_extract/data/ext_fea/fea_r1",
   "exp_name": "local_faced_4_47_paper100_pretrain",
   "case": {
     "name": "paper_30_30_wd0011",
