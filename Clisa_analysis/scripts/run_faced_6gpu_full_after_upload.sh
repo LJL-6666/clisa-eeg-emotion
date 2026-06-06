@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${REPO_ROOT}"
 
-CONDA_ENV="${CONDA_ENV:-ty_eeg_speech_stage1}"
+CONDA_ENV="${CONDA_ENV:-clisa-code}"
 if [ -z "${PYTHON_BIN:-}" ] && [ -x "/root/miniconda3/envs/${CONDA_ENV}/bin/python" ]; then
   PYTHON_BIN="/root/miniconda3/envs/${CONDA_ENV}/bin/python"
 fi

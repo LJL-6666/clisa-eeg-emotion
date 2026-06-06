@@ -8,7 +8,7 @@ cd "$REPO_ROOT"
 export DATA_ROOT="${DATA_ROOT:-${REPO_ROOT}/runtime_inputs/Processed_data}"
 export OUTPUT_RUN_ROOT="${OUTPUT_RUN_ROOT:-${REPO_ROOT}/runs/variants/clisa_00547_fold_default_mlp128/run_$(date -u +%Y%m%dT%H%M%SZ)}"
 export EXP_NAME="${EXP_NAME:-local_faced_processed_005_47_full}"
-export CONDA_ENV="${CONDA_ENV:-ty_eeg_speech_stage1}"
+export CONDA_ENV="${CONDA_ENV:-clisa-code}"
 export POLL_SECONDS="${POLL_SECONDS:-60}"
 export STABLE_POLLS="${STABLE_POLLS:-2}"
 
