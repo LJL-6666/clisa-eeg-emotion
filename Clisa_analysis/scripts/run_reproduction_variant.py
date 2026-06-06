@@ -74,7 +74,7 @@ VARIANTS: tuple[Variant, ...] = (
         classifier="current MLP: [128,64], dropout=0.1, wd=0.0022, batch=512",
         command_kind="paper_mlp_current",
         canonical_output="runs/variants/clisa_447_seq_paperpre_mlp128/<run_name>/",
-        notes="Needs a paper-style pretrain/extract source run unless --run-pretrain is used.",
+        notes="Runs paper-style pretrain/extract first unless an existing source is passed.",
     ),
     Variant(
         id="clisa_447_seq_paperpre_mlp30_wd0011",
@@ -85,7 +85,7 @@ VARIANTS: tuple[Variant, ...] = (
         classifier="paper MLP: [30,30], dropout=0, wd=0.011, batch=256",
         command_kind="paper_mlp_30_wd0011",
         canonical_output="runs/variants/clisa_447_seq_paperpre_mlp30_wd0011/<run_name>/",
-        notes="Needs a paper-style pretrain/extract source run unless --run-pretrain is used.",
+        notes="Runs paper-style pretrain/extract first unless an existing source is passed.",
     ),
 )
 
@@ -109,7 +109,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fold-devices", default=os.environ.get("DEVICES", "[0]"), help="Device env passed to paper-style pretrain script.")
     parser.add_argument("--parallelism", type=int, default=1, help="MLP case parallelism for paper-style MLP variants.")
     parser.add_argument("--source-run-root", type=Path, default=None, help="Existing paper-style pretrain/extract run root for paper MLP variants.")
-    parser.add_argument("--run-pretrain", action="store_true", help="For paper MLP variants, first launch paper-style pretrain/extract into this variant run.")
+    parser.add_argument("--reuse-latest-source", action="store_true", help="For paper MLP variants, reuse the latest completed paper-style source if found.")
+    parser.add_argument("--run-pretrain", action="store_true", help="Compatibility alias for the default paper-style behavior: run pretrain/extract before MLP.")
+    parser.add_argument("--poll-seconds", type=int, default=int(os.environ.get("POLL_SECONDS", "60")), help="Polling interval while waiting for paper-style pretrain/extract.")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without executing them.")
     parser.add_argument("--force", action="store_true", help="Forward force/rerun behavior where supported.")
     return parser.parse_args()
@@ -231,12 +233,13 @@ def find_latest_paper_source() -> Path | None:
     return candidates[-1] if candidates else None
 
 
-def run_paper_pretrain(args: argparse.Namespace, run_root: Path) -> Path:
+def run_paper_pretrain(args: argparse.Namespace, variant: Variant, run_root: Path) -> Path:
     source_root = run_root / "paper_pretrain_extract"
     env = base_env(args, source_root, create_dirs=not args.dry_run)
     env["RUN_ROOT"] = str(source_root)
     env["DEVICES"] = args.fold_devices
     env["EXP_NAME"] = "clisa_447_seq_paperpre"
+    env["VARIANT_ID"] = variant.id
     env["DATA_SRC"] = str(REPO_ROOT / "runtime_inputs" / "Processed_data-clisa")
     env["AFTER_REMARKS_SRC"] = str(REPO_ROOT / "runtime_inputs" / "after_remarks")
     cmd = ["bash", str(REPO_ROOT / "scripts" / "run_4_47_paper_pretrain_extract_background.sh")]
@@ -244,26 +247,90 @@ def run_paper_pretrain(args: argparse.Namespace, run_root: Path) -> Path:
     return source_root
 
 
+def pid_is_alive(pid_text: str) -> bool:
+    try:
+        pid = int(pid_text.strip())
+    except ValueError:
+        return False
+    if pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def wait_for_paper_stage(source_root: Path, marker: Path, label: str, poll_seconds: int) -> None:
+    pid_file = source_root / "paper_pretrain_extract.pid"
+    log_file = source_root / "paper_pretrain_extract.nohup.log"
+    poll_seconds = max(1, poll_seconds)
+    while not marker.is_file():
+        if pid_file.is_file():
+            pid_text = pid_file.read_text(encoding="utf-8").strip()
+            if pid_text and not pid_is_alive(pid_text):
+                raise RuntimeError(
+                    f"Paper-style pretrain/extract exited before {label} completed. "
+                    f"Check log: {log_file}"
+                )
+        print(f"[wait] {label}: waiting for {marker}")
+        time.sleep(poll_seconds)
+
+
+def ensure_paper_source_ready(source_root: Path) -> None:
+    feature_dir = source_root / "data" / "ext_fea" / "fea_r1"
+    if not feature_dir.is_dir():
+        raise FileNotFoundError(f"Paper-style feature directory is missing: {feature_dir}")
+
+
 def run_paper_mlp(args: argparse.Namespace, variant: Variant, run_root: Path) -> None:
+    if args.source_run_root and args.reuse_latest_source:
+        raise ValueError("--source-run-root and --reuse-latest-source cannot be used together.")
+
     source_root = resolve_repo_path(args.source_run_root) if args.source_run_root else None
-    if args.run_pretrain:
-        source_root = run_paper_pretrain(args, run_root)
-        if not args.dry_run:
-            write_variant_metadata(run_root, variant, {"paper_source_run_root": str(source_root)})
-            print(f"paper_pretrain_source={source_root}")
-            print("Paper-style pretrain/extract was launched in the background. Rerun this variant with --source-run-root after extract.done appears.")
-            return
-    if source_root is None:
+    source_mode = "provided" if source_root else None
+
+    if source_root is None and args.reuse_latest_source:
         source_root = find_latest_paper_source()
-    if source_root is None and args.dry_run:
-        source_root = REPO_ROOT / "runs" / "variants" / variant.id / "run_YYYYMMDDTHHMMSSZ" / "paper_pretrain_extract"
+        source_mode = "latest" if source_root else None
+        if source_root is None:
+            raise FileNotFoundError(
+                "No completed paper-style source run found for --reuse-latest-source. "
+                "Omit --reuse-latest-source to run a fresh source."
+            )
+
     if source_root is None:
-        raise FileNotFoundError(
-            "No paper-style source run found. Pass --source-run-root or run with --run-pretrain first."
-        )
+        source_root = run_paper_pretrain(args, variant, run_root)
+        source_mode = "fresh"
+        if args.dry_run:
+            print(f"paper_pretrain_source={source_root}")
+        else:
+            wait_for_paper_stage(
+                source_root,
+                source_root / "stage_status" / "pretrain.done",
+                "paper-style pretrain",
+                args.poll_seconds,
+            )
+            wait_for_paper_stage(
+                source_root,
+                source_root / "stage_status" / "extract.done",
+                "paper-style feature extraction",
+                args.poll_seconds,
+            )
 
     if not args.dry_run:
-        write_variant_metadata(run_root, variant, {"paper_source_run_root": str(source_root)})
+        ensure_paper_source_ready(source_root)
+        write_variant_metadata(
+            run_root,
+            variant,
+            {
+                "paper_source_run_root": str(source_root),
+                "paper_source_mode": source_mode or "unknown",
+            },
+        )
+
     case_name = PAPER_MLP_CASE_BY_KIND[variant.command_kind]
     cmd = [
         str(args.python_bin.expanduser().resolve()),

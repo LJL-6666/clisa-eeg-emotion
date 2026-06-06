@@ -91,17 +91,13 @@ python scripts/run_reproduction_variant.py --list
 python scripts/run_reproduction_variant.py --variant clisa_00547_seq_default_mlp128
 python scripts/run_reproduction_variant.py --variant clisa_447_fold_default_mlp128
 python scripts/run_reproduction_variant.py --variant clisa_00547_fold_default_mlp128
+python scripts/run_reproduction_variant.py --variant clisa_447_seq_paperpre_mlp128
+python scripts/run_reproduction_variant.py --variant clisa_447_seq_paperpre_mlp30_wd0011
 ```
 
-Paper-style 两个 MLP variant 依赖 paper-style pretrain/extract 特征。没有特征源时先启动：
+5 个 variant 都可以用同一个 `--variant` 入口直接选择运行。Paper-style 两个 variant 会先自动运行 4-47 Hz paper-style pretrain/extract，等待 `paper_pretrain_extract/stage_status/extract.done`，再继续跑所选 MLP case。
 
-```bash
-python scripts/run_reproduction_variant.py \
-  --variant clisa_447_seq_paperpre_mlp128 \
-  --run-pretrain
-```
-
-等 `paper_pretrain_extract/stage_status/extract.done` 出现后，再运行两个 MLP variant：
+如果已经有完成的 paper-style feature source，可以显式复用以跳过 pretrain/extract：
 
 ```bash
 python scripts/run_reproduction_variant.py \
@@ -112,6 +108,8 @@ python scripts/run_reproduction_variant.py \
   --variant clisa_447_seq_paperpre_mlp30_wd0011 \
   --source-run-root ./runs/variants/clisa_447_seq_paperpre_mlp128/run_YYYYMMDDTHHMMSSZ/paper_pretrain_extract
 ```
+
+也可以使用 `--reuse-latest-source` 复用当前仓库中最近完成的 paper-style source。
 
 ### Final best2 全流程
 
